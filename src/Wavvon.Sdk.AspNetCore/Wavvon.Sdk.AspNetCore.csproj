@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <RootNamespace>Wavvon.Sdk.AspNetCore</RootNamespace>
+    <PackageId>Wavvon.Sdk.AspNetCore</PackageId>
+    <Description>Map a Wavvon app's webhook onto an ASP.NET Core minimal-API route.</Description>
+    <PackageTags>wavvon;bot;sdk;aspnetcore</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <ProjectReference Include="../Wavvon.Sdk/Wavvon.Sdk.csproj" />
+  </ItemGroup>
+
+</Project>
