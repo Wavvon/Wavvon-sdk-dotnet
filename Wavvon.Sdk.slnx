@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/EchoBot/EchoBot.csproj" />
+    <Project Path="samples/Smoke/Smoke.csproj" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/Wavvon.Sdk.AspNetCore/Wavvon.Sdk.AspNetCore.csproj" />
     <Project Path="src/Wavvon.Sdk/Wavvon.Sdk.csproj" />
