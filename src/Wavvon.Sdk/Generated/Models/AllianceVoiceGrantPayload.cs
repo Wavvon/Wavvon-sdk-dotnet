@@ -5,11 +5,11 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Wavvon.Sdk.Generated.Auth.Verify
+namespace Wavvon.Sdk.Generated.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class VerifyPostRequestBody_alliance_voice_grant_payload : IAdditionalDataHolder, IParsable
+    public partial class AllianceVoiceGrantPayload : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -75,21 +75,21 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
         public string SubjectPubkey { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant_payload"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrantPayload"/> and sets the default values.
         /// </summary>
-        public VerifyPostRequestBody_alliance_voice_grant_payload()
+        public AllianceVoiceGrantPayload()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant_payload"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrantPayload"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant_payload CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrantPayload CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant_payload();
+            return new global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrantPayload();
         }
         /// <summary>
         /// The deserialization information for the current model

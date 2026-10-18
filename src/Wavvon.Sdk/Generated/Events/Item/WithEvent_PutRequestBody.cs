@@ -24,6 +24,8 @@ namespace Wavvon.Sdk.Generated.Events.Item
 #endif
         /// <summary>The ends_at property</summary>
         public long? EndsAt { get; set; }
+        /// <summary>The hub_wide property</summary>
+        public bool? HubWide { get; set; }
         /// <summary>The location property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -32,6 +34,8 @@ namespace Wavvon.Sdk.Generated.Events.Item
 #else
         public string Location { get; set; }
 #endif
+        /// <summary>The reminder_minutes property</summary>
+        public long? ReminderMinutes { get; set; }
         /// <summary>The starts_at property</summary>
         public long? StartsAt { get; set; }
         /// <summary>The title property</summary>
@@ -69,7 +73,9 @@ namespace Wavvon.Sdk.Generated.Events.Item
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "ends_at", n => { EndsAt = n.GetLongValue(); } },
+                { "hub_wide", n => { HubWide = n.GetBoolValue(); } },
                 { "location", n => { Location = n.GetStringValue(); } },
+                { "reminder_minutes", n => { ReminderMinutes = n.GetLongValue(); } },
                 { "starts_at", n => { StartsAt = n.GetLongValue(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
             };
@@ -83,7 +89,9 @@ namespace Wavvon.Sdk.Generated.Events.Item
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteLongValue("ends_at", EndsAt);
+            writer.WriteBoolValue("hub_wide", HubWide);
             writer.WriteStringValue("location", Location);
+            writer.WriteLongValue("reminder_minutes", ReminderMinutes);
             writer.WriteLongValue("starts_at", StartsAt);
             writer.WriteStringValue("title", Title);
             writer.WriteAdditionalData(AdditionalData);

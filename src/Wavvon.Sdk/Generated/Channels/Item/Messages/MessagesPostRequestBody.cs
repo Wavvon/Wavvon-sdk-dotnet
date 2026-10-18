@@ -31,6 +31,14 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
 #else
         public string Content { get; set; }
 #endif
+        /// <summary>The game property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.GameLaunchCard? Game { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.GameLaunchCard Game { get; set; }
+#endif
         /// <summary>Message ID being replied to</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -66,6 +74,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
             {
                 { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Attachment>(global::Wavvon.Sdk.Generated.Models.Attachment.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "content", n => { Content = n.GetStringValue(); } },
+                { "game", n => { Game = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>(global::Wavvon.Sdk.Generated.Models.GameLaunchCard.CreateFromDiscriminatorValue); } },
                 { "reply_to", n => { ReplyTo = n.GetStringValue(); } },
             };
         }
@@ -78,6 +87,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Attachment>("attachments", Attachments);
             writer.WriteStringValue("content", Content);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>("game", Game);
             writer.WriteStringValue("reply_to", ReplyTo);
             writer.WriteAdditionalData(AdditionalData);
         }

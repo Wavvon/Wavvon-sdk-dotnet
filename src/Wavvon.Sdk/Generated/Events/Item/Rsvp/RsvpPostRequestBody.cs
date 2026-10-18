@@ -14,6 +14,14 @@ namespace Wavvon.Sdk.Generated.Events.Item.Rsvp
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The slot_id property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SlotId { get; set; }
+#nullable restore
+#else
+        public string SlotId { get; set; }
+#endif
         /// <summary>The status property</summary>
         public global::Wavvon.Sdk.Generated.Events.Item.Rsvp.RsvpPostRequestBody_status? Status { get; set; }
         /// <summary>
@@ -41,6 +49,7 @@ namespace Wavvon.Sdk.Generated.Events.Item.Rsvp
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "slot_id", n => { SlotId = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Wavvon.Sdk.Generated.Events.Item.Rsvp.RsvpPostRequestBody_status>(); } },
             };
         }
@@ -51,6 +60,7 @@ namespace Wavvon.Sdk.Generated.Events.Item.Rsvp
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("slot_id", SlotId);
             writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Events.Item.Rsvp.RsvpPostRequestBody_status>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }

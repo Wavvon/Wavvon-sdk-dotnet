@@ -5,15 +5,25 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Wavvon.Sdk.Generated.Channels.Item.Polls
+namespace Wavvon.Sdk.Generated.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PollsPostRequestBody_options : IAdditionalDataHolder, IParsable
+    public partial class SurveyQuestionAdmin : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The choices property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.SurveyChoiceAdmin>? Choices { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.SurveyChoiceAdmin> Choices { get; set; }
+#endif
+        /// <summary>The display_order property</summary>
+        public long? DisplayOrder { get; set; }
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -22,30 +32,40 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Polls
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>The text property</summary>
+        /// <summary>The kind property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Text { get; set; }
+        public string? Kind { get; set; }
 #nullable restore
 #else
-        public string Text { get; set; }
+        public string Kind { get; set; }
 #endif
+        /// <summary>The prompt property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Prompt { get; set; }
+#nullable restore
+#else
+        public string Prompt { get; set; }
+#endif
+        /// <summary>The required property</summary>
+        public bool? Required { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Channels.Item.Polls.PollsPostRequestBody_options"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.SurveyQuestionAdmin"/> and sets the default values.
         /// </summary>
-        public PollsPostRequestBody_options()
+        public SurveyQuestionAdmin()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Channels.Item.Polls.PollsPostRequestBody_options"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.SurveyQuestionAdmin"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Channels.Item.Polls.PollsPostRequestBody_options CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Models.SurveyQuestionAdmin CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Channels.Item.Polls.PollsPostRequestBody_options();
+            return new global::Wavvon.Sdk.Generated.Models.SurveyQuestionAdmin();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,8 +75,12 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Polls
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "choices", n => { Choices = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.SurveyChoiceAdmin>(global::Wavvon.Sdk.Generated.Models.SurveyChoiceAdmin.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "display_order", n => { DisplayOrder = n.GetLongValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "text", n => { Text = n.GetStringValue(); } },
+                { "kind", n => { Kind = n.GetStringValue(); } },
+                { "prompt", n => { Prompt = n.GetStringValue(); } },
+                { "required", n => { Required = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -66,8 +90,12 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Polls
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.SurveyChoiceAdmin>("choices", Choices);
+            writer.WriteLongValue("display_order", DisplayOrder);
             writer.WriteStringValue("id", Id);
-            writer.WriteStringValue("text", Text);
+            writer.WriteStringValue("kind", Kind);
+            writer.WriteStringValue("prompt", Prompt);
+            writer.WriteBoolValue("required", Required);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

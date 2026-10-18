@@ -5,25 +5,26 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Wavvon.Sdk.Generated.Auth.Verify
+namespace Wavvon.Sdk.Generated.Identity.Item.Revocations
 {
-    /// <summary>
-    /// Voice in alliance channels: an origin hub&apos;s signed assertion that thecaller is its member and the named channel is shared with an alliancethis hub belongs to. Minted by`POST /alliances/{alliance_id}/voice-grant` on the caller&apos;s own hub.Admits a **visitor** — a session scoped to `alliance_voice`, with no`users` row on this hub, no roles and no message access. Ignored for acaller who is already a member here, who gets their normal session.Requires the `voice.alliance` capability on this hub.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class VerifyPostRequestBody_alliance_voice_grant : IAdditionalDataHolder, IParsable
+    #pragma warning disable CS1591
+    public partial class RevocationsPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The payload property</summary>
+        /// <summary>The master_pubkey property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant_payload? Payload { get; set; }
+        public string? MasterPubkey { get; set; }
 #nullable restore
 #else
-        public global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant_payload Payload { get; set; }
+        public string MasterPubkey { get; set; }
 #endif
-        /// <summary>Hex Ed25519 signature by origin_hub_pubkey over the payload JSON</summary>
+        /// <summary>The revoked_at property</summary>
+        public long? RevokedAt { get; set; }
+        /// <summary>The signature property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Signature { get; set; }
@@ -31,22 +32,30 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
 #else
         public string Signature { get; set; }
 #endif
+        /// <summary>The subkey_pubkey property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SubkeyPubkey { get; set; }
+#nullable restore
+#else
+        public string SubkeyPubkey { get; set; }
+#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Identity.Item.Revocations.RevocationsPostRequestBody"/> and sets the default values.
         /// </summary>
-        public VerifyPostRequestBody_alliance_voice_grant()
+        public RevocationsPostRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Identity.Item.Revocations.RevocationsPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Identity.Item.Revocations.RevocationsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant();
+            return new global::Wavvon.Sdk.Generated.Identity.Item.Revocations.RevocationsPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,8 +65,10 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "payload", n => { Payload = n.GetObjectValue<global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant_payload>(global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant_payload.CreateFromDiscriminatorValue); } },
+                { "master_pubkey", n => { MasterPubkey = n.GetStringValue(); } },
+                { "revoked_at", n => { RevokedAt = n.GetLongValue(); } },
                 { "signature", n => { Signature = n.GetStringValue(); } },
+                { "subkey_pubkey", n => { SubkeyPubkey = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -67,8 +78,10 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant_payload>("payload", Payload);
+            writer.WriteStringValue("master_pubkey", MasterPubkey);
+            writer.WriteLongValue("revoked_at", RevokedAt);
             writer.WriteStringValue("signature", Signature);
+            writer.WriteStringValue("subkey_pubkey", SubkeyPubkey);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

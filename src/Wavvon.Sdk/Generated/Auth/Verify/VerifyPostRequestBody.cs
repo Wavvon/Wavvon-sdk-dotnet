@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Auth.Verify
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -17,10 +18,18 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
         /// <summary>Voice in alliance channels: an origin hub&apos;s signed assertion that thecaller is its member and the named channel is shared with an alliancethis hub belongs to. Minted by`POST /alliances/{alliance_id}/voice-grant` on the caller&apos;s own hub.Admits a **visitor** — a session scoped to `alliance_voice`, with no`users` row on this hub, no roles and no message access. Ignored for acaller who is already a member here, who gets their normal session.Requires the `voice.alliance` capability on this hub.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant? AllianceVoiceGrant { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrant? AllianceVoiceGrant { get; set; }
 #nullable restore
 #else
-        public global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant AllianceVoiceGrant { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrant AllianceVoiceGrant { get; set; }
+#endif
+        /// <summary>The certifications property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.Certification>? Certifications { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.Certification> Certifications { get; set; }
 #endif
         /// <summary>The challenge property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,6 +57,14 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
 #endif
         /// <summary>Set by a hub authenticating to federate; yields a `peer` session unless the key is already a member</summary>
         public bool? IsHub { get; set; }
+        /// <summary>The pow_proof property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.PowProof? PowProof { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.PowProof PowProof { get; set; }
+#endif
         /// <summary>The public_key property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,10 +88,10 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
         /// <summary>Multi-device: links a device subkey to a master key</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_subkey_cert? SubkeyCert { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.SubkeyCert? SubkeyCert { get; set; }
 #nullable restore
 #else
-        public global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_subkey_cert SubkeyCert { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.SubkeyCert SubkeyCert { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody"/> and sets the default values.
@@ -101,16 +118,18 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "alliance_voice_grant", n => { AllianceVoiceGrant = n.GetObjectValue<global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant>(global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant.CreateFromDiscriminatorValue); } },
+                { "alliance_voice_grant", n => { AllianceVoiceGrant = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrant>(global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrant.CreateFromDiscriminatorValue); } },
+                { "certifications", n => { Certifications = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Certification>(global::Wavvon.Sdk.Generated.Models.Certification.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "challenge", n => { Challenge = n.GetStringValue(); } },
                 { "challenge_token", n => { ChallengeToken = n.GetStringValue(); } },
                 { "invite_code", n => { InviteCode = n.GetStringValue(); } },
                 { "is_hub", n => { IsHub = n.GetBoolValue(); } },
+                { "pow_proof", n => { PowProof = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.PowProof>(global::Wavvon.Sdk.Generated.Models.PowProof.CreateFromDiscriminatorValue); } },
                 { "public_key", n => { PublicKey = n.GetStringValue(); } },
                 { "security_level", n => { SecurityLevel = n.GetIntValue(); } },
                 { "security_nonce", n => { SecurityNonce = n.GetLongValue(); } },
                 { "signature", n => { Signature = n.GetStringValue(); } },
-                { "subkey_cert", n => { SubkeyCert = n.GetObjectValue<global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_subkey_cert>(global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_subkey_cert.CreateFromDiscriminatorValue); } },
+                { "subkey_cert", n => { SubkeyCert = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.SubkeyCert>(global::Wavvon.Sdk.Generated.Models.SubkeyCert.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -120,16 +139,18 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_alliance_voice_grant>("alliance_voice_grant", AllianceVoiceGrant);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrant>("alliance_voice_grant", AllianceVoiceGrant);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Certification>("certifications", Certifications);
             writer.WriteStringValue("challenge", Challenge);
             writer.WriteStringValue("challenge_token", ChallengeToken);
             writer.WriteStringValue("invite_code", InviteCode);
             writer.WriteBoolValue("is_hub", IsHub);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.PowProof>("pow_proof", PowProof);
             writer.WriteStringValue("public_key", PublicKey);
             writer.WriteIntValue("security_level", SecurityLevel);
             writer.WriteLongValue("security_nonce", SecurityNonce);
             writer.WriteStringValue("signature", Signature);
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_subkey_cert>("subkey_cert", SubkeyCert);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.SubkeyCert>("subkey_cert", SubkeyCert);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -30,7 +30,7 @@ dotnet add package Wavvon.Sdk.AspNetCore   # only for MapWavvonDispatch
 ```csharp
 using Wavvon.Sdk;
 using Wavvon.Sdk.AspNetCore;
-using Wavvon.Sdk.Generated.Me.App.Commands;
+using Wavvon.Sdk.Generated.Models;
 using Wavvon.Sdk.Generated.Me.App.Profile;
 
 // A 32-byte Ed25519 seed, hex. It never leaves the process.
@@ -52,7 +52,7 @@ app.MapWavvonDispatch("/hook", new DispatchHandlerOptions
 await app.StartAsync();
 
 await client.SetAppProfileAsync(new ProfilePutRequestBody { Name = "Echo", WebhookUrl = "https://bot.example/hook" });
-await client.SetAppCommandsAsync([new CommandsPutRequestBody_commands { Name = "echo", Description = "Repeat after me" }]);
+await client.SetAppCommandsAsync([new AppCommandDef { Name = "echo", Description = "Repeat after me" }]);
 
 await using var events = client.Connect();
 await foreach (var e in events.ReadAllAsync())
@@ -85,7 +85,7 @@ A fuller one is [samples/EchoBot](samples/EchoBot/Program.cs).
 | Mini-app host | `EventConnection.AnnounceAppAsync`, `DismissAppAsync`, `SendMiniAppMessageAsync` |
 
 Request and response bodies of `client.Rest` are Kiota's generated classes,
-named after the spec (`ProfilePutRequestBody`, `CommandsPutRequestBody_commands`).
+named after the spec (`ProfilePutRequestBody`, `AppCommandDef`).
 App registration takes them directly, so a field the spec adds is usable the
 day it is regenerated.
 

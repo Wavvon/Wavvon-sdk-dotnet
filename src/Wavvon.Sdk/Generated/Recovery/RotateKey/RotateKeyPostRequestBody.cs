@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Recovery.RotateKey
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -17,10 +18,18 @@ namespace Wavvon.Sdk.Generated.Recovery.RotateKey
         /// <summary>The attestations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Wavvon.Sdk.Generated.Recovery.RotateKey.RotateKeyPostRequestBody_attestations>? Attestations { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.AttestationInput>? Attestations { get; set; }
 #nullable restore
 #else
-        public List<global::Wavvon.Sdk.Generated.Recovery.RotateKey.RotateKeyPostRequestBody_attestations> Attestations { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.AttestationInput> Attestations { get; set; }
+#endif
+        /// <summary>The new_key_signature property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NewKeySignature { get; set; }
+#nullable restore
+#else
+        public string NewKeySignature { get; set; }
 #endif
         /// <summary>The new_pubkey property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,7 +80,8 @@ namespace Wavvon.Sdk.Generated.Recovery.RotateKey
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attestations", n => { Attestations = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Recovery.RotateKey.RotateKeyPostRequestBody_attestations>(global::Wavvon.Sdk.Generated.Recovery.RotateKey.RotateKeyPostRequestBody_attestations.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "attestations", n => { Attestations = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.AttestationInput>(global::Wavvon.Sdk.Generated.Models.AttestationInput.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "new_key_signature", n => { NewKeySignature = n.GetStringValue(); } },
                 { "new_pubkey", n => { NewPubkey = n.GetStringValue(); } },
                 { "old_pubkey", n => { OldPubkey = n.GetStringValue(); } },
                 { "reason", n => { Reason = n.GetStringValue(); } },
@@ -84,7 +94,8 @@ namespace Wavvon.Sdk.Generated.Recovery.RotateKey
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Recovery.RotateKey.RotateKeyPostRequestBody_attestations>("attestations", Attestations);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.AttestationInput>("attestations", Attestations);
+            writer.WriteStringValue("new_key_signature", NewKeySignature);
             writer.WriteStringValue("new_pubkey", NewPubkey);
             writer.WriteStringValue("old_pubkey", OldPubkey);
             writer.WriteStringValue("reason", Reason);

@@ -14,10 +14,8 @@ namespace Wavvon.Sdk.Generated.Hub.Settings.Lobby
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The enabled property</summary>
-        public bool? Enabled { get; set; }
-        /// <summary>The min_security_level property</summary>
-        public int? MinSecurityLevel { get; set; }
+        /// <summary>The lobby_enabled property</summary>
+        public bool? LobbyEnabled { get; set; }
         /// <summary>The welcome_md property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -51,8 +49,7 @@ namespace Wavvon.Sdk.Generated.Hub.Settings.Lobby
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "enabled", n => { Enabled = n.GetBoolValue(); } },
-                { "min_security_level", n => { MinSecurityLevel = n.GetIntValue(); } },
+                { "lobby_enabled", n => { LobbyEnabled = n.GetBoolValue(); } },
                 { "welcome_md", n => { WelcomeMd = n.GetStringValue(); } },
             };
         }
@@ -63,8 +60,7 @@ namespace Wavvon.Sdk.Generated.Hub.Settings.Lobby
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteBoolValue("enabled", Enabled);
-            writer.WriteIntValue("min_security_level", MinSecurityLevel);
+            writer.WriteBoolValue("lobby_enabled", LobbyEnabled);
             writer.WriteStringValue("welcome_md", WelcomeMd);
             writer.WriteAdditionalData(AdditionalData);
         }

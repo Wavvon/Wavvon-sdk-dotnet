@@ -10,7 +10,7 @@
 using Wavvon.Sdk;
 using Wavvon.Sdk.AspNetCore;
 using Wavvon.Sdk.Generated.Channels.Item.Messages;
-using Wavvon.Sdk.Generated.Me.App.Commands;
+using Wavvon.Sdk.Generated.Models;
 using Wavvon.Sdk.Generated.Me.App.Profile;
 
 static string Env(string name) =>
@@ -41,7 +41,7 @@ app.MapWavvonDispatch("/hook", new DispatchHandlerOptions
 await app.StartAsync();
 
 await client.SetAppProfileAsync(new ProfilePutRequestBody { Name = "Echo", WebhookUrl = Env("WAVVON_WEBHOOK_URL") });
-await client.SetAppCommandsAsync([new CommandsPutRequestBody_commands { Name = "echo", Description = "Repeat what you say, to you only", Args = "<text>" }]);
+await client.SetAppCommandsAsync([new AppCommandDef { Name = "echo", Description = "Repeat what you say, to you only", Args = "<text>" }]);
 
 await using var events = client.Connect();
 events.StateChanged += (_, state) => Console.WriteLine($"socket: {state}");

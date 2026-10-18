@@ -23,7 +23,7 @@ using Wavvon.Sdk.AspNetCore;
 using Wavvon.Sdk.Generated.Channels;
 using Wavvon.Sdk.Generated.Channels.Item.Messages;
 using Wavvon.Sdk.Generated.Invites;
-using Wavvon.Sdk.Generated.Me.App.Commands;
+using Wavvon.Sdk.Generated.Models;
 using Wavvon.Sdk.Generated.Me.App.Profile;
 using Wavvon.Sdk.Generated.Roles;
 
@@ -83,7 +83,7 @@ internal static class Smoke
             var webhookUrl = $"http://{Environment.GetEnvironmentVariable("WAVVON_SMOKE_WEBHOOK_HOST") ?? "127.0.0.1"}:{port}/hook";
 
             await client.SetAppProfileAsync(new ProfilePutRequestBody { Name = "SDK smoke", Description = "Wavvon.Sdk smoke test", WebhookUrl = webhookUrl }, ct);
-            await client.SetAppCommandsAsync([new CommandsPutRequestBody_commands { Name = "sdksmoke", Description = "Answers pong", CooldownSeconds = 0 }], ct);
+            await client.SetAppCommandsAsync([new AppCommandDef { Name = "sdksmoke", Description = "Answers pong", CooldownSeconds = 0 }], ct);
             step($"registered /sdksmoke -> {webhookUrl}");
 
             // After the profile, so the hub treats this socket as an app's.

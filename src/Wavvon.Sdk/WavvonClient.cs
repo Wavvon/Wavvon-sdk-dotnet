@@ -179,7 +179,7 @@ public sealed class WavvonClient : IDisposable
     }
 
     /// <summary>Replaces this app's slash commands (<c>apps.register</c>).</summary>
-    public async Task SetAppCommandsAsync(IEnumerable<CommandsPutRequestBody_commands> commands, CancellationToken cancellationToken = default)
+    public async Task SetAppCommandsAsync(IEnumerable<AppCommandDef> commands, CancellationToken cancellationToken = default)
     {
         await RequireCapabilityAsync("apps.register", cancellationToken).ConfigureAwait(false);
         var body = new CommandsPutRequestBody { Commands = [.. commands] };
@@ -191,7 +191,7 @@ public sealed class WavvonClient : IDisposable
     }
 
     /// <summary>Replaces this app's event subscriptions (<c>apps.register</c>). A <c>message.*</c> subscription must name its channels.</summary>
-    public async Task SetAppSubscriptionsAsync(IEnumerable<SubscriptionsPutRequestBody_subscriptions> subscriptions, CancellationToken cancellationToken = default)
+    public async Task SetAppSubscriptionsAsync(IEnumerable<AppSubscription> subscriptions, CancellationToken cancellationToken = default)
     {
         await RequireCapabilityAsync("apps.register", cancellationToken).ConfigureAwait(false);
         var body = new SubscriptionsPutRequestBody { Subscriptions = [.. subscriptions] };

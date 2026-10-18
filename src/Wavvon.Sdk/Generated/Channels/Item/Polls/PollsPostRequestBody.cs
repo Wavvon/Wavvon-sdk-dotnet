@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Channels.Item.Polls
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -21,10 +22,10 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Polls
         /// <summary>The options property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Wavvon.Sdk.Generated.Channels.Item.Polls.PollsPostRequestBody_options>? Options { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.PollOption>? Options { get; set; }
 #nullable restore
 #else
-        public List<global::Wavvon.Sdk.Generated.Channels.Item.Polls.PollsPostRequestBody_options> Options { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.PollOption> Options { get; set; }
 #endif
         /// <summary>The question property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -62,7 +63,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Polls
             {
                 { "ends_at", n => { EndsAt = n.GetLongValue(); } },
                 { "max_choices", n => { MaxChoices = n.GetLongValue(); } },
-                { "options", n => { Options = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Channels.Item.Polls.PollsPostRequestBody_options>(global::Wavvon.Sdk.Generated.Channels.Item.Polls.PollsPostRequestBody_options.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "options", n => { Options = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.PollOption>(global::Wavvon.Sdk.Generated.Models.PollOption.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "question", n => { Question = n.GetStringValue(); } },
             };
         }
@@ -75,7 +76,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Polls
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteLongValue("ends_at", EndsAt);
             writer.WriteLongValue("max_choices", MaxChoices);
-            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Channels.Item.Polls.PollsPostRequestBody_options>("options", Options);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.PollOption>("options", Options);
             writer.WriteStringValue("question", Question);
             writer.WriteAdditionalData(AdditionalData);
         }

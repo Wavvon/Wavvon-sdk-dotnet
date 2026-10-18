@@ -14,6 +14,14 @@ namespace Wavvon.Sdk.Generated.Hub.Settings.Challenge
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The challenge_difficulty property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ChallengeDifficulty { get; set; }
+#nullable restore
+#else
+        public string ChallengeDifficulty { get; set; }
+#endif
         /// <summary>The challenge_mode property</summary>
         public global::Wavvon.Sdk.Generated.Hub.Settings.Challenge.ChallengePutRequestBody_challenge_mode? ChallengeMode { get; set; }
         /// <summary>
@@ -41,6 +49,7 @@ namespace Wavvon.Sdk.Generated.Hub.Settings.Challenge
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "challenge_difficulty", n => { ChallengeDifficulty = n.GetStringValue(); } },
                 { "challenge_mode", n => { ChallengeMode = n.GetEnumValue<global::Wavvon.Sdk.Generated.Hub.Settings.Challenge.ChallengePutRequestBody_challenge_mode>(); } },
             };
         }
@@ -51,6 +60,7 @@ namespace Wavvon.Sdk.Generated.Hub.Settings.Challenge
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("challenge_difficulty", ChallengeDifficulty);
             writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Hub.Settings.Challenge.ChallengePutRequestBody_challenge_mode>("challenge_mode", ChallengeMode);
             writer.WriteAdditionalData(AdditionalData);
         }

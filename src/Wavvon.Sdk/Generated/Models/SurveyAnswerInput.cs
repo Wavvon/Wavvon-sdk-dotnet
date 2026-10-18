@@ -5,32 +5,55 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Wavvon.Sdk.Generated.Conversations.Item.Messages
+namespace Wavvon.Sdk.Generated.Models
 {
-    /// <summary>
-    /// When the signing key is not the sender&apos;s canonical key: the master-signed cert tying the two. Only on a hub advertising `dms.plaintext.signercert`.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class MessagesPostRequestBody_plaintext_signer_cert : IAdditionalDataHolder, IParsable
+    #pragma warning disable CS1591
+    public partial class SurveyAnswerInput : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The choice_id property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ChoiceId { get; set; }
+#nullable restore
+#else
+        public string ChoiceId { get; set; }
+#endif
+        /// <summary>The question_id property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? QuestionId { get; set; }
+#nullable restore
+#else
+        public string QuestionId { get; set; }
+#endif
+        /// <summary>The text_answer property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TextAnswer { get; set; }
+#nullable restore
+#else
+        public string TextAnswer { get; set; }
+#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody_plaintext_signer_cert"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.SurveyAnswerInput"/> and sets the default values.
         /// </summary>
-        public MessagesPostRequestBody_plaintext_signer_cert()
+        public SurveyAnswerInput()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody_plaintext_signer_cert"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.SurveyAnswerInput"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody_plaintext_signer_cert CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Models.SurveyAnswerInput CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody_plaintext_signer_cert();
+            return new global::Wavvon.Sdk.Generated.Models.SurveyAnswerInput();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,6 +63,9 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Messages
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "choice_id", n => { ChoiceId = n.GetStringValue(); } },
+                { "question_id", n => { QuestionId = n.GetStringValue(); } },
+                { "text_answer", n => { TextAnswer = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -49,6 +75,9 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Messages
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("choice_id", ChoiceId);
+            writer.WriteStringValue("question_id", QuestionId);
+            writer.WriteStringValue("text_answer", TextAnswer);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

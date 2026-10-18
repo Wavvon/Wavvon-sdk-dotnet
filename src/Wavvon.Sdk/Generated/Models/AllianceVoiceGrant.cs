@@ -5,32 +5,47 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Wavvon.Sdk.Generated.Federation.DmMemberChange
+namespace Wavvon.Sdk.Generated.Models
 {
-    /// <summary>
-    /// When the signing key is not the actor&apos;s own, the master-signed cert tying the two.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class DmMemberChangePostRequestBody_signer_cert : IAdditionalDataHolder, IParsable
+    #pragma warning disable CS1591
+    public partial class AllianceVoiceGrant : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The payload property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrantPayload? Payload { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrantPayload Payload { get; set; }
+#endif
+        /// <summary>Hex Ed25519 signature by origin_hub_pubkey over the payload JSON</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Signature { get; set; }
+#nullable restore
+#else
+        public string Signature { get; set; }
+#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Federation.DmMemberChange.DmMemberChangePostRequestBody_signer_cert"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrant"/> and sets the default values.
         /// </summary>
-        public DmMemberChangePostRequestBody_signer_cert()
+        public AllianceVoiceGrant()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Federation.DmMemberChange.DmMemberChangePostRequestBody_signer_cert"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrant"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Federation.DmMemberChange.DmMemberChangePostRequestBody_signer_cert CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrant CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Federation.DmMemberChange.DmMemberChangePostRequestBody_signer_cert();
+            return new global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrant();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,6 +55,8 @@ namespace Wavvon.Sdk.Generated.Federation.DmMemberChange
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "payload", n => { Payload = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrantPayload>(global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrantPayload.CreateFromDiscriminatorValue); } },
+                { "signature", n => { Signature = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -49,6 +66,8 @@ namespace Wavvon.Sdk.Generated.Federation.DmMemberChange
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.AllianceVoiceGrantPayload>("payload", Payload);
+            writer.WriteStringValue("signature", Signature);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

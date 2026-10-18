@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Me
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -12,6 +13,22 @@ namespace Wavvon.Sdk.Generated.Me
     public partial class MePatchRequestBody : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>The accent_color property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AccentColor { get; set; }
+#nullable restore
+#else
+        public string AccentColor { get; set; }
+#endif
+        /// <summary>The activities property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Activities { get; set; }
+#nullable restore
+#else
+        public string Activities { get; set; }
+#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The avatar property</summary>
@@ -22,6 +39,30 @@ namespace Wavvon.Sdk.Generated.Me
 #else
         public string Avatar { get; set; }
 #endif
+        /// <summary>The bio property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Bio { get; set; }
+#nullable restore
+#else
+        public string Bio { get; set; }
+#endif
+        /// <summary>The birthday property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Birthday { get; set; }
+#nullable restore
+#else
+        public string Birthday { get; set; }
+#endif
+        /// <summary>The cover property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Cover { get; set; }
+#nullable restore
+#else
+        public string Cover { get; set; }
+#endif
         /// <summary>The display_name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -30,8 +71,42 @@ namespace Wavvon.Sdk.Generated.Me
 #else
         public string DisplayName { get; set; }
 #endif
+        /// <summary>The favorite_hubs property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.FavoriteHub>? FavoriteHubs { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.FavoriteHub> FavoriteHubs { get; set; }
+#endif
         /// <summary>List me to members of allied hubs (see `GET /alliances/{alliance_id}/people`). Per hub, off by default; only takes effect while the alliance&apos;s own `people_visible` switch is on. Hubs advertising `alliance.people`.</summary>
         public bool? FindableByAllies { get; set; }
+        /// <summary>The name_color property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameColor { get; set; }
+#nullable restore
+#else
+        public string NameColor { get; set; }
+#endif
+        /// <summary>The pronouns property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Pronouns { get; set; }
+#nullable restore
+#else
+        public string Pronouns { get; set; }
+#endif
+        /// <summary>The show_hubs property</summary>
+        public bool? ShowHubs { get; set; }
+        /// <summary>The status_message property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StatusMessage { get; set; }
+#nullable restore
+#else
+        public string StatusMessage { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Me.MePatchRequestBody"/> and sets the default values.
         /// </summary>
@@ -57,9 +132,19 @@ namespace Wavvon.Sdk.Generated.Me
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "accent_color", n => { AccentColor = n.GetStringValue(); } },
+                { "activities", n => { Activities = n.GetStringValue(); } },
                 { "avatar", n => { Avatar = n.GetStringValue(); } },
+                { "bio", n => { Bio = n.GetStringValue(); } },
+                { "birthday", n => { Birthday = n.GetStringValue(); } },
+                { "cover", n => { Cover = n.GetStringValue(); } },
                 { "display_name", n => { DisplayName = n.GetStringValue(); } },
+                { "favorite_hubs", n => { FavoriteHubs = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.FavoriteHub>(global::Wavvon.Sdk.Generated.Models.FavoriteHub.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "findable_by_allies", n => { FindableByAllies = n.GetBoolValue(); } },
+                { "name_color", n => { NameColor = n.GetStringValue(); } },
+                { "pronouns", n => { Pronouns = n.GetStringValue(); } },
+                { "show_hubs", n => { ShowHubs = n.GetBoolValue(); } },
+                { "status_message", n => { StatusMessage = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -69,9 +154,19 @@ namespace Wavvon.Sdk.Generated.Me
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("accent_color", AccentColor);
+            writer.WriteStringValue("activities", Activities);
             writer.WriteStringValue("avatar", Avatar);
+            writer.WriteStringValue("bio", Bio);
+            writer.WriteStringValue("birthday", Birthday);
+            writer.WriteStringValue("cover", Cover);
             writer.WriteStringValue("display_name", DisplayName);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.FavoriteHub>("favorite_hubs", FavoriteHubs);
             writer.WriteBoolValue("findable_by_allies", FindableByAllies);
+            writer.WriteStringValue("name_color", NameColor);
+            writer.WriteStringValue("pronouns", Pronouns);
+            writer.WriteBoolValue("show_hubs", ShowHubs);
+            writer.WriteStringValue("status_message", StatusMessage);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

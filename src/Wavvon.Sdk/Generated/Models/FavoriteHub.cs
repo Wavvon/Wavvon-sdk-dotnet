@@ -5,32 +5,22 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Wavvon.Sdk.Generated.Me.App.Commands
+namespace Wavvon.Sdk.Generated.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class CommandsPutRequestBody_commands : IAdditionalDataHolder, IParsable
+    public partial class FavoriteHub : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The args property</summary>
+        /// <summary>The icon property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Args { get; set; }
+        public string? Icon { get; set; }
 #nullable restore
 #else
-        public string Args { get; set; }
-#endif
-        /// <summary>Per-user, per-command cooldown in seconds (default 3, 0 = none)</summary>
-        public long? CooldownSeconds { get; set; }
-        /// <summary>The description property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Description { get; set; }
-#nullable restore
-#else
-        public string Description { get; set; }
+        public string Icon { get; set; }
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,26 +30,30 @@ namespace Wavvon.Sdk.Generated.Me.App.Commands
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The privileged property</summary>
-        public bool? Privileged { get; set; }
-        /// <summary>The scope property</summary>
-        public global::Wavvon.Sdk.Generated.Me.App.Commands.CommandsPutRequestBody_commands_scope? Scope { get; set; }
+        /// <summary>The url property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Url { get; set; }
+#nullable restore
+#else
+        public string Url { get; set; }
+#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Me.App.Commands.CommandsPutRequestBody_commands"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.FavoriteHub"/> and sets the default values.
         /// </summary>
-        public CommandsPutRequestBody_commands()
+        public FavoriteHub()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Me.App.Commands.CommandsPutRequestBody_commands"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.FavoriteHub"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Me.App.Commands.CommandsPutRequestBody_commands CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Models.FavoriteHub CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Me.App.Commands.CommandsPutRequestBody_commands();
+            return new global::Wavvon.Sdk.Generated.Models.FavoriteHub();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,12 +63,9 @@ namespace Wavvon.Sdk.Generated.Me.App.Commands
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "args", n => { Args = n.GetStringValue(); } },
-                { "cooldown_seconds", n => { CooldownSeconds = n.GetLongValue(); } },
-                { "description", n => { Description = n.GetStringValue(); } },
+                { "icon", n => { Icon = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "privileged", n => { Privileged = n.GetBoolValue(); } },
-                { "scope", n => { Scope = n.GetEnumValue<global::Wavvon.Sdk.Generated.Me.App.Commands.CommandsPutRequestBody_commands_scope>(); } },
+                { "url", n => { Url = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -84,12 +75,9 @@ namespace Wavvon.Sdk.Generated.Me.App.Commands
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("args", Args);
-            writer.WriteLongValue("cooldown_seconds", CooldownSeconds);
-            writer.WriteStringValue("description", Description);
+            writer.WriteStringValue("icon", Icon);
             writer.WriteStringValue("name", Name);
-            writer.WriteBoolValue("privileged", Privileged);
-            writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Me.App.Commands.CommandsPutRequestBody_commands_scope>("scope", Scope);
+            writer.WriteStringValue("url", Url);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

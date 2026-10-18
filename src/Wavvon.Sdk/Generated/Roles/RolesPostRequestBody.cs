@@ -14,8 +14,32 @@ namespace Wavvon.Sdk.Generated.Roles
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The category_id property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CategoryId { get; set; }
+#nullable restore
+#else
+        public string CategoryId { get; set; }
+#endif
+        /// <summary>The color property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Color { get; set; }
+#nullable restore
+#else
+        public string Color { get; set; }
+#endif
         /// <summary>The display_separately property</summary>
         public bool? DisplaySeparately { get; set; }
+        /// <summary>The icon property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Icon { get; set; }
+#nullable restore
+#else
+        public string Icon { get; set; }
+#endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -59,7 +83,10 @@ namespace Wavvon.Sdk.Generated.Roles
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "category_id", n => { CategoryId = n.GetStringValue(); } },
+                { "color", n => { Color = n.GetStringValue(); } },
                 { "display_separately", n => { DisplaySeparately = n.GetBoolValue(); } },
+                { "icon", n => { Icon = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "permissions", n => { Permissions = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "priority", n => { Priority = n.GetLongValue(); } },
@@ -72,7 +99,10 @@ namespace Wavvon.Sdk.Generated.Roles
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("category_id", CategoryId);
+            writer.WriteStringValue("color", Color);
             writer.WriteBoolValue("display_separately", DisplaySeparately);
+            writer.WriteStringValue("icon", Icon);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfPrimitiveValues<string>("permissions", Permissions);
             writer.WriteLongValue("priority", Priority);

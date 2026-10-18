@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Channels.Item.Messages.Item
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -21,6 +22,14 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages.Item
 #nullable restore
 #else
         public string Content { get; set; }
+#endif
+        /// <summary>The embeds property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.Embed>? Embeds { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.Embed> Embeds { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Channels.Item.Messages.Item.WithMessage_PatchRequestBody"/> and sets the default values.
@@ -48,6 +57,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages.Item
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "content", n => { Content = n.GetStringValue(); } },
+                { "embeds", n => { Embeds = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Embed>(global::Wavvon.Sdk.Generated.Models.Embed.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,6 +68,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages.Item
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("content", Content);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Embed>("embeds", Embeds);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

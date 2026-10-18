@@ -28,10 +28,10 @@ namespace Wavvon.Sdk.Generated.Models
         /// <summary>When the signing key is not the actor&apos;s own, the master-signed cert tying the two.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Wavvon.Sdk.Generated.Models.SignedMemberChange_signer_cert? SignerCert { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.SubkeyCert? SignerCert { get; set; }
 #nullable restore
 #else
-        public global::Wavvon.Sdk.Generated.Models.SignedMemberChange_signer_cert SignerCert { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.SubkeyCert SignerCert { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.SignedMemberChange"/> and sets the default values.
@@ -60,7 +60,7 @@ namespace Wavvon.Sdk.Generated.Models
             {
                 { "issued_at", n => { IssuedAt = n.GetLongValue(); } },
                 { "signature", n => { Signature = n.GetStringValue(); } },
-                { "signer_cert", n => { SignerCert = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.SignedMemberChange_signer_cert>(global::Wavvon.Sdk.Generated.Models.SignedMemberChange_signer_cert.CreateFromDiscriminatorValue); } },
+                { "signer_cert", n => { SignerCert = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.SubkeyCert>(global::Wavvon.Sdk.Generated.Models.SubkeyCert.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -72,7 +72,7 @@ namespace Wavvon.Sdk.Generated.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteLongValue("issued_at", IssuedAt);
             writer.WriteStringValue("signature", Signature);
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.SignedMemberChange_signer_cert>("signer_cert", SignerCert);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.SubkeyCert>("signer_cert", SignerCert);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

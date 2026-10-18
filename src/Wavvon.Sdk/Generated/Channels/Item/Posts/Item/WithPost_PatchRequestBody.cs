@@ -22,6 +22,14 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts.Item
 #else
         public string Body { get; set; }
 #endif
+        /// <summary>The tag_ids property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? TagIds { get; set; }
+#nullable restore
+#else
+        public List<string> TagIds { get; set; }
+#endif
         /// <summary>The title property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -56,6 +64,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts.Item
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "body", n => { Body = n.GetStringValue(); } },
+                { "tag_ids", n => { TagIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
             };
         }
@@ -67,6 +76,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts.Item
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("body", Body);
+            writer.WriteCollectionOfPrimitiveValues<string>("tag_ids", TagIds);
             writer.WriteStringValue("title", Title);
             writer.WriteAdditionalData(AdditionalData);
         }

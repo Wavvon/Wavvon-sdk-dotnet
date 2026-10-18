@@ -1,5 +1,5 @@
 using System.Net;
-using Wavvon.Sdk.Generated.Me.App.Commands;
+using Wavvon.Sdk.Generated.Models;
 using Xunit;
 
 namespace Wavvon.Sdk.Tests;
@@ -122,7 +122,7 @@ public sealed class ClientTests
 
         var hub = new TokenHub("apps.register");
         using var with = hub.Client();
-        await with.SetAppCommandsAsync([new CommandsPutRequestBody_commands { Name = "echo", Description = "Echo" }], ct);
+        await with.SetAppCommandsAsync([new AppCommandDef { Name = "echo", Description = "Echo" }], ct);
         Assert.Contains("PUT /me/app/commands", hub.Log);
     }
 }

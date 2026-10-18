@@ -5,32 +5,33 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Wavvon.Sdk.Generated.Models
+namespace Wavvon.Sdk.Generated.Channels.Item.TalkPower
 {
-    /// <summary>
-    /// When the signing key is not the actor&apos;s own, the master-signed cert tying the two.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class SignedMemberChange_signer_cert : IAdditionalDataHolder, IParsable
+    #pragma warning disable CS1591
+    public partial class TalkPowerPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The min_talk_power property</summary>
+        public long? MinTalkPower { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.SignedMemberChange_signer_cert"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Channels.Item.TalkPower.TalkPowerPostRequestBody"/> and sets the default values.
         /// </summary>
-        public SignedMemberChange_signer_cert()
+        public TalkPowerPostRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.SignedMemberChange_signer_cert"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Channels.Item.TalkPower.TalkPowerPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Models.SignedMemberChange_signer_cert CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Channels.Item.TalkPower.TalkPowerPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Models.SignedMemberChange_signer_cert();
+            return new global::Wavvon.Sdk.Generated.Channels.Item.TalkPower.TalkPowerPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,6 +41,7 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "min_talk_power", n => { MinTalkPower = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -49,6 +51,7 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteLongValue("min_talk_power", MinTalkPower);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

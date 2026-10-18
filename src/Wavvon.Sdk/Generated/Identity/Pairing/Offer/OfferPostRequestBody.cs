@@ -5,22 +5,42 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Wavvon.Sdk.Generated.Recovery.RotateKey
+namespace Wavvon.Sdk.Generated.Identity.Pairing.Offer
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class RotateKeyPostRequestBody_attestations : IAdditionalDataHolder, IParsable
+    public partial class OfferPostRequestBody : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The attester property</summary>
+        /// <summary>The expires_at property</summary>
+        public long? ExpiresAt { get; set; }
+        /// <summary>The home_hubs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Attester { get; set; }
+        public List<string>? HomeHubs { get; set; }
 #nullable restore
 #else
-        public string Attester { get; set; }
+        public List<string> HomeHubs { get; set; }
+#endif
+        /// <summary>The issued_at property</summary>
+        public long? IssuedAt { get; set; }
+        /// <summary>The master_pubkey property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MasterPubkey { get; set; }
+#nullable restore
+#else
+        public string MasterPubkey { get; set; }
+#endif
+        /// <summary>The pairing_token property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PairingToken { get; set; }
+#nullable restore
+#else
+        public string PairingToken { get; set; }
 #endif
         /// <summary>The signature property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,21 +51,21 @@ namespace Wavvon.Sdk.Generated.Recovery.RotateKey
         public string Signature { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Recovery.RotateKey.RotateKeyPostRequestBody_attestations"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Identity.Pairing.Offer.OfferPostRequestBody"/> and sets the default values.
         /// </summary>
-        public RotateKeyPostRequestBody_attestations()
+        public OfferPostRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Recovery.RotateKey.RotateKeyPostRequestBody_attestations"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Identity.Pairing.Offer.OfferPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Recovery.RotateKey.RotateKeyPostRequestBody_attestations CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Identity.Pairing.Offer.OfferPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Recovery.RotateKey.RotateKeyPostRequestBody_attestations();
+            return new global::Wavvon.Sdk.Generated.Identity.Pairing.Offer.OfferPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +75,11 @@ namespace Wavvon.Sdk.Generated.Recovery.RotateKey
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attester", n => { Attester = n.GetStringValue(); } },
+                { "expires_at", n => { ExpiresAt = n.GetLongValue(); } },
+                { "home_hubs", n => { HomeHubs = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "issued_at", n => { IssuedAt = n.GetLongValue(); } },
+                { "master_pubkey", n => { MasterPubkey = n.GetStringValue(); } },
+                { "pairing_token", n => { PairingToken = n.GetStringValue(); } },
                 { "signature", n => { Signature = n.GetStringValue(); } },
             };
         }
@@ -66,7 +90,11 @@ namespace Wavvon.Sdk.Generated.Recovery.RotateKey
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("attester", Attester);
+            writer.WriteLongValue("expires_at", ExpiresAt);
+            writer.WriteCollectionOfPrimitiveValues<string>("home_hubs", HomeHubs);
+            writer.WriteLongValue("issued_at", IssuedAt);
+            writer.WriteStringValue("master_pubkey", MasterPubkey);
+            writer.WriteStringValue("pairing_token", PairingToken);
             writer.WriteStringValue("signature", Signature);
             writer.WriteAdditionalData(AdditionalData);
         }

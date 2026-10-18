@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Me.App.Profile
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -22,6 +23,22 @@ namespace Wavvon.Sdk.Generated.Me.App.Profile
 #else
         public string AvatarUrl { get; set; }
 #endif
+        /// <summary>The capabilities property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Capabilities { get; set; }
+#nullable restore
+#else
+        public List<string> Capabilities { get; set; }
+#endif
+        /// <summary>The commands property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.AppCommandDef>? Commands { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.AppCommandDef> Commands { get; set; }
+#endif
         /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -33,10 +50,10 @@ namespace Wavvon.Sdk.Generated.Me.App.Profile
         /// <summary>The game property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Wavvon.Sdk.Generated.Me.App.Profile.ProfilePutRequestBody_game? Game { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.GameLaunchCard? Game { get; set; }
 #nullable restore
 #else
-        public global::Wavvon.Sdk.Generated.Me.App.Profile.ProfilePutRequestBody_game Game { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.GameLaunchCard Game { get; set; }
 #endif
         /// <summary>The homepage_url property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -98,8 +115,10 @@ namespace Wavvon.Sdk.Generated.Me.App.Profile
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "avatar_url", n => { AvatarUrl = n.GetStringValue(); } },
+                { "capabilities", n => { Capabilities = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "commands", n => { Commands = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.AppCommandDef>(global::Wavvon.Sdk.Generated.Models.AppCommandDef.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "game", n => { Game = n.GetObjectValue<global::Wavvon.Sdk.Generated.Me.App.Profile.ProfilePutRequestBody_game>(global::Wavvon.Sdk.Generated.Me.App.Profile.ProfilePutRequestBody_game.CreateFromDiscriminatorValue); } },
+                { "game", n => { Game = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>(global::Wavvon.Sdk.Generated.Models.GameLaunchCard.CreateFromDiscriminatorValue); } },
                 { "homepage_url", n => { HomepageUrl = n.GetStringValue(); } },
                 { "mini_app_url", n => { MiniAppUrl = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -115,8 +134,10 @@ namespace Wavvon.Sdk.Generated.Me.App.Profile
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("avatar_url", AvatarUrl);
+            writer.WriteCollectionOfPrimitiveValues<string>("capabilities", Capabilities);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.AppCommandDef>("commands", Commands);
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Me.App.Profile.ProfilePutRequestBody_game>("game", Game);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>("game", Game);
             writer.WriteStringValue("homepage_url", HomepageUrl);
             writer.WriteStringValue("mini_app_url", MiniAppUrl);
             writer.WriteStringValue("name", Name);

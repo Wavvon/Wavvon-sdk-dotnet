@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Events
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -32,6 +33,8 @@ namespace Wavvon.Sdk.Generated.Events
 #endif
         /// <summary>The ends_at property</summary>
         public long? EndsAt { get; set; }
+        /// <summary>The hub_wide property</summary>
+        public bool? HubWide { get; set; }
         /// <summary>The location property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,6 +42,18 @@ namespace Wavvon.Sdk.Generated.Events
 #nullable restore
 #else
         public string Location { get; set; }
+#endif
+        /// <summary>The propagate_to_children property</summary>
+        public bool? PropagateToChildren { get; set; }
+        /// <summary>The reminder_minutes property</summary>
+        public long? ReminderMinutes { get; set; }
+        /// <summary>The slots property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.CreateSlotRequest>? Slots { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.CreateSlotRequest> Slots { get; set; }
 #endif
         /// <summary>Unix timestamp</summary>
         public long? StartsAt { get; set; }
@@ -78,7 +93,11 @@ namespace Wavvon.Sdk.Generated.Events
                 { "channel_id", n => { ChannelId = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "ends_at", n => { EndsAt = n.GetLongValue(); } },
+                { "hub_wide", n => { HubWide = n.GetBoolValue(); } },
                 { "location", n => { Location = n.GetStringValue(); } },
+                { "propagate_to_children", n => { PropagateToChildren = n.GetBoolValue(); } },
+                { "reminder_minutes", n => { ReminderMinutes = n.GetLongValue(); } },
+                { "slots", n => { Slots = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.CreateSlotRequest>(global::Wavvon.Sdk.Generated.Models.CreateSlotRequest.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "starts_at", n => { StartsAt = n.GetLongValue(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
             };
@@ -93,7 +112,11 @@ namespace Wavvon.Sdk.Generated.Events
             writer.WriteStringValue("channel_id", ChannelId);
             writer.WriteStringValue("description", Description);
             writer.WriteLongValue("ends_at", EndsAt);
+            writer.WriteBoolValue("hub_wide", HubWide);
             writer.WriteStringValue("location", Location);
+            writer.WriteBoolValue("propagate_to_children", PropagateToChildren);
+            writer.WriteLongValue("reminder_minutes", ReminderMinutes);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.CreateSlotRequest>("slots", Slots);
             writer.WriteLongValue("starts_at", StartsAt);
             writer.WriteStringValue("title", Title);
             writer.WriteAdditionalData(AdditionalData);

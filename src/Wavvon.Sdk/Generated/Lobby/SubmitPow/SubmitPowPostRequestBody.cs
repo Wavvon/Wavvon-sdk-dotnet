@@ -14,10 +14,14 @@ namespace Wavvon.Sdk.Generated.Lobby.SubmitPow
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The claimed_level property</summary>
-        public int? ClaimedLevel { get; set; }
-        /// <summary>The nonce property</summary>
-        public long? Nonce { get; set; }
+        /// <summary>The pow_proof property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PowProof { get; set; }
+#nullable restore
+#else
+        public string PowProof { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Lobby.SubmitPow.SubmitPowPostRequestBody"/> and sets the default values.
         /// </summary>
@@ -43,8 +47,7 @@ namespace Wavvon.Sdk.Generated.Lobby.SubmitPow
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "claimed_level", n => { ClaimedLevel = n.GetIntValue(); } },
-                { "nonce", n => { Nonce = n.GetLongValue(); } },
+                { "pow_proof", n => { PowProof = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -54,8 +57,7 @@ namespace Wavvon.Sdk.Generated.Lobby.SubmitPow
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("claimed_level", ClaimedLevel);
-            writer.WriteLongValue("nonce", Nonce);
+            writer.WriteStringValue("pow_proof", PowProof);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -5,57 +5,63 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Wavvon.Sdk.Generated.Conversations.Item.SenderKeys
+namespace Wavvon.Sdk.Generated.Federation.AllianceMember
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class SenderKeysPutRequestBody_recipients : IAdditionalDataHolder, IParsable
+    public partial class AllianceMemberPostRequestBody : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The iteration property</summary>
-        public long? Iteration { get; set; }
-        /// <summary>The recipient_pubkey property</summary>
+        /// <summary>The alliance_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RecipientPubkey { get; set; }
+        public string? AllianceId { get; set; }
 #nullable restore
 #else
-        public string RecipientPubkey { get; set; }
+        public string AllianceId { get; set; }
 #endif
-        /// <summary>The wrap_nonce_hex property</summary>
+        /// <summary>The hub_url property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WrapNonceHex { get; set; }
+        public string? HubUrl { get; set; }
 #nullable restore
 #else
-        public string WrapNonceHex { get; set; }
+        public string HubUrl { get; set; }
 #endif
-        /// <summary>The wrapped_key_hex property</summary>
+        /// <summary>The inviter_public_key property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WrappedKeyHex { get; set; }
+        public string? InviterPublicKey { get; set; }
 #nullable restore
 #else
-        public string WrappedKeyHex { get; set; }
+        public string InviterPublicKey { get; set; }
+#endif
+        /// <summary>The voucher property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Voucher { get; set; }
+#nullable restore
+#else
+        public string Voucher { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_recipients"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Federation.AllianceMember.AllianceMemberPostRequestBody"/> and sets the default values.
         /// </summary>
-        public SenderKeysPutRequestBody_recipients()
+        public AllianceMemberPostRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_recipients"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Federation.AllianceMember.AllianceMemberPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_recipients CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Federation.AllianceMember.AllianceMemberPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_recipients();
+            return new global::Wavvon.Sdk.Generated.Federation.AllianceMember.AllianceMemberPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,10 +71,10 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.SenderKeys
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "iteration", n => { Iteration = n.GetLongValue(); } },
-                { "recipient_pubkey", n => { RecipientPubkey = n.GetStringValue(); } },
-                { "wrap_nonce_hex", n => { WrapNonceHex = n.GetStringValue(); } },
-                { "wrapped_key_hex", n => { WrappedKeyHex = n.GetStringValue(); } },
+                { "alliance_id", n => { AllianceId = n.GetStringValue(); } },
+                { "hub_url", n => { HubUrl = n.GetStringValue(); } },
+                { "inviter_public_key", n => { InviterPublicKey = n.GetStringValue(); } },
+                { "voucher", n => { Voucher = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -78,10 +84,10 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.SenderKeys
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteLongValue("iteration", Iteration);
-            writer.WriteStringValue("recipient_pubkey", RecipientPubkey);
-            writer.WriteStringValue("wrap_nonce_hex", WrapNonceHex);
-            writer.WriteStringValue("wrapped_key_hex", WrappedKeyHex);
+            writer.WriteStringValue("alliance_id", AllianceId);
+            writer.WriteStringValue("hub_url", HubUrl);
+            writer.WriteStringValue("inviter_public_key", InviterPublicKey);
+            writer.WriteStringValue("voucher", Voucher);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

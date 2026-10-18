@@ -14,21 +14,99 @@ namespace Wavvon.Sdk.Generated.Hub
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The hub_icon property</summary>
+        /// <summary>The afk_channel_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HubIcon { get; set; }
+        public string? AfkChannelId { get; set; }
 #nullable restore
 #else
-        public string HubIcon { get; set; }
+        public string AfkChannelId { get; set; }
 #endif
-        /// <summary>The hub_name property</summary>
+        /// <summary>The afk_timeout_secs property</summary>
+        public int? AfkTimeoutSecs { get; set; }
+        /// <summary>The birthdays_enabled property</summary>
+        public bool? BirthdaysEnabled { get; set; }
+        /// <summary>The default_invite_role_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HubName { get; set; }
+        public string? DefaultInviteRoleId { get; set; }
 #nullable restore
 #else
-        public string HubName { get; set; }
+        public string DefaultInviteRoleId { get; set; }
+#endif
+        /// <summary>The description property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
+        /// <summary>The farewell_label property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? FarewellLabel { get; set; }
+#nullable restore
+#else
+        public string FarewellLabel { get; set; }
+#endif
+        /// <summary>The icon property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Icon { get; set; }
+#nullable restore
+#else
+        public string Icon { get; set; }
+#endif
+        /// <summary>The max_attachment_bytes property</summary>
+        public long? MaxAttachmentBytes { get; set; }
+        /// <summary>The max_channel_depth property</summary>
+        public int? MaxChannelDepth { get; set; }
+        /// <summary>The max_upload_bytes property</summary>
+        public long? MaxUploadBytes { get; set; }
+        /// <summary>The min_security_level property</summary>
+        public int? MinSecurityLevel { get; set; }
+        /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>The name_color_mode property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameColorMode { get; set; }
+#nullable restore
+#else
+        public string NameColorMode { get; set; }
+#endif
+        /// <summary>The require_approval property</summary>
+        public bool? RequireApproval { get; set; }
+        /// <summary>The timezone property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Timezone { get; set; }
+#nullable restore
+#else
+        public string Timezone { get; set; }
+#endif
+        /// <summary>The welcome_invite_url property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WelcomeInviteUrl { get; set; }
+#nullable restore
+#else
+        public string WelcomeInviteUrl { get; set; }
+#endif
+        /// <summary>The welcome_label property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WelcomeLabel { get; set; }
+#nullable restore
+#else
+        public string WelcomeLabel { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Hub.HubPatchRequestBody"/> and sets the default values.
@@ -55,8 +133,23 @@ namespace Wavvon.Sdk.Generated.Hub
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "hub_icon", n => { HubIcon = n.GetStringValue(); } },
-                { "hub_name", n => { HubName = n.GetStringValue(); } },
+                { "afk_channel_id", n => { AfkChannelId = n.GetStringValue(); } },
+                { "afk_timeout_secs", n => { AfkTimeoutSecs = n.GetIntValue(); } },
+                { "birthdays_enabled", n => { BirthdaysEnabled = n.GetBoolValue(); } },
+                { "default_invite_role_id", n => { DefaultInviteRoleId = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "farewell_label", n => { FarewellLabel = n.GetStringValue(); } },
+                { "icon", n => { Icon = n.GetStringValue(); } },
+                { "max_attachment_bytes", n => { MaxAttachmentBytes = n.GetLongValue(); } },
+                { "max_channel_depth", n => { MaxChannelDepth = n.GetIntValue(); } },
+                { "max_upload_bytes", n => { MaxUploadBytes = n.GetLongValue(); } },
+                { "min_security_level", n => { MinSecurityLevel = n.GetIntValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "name_color_mode", n => { NameColorMode = n.GetStringValue(); } },
+                { "require_approval", n => { RequireApproval = n.GetBoolValue(); } },
+                { "timezone", n => { Timezone = n.GetStringValue(); } },
+                { "welcome_invite_url", n => { WelcomeInviteUrl = n.GetStringValue(); } },
+                { "welcome_label", n => { WelcomeLabel = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -66,8 +159,23 @@ namespace Wavvon.Sdk.Generated.Hub
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("hub_icon", HubIcon);
-            writer.WriteStringValue("hub_name", HubName);
+            writer.WriteStringValue("afk_channel_id", AfkChannelId);
+            writer.WriteIntValue("afk_timeout_secs", AfkTimeoutSecs);
+            writer.WriteBoolValue("birthdays_enabled", BirthdaysEnabled);
+            writer.WriteStringValue("default_invite_role_id", DefaultInviteRoleId);
+            writer.WriteStringValue("description", Description);
+            writer.WriteStringValue("farewell_label", FarewellLabel);
+            writer.WriteStringValue("icon", Icon);
+            writer.WriteLongValue("max_attachment_bytes", MaxAttachmentBytes);
+            writer.WriteIntValue("max_channel_depth", MaxChannelDepth);
+            writer.WriteLongValue("max_upload_bytes", MaxUploadBytes);
+            writer.WriteIntValue("min_security_level", MinSecurityLevel);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("name_color_mode", NameColorMode);
+            writer.WriteBoolValue("require_approval", RequireApproval);
+            writer.WriteStringValue("timezone", Timezone);
+            writer.WriteStringValue("welcome_invite_url", WelcomeInviteUrl);
+            writer.WriteStringValue("welcome_label", WelcomeLabel);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
