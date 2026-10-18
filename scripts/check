@@ -1,0 +1,7 @@
+#!/bin/sh
+# What CI runs: formatting, a warnings-as-errors build of every project, the tests.
+set -eu
+cd "$(dirname "$0")/.."
+dotnet format Wavvon.Sdk.slnx --verify-no-changes
+dotnet build Wavvon.Sdk.slnx -warnaserror
+dotnet test --solution Wavvon.Sdk.slnx --no-build
