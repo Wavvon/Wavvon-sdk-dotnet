@@ -32,12 +32,10 @@ Actions workflow files: explain choices in the commit message.
 1. **Generated REST** - `src/Wavvon.Sdk/Generated/`, Kiota output from
    Wavvon-docs `openapi.yaml`, produced by `scripts/generate` (Kiota is a local
    dotnet tool, `dotnet-tools.json`). Committed. `SPEC_COMMIT` records the docs
-   commit; a `+Name` suffix means the script patched the spec before
-   generating. `+int64`: every integer without a `format` is widened to int64,
-   because the hub sends i64 (message `created_at` is milliseconds) and Kiota
-   reads a bare integer as int32. A missing schema can be patched with
-   `patch_gap` in the script; delete the patch once the spec is fixed. Never
-   edit the generated code by hand.
+   commit. The spec is used as is: a gap is fixed in Wavvon-docs, never patched
+   here. Kiota reads an integer without `format: int64` as int32, so an i64 the
+   hub sends needs that format in the spec. Never edit the generated code by
+   hand.
 2. **Hand-written core** - `src/Wavvon.Sdk/*.cs`:
    - `Identity.cs` the Ed25519 keypair (NSec); `Auth.cs` challenge rules and
      login; `Retry.cs` backoff and the transient rule; `WavvonClient.cs` the
@@ -102,9 +100,6 @@ report the doc bug to Wavvon-docs.
   base64url without padding); the HMAC key is the 32 HKDF bytes, not hex.
 - `GET /me/events` is implemented per spec, but the hub never writes the queue
   today (Wavvon-server#170); do not rely on it.
-- Spec gaps the smoke works around: `POST /roles`, `/invites`, `/channels`
-  and channel messages have no response schema (Kiota returns a `Stream`);
-  `POST /invites` lacks `grant_role_id` (set it through `AdditionalData`).
 
 ## Smoke test
 

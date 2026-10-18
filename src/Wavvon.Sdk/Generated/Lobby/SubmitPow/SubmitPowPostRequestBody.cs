@@ -15,7 +15,7 @@ namespace Wavvon.Sdk.Generated.Lobby.SubmitPow
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The claimed_level property</summary>
-        public long? ClaimedLevel { get; set; }
+        public int? ClaimedLevel { get; set; }
         /// <summary>The nonce property</summary>
         public long? Nonce { get; set; }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Wavvon.Sdk.Generated.Lobby.SubmitPow
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "claimed_level", n => { ClaimedLevel = n.GetLongValue(); } },
+                { "claimed_level", n => { ClaimedLevel = n.GetIntValue(); } },
                 { "nonce", n => { Nonce = n.GetLongValue(); } },
             };
         }
@@ -54,7 +54,7 @@ namespace Wavvon.Sdk.Generated.Lobby.SubmitPow
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteLongValue("claimed_level", ClaimedLevel);
+            writer.WriteIntValue("claimed_level", ClaimedLevel);
             writer.WriteLongValue("nonce", Nonce);
             writer.WriteAdditionalData(AdditionalData);
         }

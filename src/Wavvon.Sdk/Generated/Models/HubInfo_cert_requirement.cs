@@ -7,63 +7,54 @@ using System.IO;
 using System;
 namespace Wavvon.Sdk.Generated.Models
 {
+    /// <summary>
+    /// What a certificate must show to admit a member. Omitted unless set.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class User : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class HubInfo_cert_requirement : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Base64-encoded image</summary>
+        /// <summary>The mode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Avatar { get; set; }
+        public string? Mode { get; set; }
 #nullable restore
 #else
-        public string Avatar { get; set; }
+        public string Mode { get; set; }
 #endif
-        /// <summary>The display_name property</summary>
+        /// <summary>The require property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DisplayName { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_require? Require { get; set; }
 #nullable restore
 #else
-        public string DisplayName { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_require Require { get; set; }
 #endif
-        /// <summary>The group_role property</summary>
+        /// <summary>The trusted_issuers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? GroupRole { get; set; }
+        public List<string>? TrustedIssuers { get; set; }
 #nullable restore
 #else
-        public string GroupRole { get; set; }
-#endif
-        /// <summary>The online property</summary>
-        public bool? Online { get; set; }
-        /// <summary>The public_key property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? PublicKey { get; set; }
-#nullable restore
-#else
-        public string PublicKey { get; set; }
+        public List<string> TrustedIssuers { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.User"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement"/> and sets the default values.
         /// </summary>
-        public User()
+        public HubInfo_cert_requirement()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.User"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Models.User CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Models.User();
+            return new global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -73,11 +64,9 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "avatar", n => { Avatar = n.GetStringValue(); } },
-                { "display_name", n => { DisplayName = n.GetStringValue(); } },
-                { "group_role", n => { GroupRole = n.GetStringValue(); } },
-                { "online", n => { Online = n.GetBoolValue(); } },
-                { "public_key", n => { PublicKey = n.GetStringValue(); } },
+                { "mode", n => { Mode = n.GetStringValue(); } },
+                { "require", n => { Require = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_require>(global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_require.CreateFromDiscriminatorValue); } },
+                { "trusted_issuers", n => { TrustedIssuers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -87,11 +76,9 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("avatar", Avatar);
-            writer.WriteStringValue("display_name", DisplayName);
-            writer.WriteStringValue("group_role", GroupRole);
-            writer.WriteBoolValue("online", Online);
-            writer.WriteStringValue("public_key", PublicKey);
+            writer.WriteStringValue("mode", Mode);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_require>("require", Require);
+            writer.WriteCollectionOfPrimitiveValues<string>("trusted_issuers", TrustedIssuers);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

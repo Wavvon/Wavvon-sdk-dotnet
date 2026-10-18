@@ -196,13 +196,13 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             }
         }
         /// <summary>
-        /// Composed type wrapper for classes <see cref="long"/>, <see cref="string"/>
+        /// Composed type wrapper for classes <see cref="int"/>, <see cref="string"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CertsPatchRequestBody_cert_min_age_days : IComposedTypeWrapper, IParsable
         {
-            /// <summary>Composed type representation for type <see cref="long"/></summary>
-            public long? Int64 { get; set; }
+            /// <summary>Composed type representation for type <see cref="int"/></summary>
+            public int? Integer { get; set; }
             /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -221,9 +221,9 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_age_days();
-                if(parseNode.GetLongValue() is long int64Value)
+                if(parseNode.GetIntValue() is int integerValue)
                 {
-                    result.Int64 = int64Value;
+                    result.Integer = integerValue;
                 }
                 else if(parseNode.GetStringValue() is string stringValue)
                 {
@@ -246,9 +246,9 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             public virtual void Serialize(ISerializationWriter writer)
             {
                 if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(Int64 != null)
+                if(Integer != null)
                 {
-                    writer.WriteLongValue(null, Int64);
+                    writer.WriteIntValue(null, Integer);
                 }
                 else if(String != null)
                 {
@@ -257,13 +257,13 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             }
         }
         /// <summary>
-        /// Composed type wrapper for classes <see cref="long"/>, <see cref="string"/>
+        /// Composed type wrapper for classes <see cref="int"/>, <see cref="string"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CertsPatchRequestBody_cert_min_pow_level : IComposedTypeWrapper, IParsable
         {
-            /// <summary>Composed type representation for type <see cref="long"/></summary>
-            public long? Int64 { get; set; }
+            /// <summary>Composed type representation for type <see cref="int"/></summary>
+            public int? Integer { get; set; }
             /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -282,9 +282,9 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level();
-                if(parseNode.GetLongValue() is long int64Value)
+                if(parseNode.GetIntValue() is int integerValue)
                 {
-                    result.Int64 = int64Value;
+                    result.Integer = integerValue;
                 }
                 else if(parseNode.GetStringValue() is string stringValue)
                 {
@@ -307,9 +307,9 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             public virtual void Serialize(ISerializationWriter writer)
             {
                 if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(Int64 != null)
+                if(Integer != null)
                 {
-                    writer.WriteLongValue(null, Int64);
+                    writer.WriteIntValue(null, Integer);
                 }
                 else if(String != null)
                 {
@@ -318,13 +318,13 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             }
         }
         /// <summary>
-        /// Composed type wrapper for classes <see cref="long"/>, <see cref="string"/>
+        /// Composed type wrapper for classes <see cref="int"/>, <see cref="string"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CertsPatchRequestBody_cert_standing_days : IComposedTypeWrapper, IParsable
         {
-            /// <summary>Composed type representation for type <see cref="long"/></summary>
-            public long? Int64 { get; set; }
+            /// <summary>Composed type representation for type <see cref="int"/></summary>
+            public int? Integer { get; set; }
             /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -343,9 +343,9 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_standing_days();
-                if(parseNode.GetLongValue() is long int64Value)
+                if(parseNode.GetIntValue() is int integerValue)
                 {
-                    result.Int64 = int64Value;
+                    result.Integer = integerValue;
                 }
                 else if(parseNode.GetStringValue() is string stringValue)
                 {
@@ -368,9 +368,9 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             public virtual void Serialize(ISerializationWriter writer)
             {
                 if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(Int64 != null)
+                if(Integer != null)
                 {
-                    writer.WriteLongValue(null, Int64);
+                    writer.WriteIntValue(null, Integer);
                 }
                 else if(String != null)
                 {
@@ -379,13 +379,13 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             }
         }
         /// <summary>
-        /// Composed type wrapper for classes <see cref="long"/>, <see cref="string"/>
+        /// Composed type wrapper for classes <see cref="int"/>, <see cref="string"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CertsPatchRequestBody_cert_validity_days : IComposedTypeWrapper, IParsable
         {
-            /// <summary>Composed type representation for type <see cref="long"/></summary>
-            public long? Int64 { get; set; }
+            /// <summary>Composed type representation for type <see cref="int"/></summary>
+            public int? Integer { get; set; }
             /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -404,9 +404,9 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_validity_days();
-                if(parseNode.GetLongValue() is long int64Value)
+                if(parseNode.GetIntValue() is int integerValue)
                 {
-                    result.Int64 = int64Value;
+                    result.Integer = integerValue;
                 }
                 else if(parseNode.GetStringValue() is string stringValue)
                 {
@@ -429,9 +429,9 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             public virtual void Serialize(ISerializationWriter writer)
             {
                 if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(Int64 != null)
+                if(Integer != null)
                 {
-                    writer.WriteLongValue(null, Int64);
+                    writer.WriteIntValue(null, Integer);
                 }
                 else if(String != null)
                 {

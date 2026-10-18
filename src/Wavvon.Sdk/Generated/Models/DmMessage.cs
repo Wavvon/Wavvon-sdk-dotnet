@@ -42,6 +42,22 @@ namespace Wavvon.Sdk.Generated.Models
         public long? CreatedAt { get; set; }
         /// <summary>The delivery_failed property</summary>
         public bool? DeliveryFailed { get; set; }
+        /// <summary>1-on-1 encrypted envelope (docs/wire-format.md).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.DmMessage_encrypted_envelope? EncryptedEnvelope { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.DmMessage_encrypted_envelope EncryptedEnvelope { get; set; }
+#endif
+        /// <summary>Group sender-key envelope (docs/wire-format.md).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.DmMessage_group_encrypted_envelope? GroupEncryptedEnvelope { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.DmMessage_group_encrypted_envelope GroupEncryptedEnvelope { get; set; }
+#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -98,6 +114,8 @@ namespace Wavvon.Sdk.Generated.Models
                 { "conversation_id", n => { ConversationId = n.GetStringValue(); } },
                 { "created_at", n => { CreatedAt = n.GetLongValue(); } },
                 { "delivery_failed", n => { DeliveryFailed = n.GetBoolValue(); } },
+                { "encrypted_envelope", n => { EncryptedEnvelope = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.DmMessage_encrypted_envelope>(global::Wavvon.Sdk.Generated.Models.DmMessage_encrypted_envelope.CreateFromDiscriminatorValue); } },
+                { "group_encrypted_envelope", n => { GroupEncryptedEnvelope = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.DmMessage_group_encrypted_envelope>(global::Wavvon.Sdk.Generated.Models.DmMessage_group_encrypted_envelope.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "is_encrypted", n => { IsEncrypted = n.GetBoolValue(); } },
                 { "sender", n => { Sender = n.GetStringValue(); } },
@@ -116,6 +134,8 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteStringValue("conversation_id", ConversationId);
             writer.WriteLongValue("created_at", CreatedAt);
             writer.WriteBoolValue("delivery_failed", DeliveryFailed);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.DmMessage_encrypted_envelope>("encrypted_envelope", EncryptedEnvelope);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.DmMessage_group_encrypted_envelope>("group_encrypted_envelope", GroupEncryptedEnvelope);
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("is_encrypted", IsEncrypted);
             writer.WriteStringValue("sender", Sender);

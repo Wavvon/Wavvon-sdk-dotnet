@@ -15,9 +15,9 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The min_member_since_days property</summary>
-        public long? MinMemberSinceDays { get; set; }
+        public int? MinMemberSinceDays { get; set; }
         /// <summary>The min_pow_level property</summary>
-        public long? MinPowLevel { get; set; }
+        public int? MinPowLevel { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_require"/> and sets the default values.
         /// </summary>
@@ -43,8 +43,8 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "min_member_since_days", n => { MinMemberSinceDays = n.GetLongValue(); } },
-                { "min_pow_level", n => { MinPowLevel = n.GetLongValue(); } },
+                { "min_member_since_days", n => { MinMemberSinceDays = n.GetIntValue(); } },
+                { "min_pow_level", n => { MinPowLevel = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -54,8 +54,8 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteLongValue("min_member_since_days", MinMemberSinceDays);
-            writer.WriteLongValue("min_pow_level", MinPowLevel);
+            writer.WriteIntValue("min_member_since_days", MinMemberSinceDays);
+            writer.WriteIntValue("min_pow_level", MinPowLevel);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

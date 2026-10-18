@@ -18,7 +18,6 @@
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Security.Cryptography;
-using System.Text.Json;
 using Wavvon.Sdk;
 using Wavvon.Sdk.AspNetCore;
 using Wavvon.Sdk.Generated.Channels;
@@ -135,11 +134,8 @@ internal static class Smoke
                 throw new TimeoutException($"timed out waiting for {what}");
             }
 
-            async Task PostAsync(string content)
-            {
-                var stream = await client.Rest.Channels[channelId].Messages.PostAsync(new MessagesPostRequestBody { Content = content }, cancellationToken: ct);
-                stream?.Dispose();
-            }
+            async Task PostAsync(string content) =>
+                await client.Rest.Channels[channelId].Messages.PostAsync(new MessagesPostRequestBody { Content = content }, cancellationToken: ct);
 
             var text = $"hello from Wavvon.Sdk {DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}";
             await PostAsync(text);
@@ -269,15 +265,12 @@ internal static class LocalHub
             step($"local hub up at {hubUrl}");
 
             using var owner = new WavvonClient(new WavvonClientOptions { HubUrl = hubUrl, Identity = ownerIdentity });
-            var role = await ReadAsync(await owner.Rest.Roles.PostAsync(new RolesPostRequestBody { Name = "Apps", Priority = 10, Permissions = ["apps.register"] }));
-            // POST /invites in openapi.yaml lacks grant_role_id; the hub reads it.
-            var inviteBody = new InvitesPostRequestBody { MaxUses = 1 };
-            inviteBody.AdditionalData["grant_role_id"] = role.GetProperty("id").GetString()!;
-            var invite = await ReadAsync(await owner.Rest.Invites.PostAsync(inviteBody));
-            var channel = await ReadAsync(await owner.Rest.Channels.PostAsync(new ChannelsPostRequestBody { Name = "sdk-smoke" }));
+            var role = await owner.Rest.Roles.PostAsync(new RolesPostRequestBody { Name = "Apps", Priority = 10, Permissions = ["apps.register"] });
+            var invite = await owner.Rest.Invites.PostAsync(new InvitesPostRequestBody { MaxUses = 1, GrantRoleId = role!.Id });
+            var channel = await owner.Rest.Channels.PostAsync(new ChannelsPostRequestBody { Name = "sdk-smoke" });
             step("role, invite and channel ready");
 
-            code = await Smoke.RunAsync(hubUrl, invite.GetProperty("code").GetString()!, channel.GetProperty("id").GetString(), step);
+            code = await Smoke.RunAsync(hubUrl, invite!.Code!, channel!.Id, step);
             if (code != 0 && Environment.GetEnvironmentVariable("WAVVON_SMOKE_VERBOSE") is not null)
             {
                 Console.WriteLine(string.Join('\n', log));
@@ -305,17 +298,6 @@ internal static class LocalHub
             }
         }
         return code;
-    }
-
-    /// <summary>The generated client returns a bare stream where the spec has no response schema.</summary>
-    private static async Task<JsonElement> ReadAsync(Stream? stream)
-    {
-        ArgumentNullException.ThrowIfNull(stream);
-        await using (stream)
-        {
-            using var doc = await JsonDocument.ParseAsync(stream);
-            return doc.RootElement.Clone();
-        }
     }
 
     private static void Psql(string container, string sql)

@@ -56,9 +56,8 @@ try
                 break;
             case MessageEvent { Message: var message } m
                 when message.Sender != me && message.VisibleToPubkey is null && message.Content?.StartsWith('/') == false:
-                var stream = await client.Rest.Channels[m.ChannelId].Messages.PostAsync(
+                await client.Rest.Channels[m.ChannelId].Messages.PostAsync(
                     new MessagesPostRequestBody { Content = $"echo: {message.Content}" });
-                stream?.Dispose();
                 break;
         }
     }

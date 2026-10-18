@@ -14,8 +14,32 @@ namespace Wavvon.Sdk.Generated.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Omitted unless set</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BannerFileId { get; set; }
+#nullable restore
+#else
+        public string BannerFileId { get; set; }
+#endif
+        /// <summary>Omitted unless set</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BannerUrl { get; set; }
+#nullable restore
+#else
+        public string BannerUrl { get; set; }
+#endif
         /// <summary>The caller&apos;s own `voice.move_members` on this channel, resolved channel-scoped, so a move-destination picker can offer only the channels that will accept the move (events.md §7.1). Advertised as the `channels.move.targets` capability; absent on hubs that do not advertise it, which is not the same as `false`.</summary>
         public bool? CanMoveMembers { get; set; }
+        /// <summary>`text`, `forum`, `banner` or `spawner`. Always `text` for categories.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ChannelType { get; set; }
+#nullable restore
+#else
+        public string ChannelType { get; set; }
+#endif
         /// <summary>The color property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,6 +76,16 @@ namespace Wavvon.Sdk.Generated.Models
 #endif
         /// <summary>The display_order property</summary>
         public long? DisplayOrder { get; set; }
+        /// <summary>Auto-spawned squad rooms only (omitted otherwise) — the event the room was made for.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EventId { get; set; }
+#nullable restore
+#else
+        public string EventId { get; set; }
+#endif
+        /// <summary>Forum channels — posts must carry at least one tag. Always false elsewhere.</summary>
+        public bool? ForumRequireTag { get; set; }
         /// <summary>The icon property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -70,6 +104,8 @@ namespace Wavvon.Sdk.Generated.Models
 #endif
         /// <summary>The is_category property</summary>
         public bool? IsCategory { get; set; }
+        /// <summary>True for a join-to-create room spawned from a spawner channel.</summary>
+        public bool? IsTemporary { get; set; }
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -78,6 +114,16 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>NSFW flag for this channel specifically</summary>
+        public bool? Nsfw { get; set; }
+        /// <summary>Temp channels only (omitted otherwise) — the joiner who owns the room.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OwnerPubkey { get; set; }
+#nullable restore
+#else
+        public string OwnerPubkey { get; set; }
+#endif
         /// <summary>The parent_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -85,6 +131,14 @@ namespace Wavvon.Sdk.Generated.Models
 #nullable restore
 #else
         public string ParentId { get; set; }
+#endif
+        /// <summary>Spawner channels only (omitted otherwise) — the name template for spawned rooms.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SpawnerNameTemplate { get; set; }
+#nullable restore
+#else
+        public string SpawnerNameTemplate { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.Channel"/> and sets the default values.
@@ -111,18 +165,27 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "banner_file_id", n => { BannerFileId = n.GetStringValue(); } },
+                { "banner_url", n => { BannerUrl = n.GetStringValue(); } },
                 { "can_move_members", n => { CanMoveMembers = n.GetBoolValue(); } },
+                { "channel_type", n => { ChannelType = n.GetStringValue(); } },
                 { "color", n => { Color = n.GetStringValue(); } },
                 { "created_at", n => { CreatedAt = n.GetLongValue(); } },
                 { "created_by", n => { CreatedBy = n.GetStringValue(); } },
                 { "custom_icon_svg", n => { CustomIconSvg = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "display_order", n => { DisplayOrder = n.GetLongValue(); } },
+                { "event_id", n => { EventId = n.GetStringValue(); } },
+                { "forum_require_tag", n => { ForumRequireTag = n.GetBoolValue(); } },
                 { "icon", n => { Icon = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "is_category", n => { IsCategory = n.GetBoolValue(); } },
+                { "is_temporary", n => { IsTemporary = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nsfw", n => { Nsfw = n.GetBoolValue(); } },
+                { "owner_pubkey", n => { OwnerPubkey = n.GetStringValue(); } },
                 { "parent_id", n => { ParentId = n.GetStringValue(); } },
+                { "spawner_name_template", n => { SpawnerNameTemplate = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -132,18 +195,27 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("banner_file_id", BannerFileId);
+            writer.WriteStringValue("banner_url", BannerUrl);
             writer.WriteBoolValue("can_move_members", CanMoveMembers);
+            writer.WriteStringValue("channel_type", ChannelType);
             writer.WriteStringValue("color", Color);
             writer.WriteLongValue("created_at", CreatedAt);
             writer.WriteStringValue("created_by", CreatedBy);
             writer.WriteStringValue("custom_icon_svg", CustomIconSvg);
             writer.WriteStringValue("description", Description);
             writer.WriteLongValue("display_order", DisplayOrder);
+            writer.WriteStringValue("event_id", EventId);
+            writer.WriteBoolValue("forum_require_tag", ForumRequireTag);
             writer.WriteStringValue("icon", Icon);
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("is_category", IsCategory);
+            writer.WriteBoolValue("is_temporary", IsTemporary);
             writer.WriteStringValue("name", Name);
+            writer.WriteBoolValue("nsfw", Nsfw);
+            writer.WriteStringValue("owner_pubkey", OwnerPubkey);
             writer.WriteStringValue("parent_id", ParentId);
+            writer.WriteStringValue("spawner_name_template", SpawnerNameTemplate);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

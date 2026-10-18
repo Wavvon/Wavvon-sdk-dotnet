@@ -42,6 +42,14 @@ namespace Wavvon.Sdk.Generated.Models
 #endif
         /// <summary>The expires_at property</summary>
         public long? ExpiresAt { get; set; }
+        /// <summary>Role granted on redemption besides everyone</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? GrantRoleId { get; set; }
+#nullable restore
+#else
+        public string GrantRoleId { get; set; }
+#endif
         /// <summary>The max_uses property</summary>
         public long? MaxUses { get; set; }
         /// <summary>Whether this invite can still admit anyone, and if not, which of the two ways it retired. Advertised as the `invites.status` capability; absent on hubs that do not advertise it.</summary>
@@ -78,6 +86,7 @@ namespace Wavvon.Sdk.Generated.Models
                 { "created_at", n => { CreatedAt = n.GetLongValue(); } },
                 { "created_by", n => { CreatedBy = n.GetStringValue(); } },
                 { "expires_at", n => { ExpiresAt = n.GetLongValue(); } },
+                { "grant_role_id", n => { GrantRoleId = n.GetStringValue(); } },
                 { "max_uses", n => { MaxUses = n.GetLongValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Wavvon.Sdk.Generated.Models.Invite_status>(); } },
                 { "uses", n => { Uses = n.GetLongValue(); } },
@@ -95,6 +104,7 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteLongValue("created_at", CreatedAt);
             writer.WriteStringValue("created_by", CreatedBy);
             writer.WriteLongValue("expires_at", ExpiresAt);
+            writer.WriteStringValue("grant_role_id", GrantRoleId);
             writer.WriteLongValue("max_uses", MaxUses);
             writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Models.Invite_status>("status", Status);
             writer.WriteLongValue("uses", Uses);

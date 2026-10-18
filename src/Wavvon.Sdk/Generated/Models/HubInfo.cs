@@ -8,13 +8,23 @@ using System;
 namespace Wavvon.Sdk.Generated.Models
 {
     /// <summary>
-    /// Only the fields clients branch on are listed; `/info` carries more(badges, LAN trust material, welcome banner, voice endpoint…) and isadditive by rule, so ignore what you do not recognise.
+    /// `GET /info`. Additive by rule: ignore fields you do not recognise.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class HubInfo : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Badges other hubs issued to this hub.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.HubInfo_badges>? Badges { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.HubInfo_badges> Badges { get; set; }
+#endif
+        /// <summary>The birthdays_enabled property</summary>
+        public bool? BirthdaysEnabled { get; set; }
         /// <summary>The address this hub says clients should use for it. Behind a farmthis is the hub&apos;s owner-chosen name (`https://farm.example/hub/MangiaDaPippo`) and it **changes** when the hub is renamed —re-read it whenever you refresh `/info` and update the address youhave stored.Following it is safe because a hub is identified by `public_key`,never by its address: you change *where* you look, not who youbelieve you are talking to. Absent when the hub has no publicaddress.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,9 +41,35 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public List<string> Capabilities { get; set; }
 #endif
+        /// <summary>What a certificate must show to admit a member. Omitted unless set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement? CertRequirement { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement CertRequirement { get; set; }
+#endif
         /// <summary>The challenge_mode property</summary>
         public global::Wavvon.Sdk.Generated.Models.HubInfo_challenge_mode? ChallengeMode { get; set; }
-        /// <summary>When set, send `/auth/*` here instead of to the hub.</summary>
+        /// <summary>The description property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
+        /// <summary>The emoji_count property</summary>
+        public long? EmojiCount { get; set; }
+        /// <summary>Omitted unless set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? FarewellLabel { get; set; }
+#nullable restore
+#else
+        public string FarewellLabel { get; set; }
+#endif
+        /// <summary>When present, send `/auth/*` here instead of to the hub. Omitted unless set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FarmUrl { get; set; }
@@ -51,10 +87,30 @@ namespace Wavvon.Sdk.Generated.Models
 #endif
         /// <summary>The invite_only property</summary>
         public bool? InviteOnly { get; set; }
+        /// <summary>Omitted unless set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LanFingerprint { get; set; }
+#nullable restore
+#else
+        public string LanFingerprint { get; set; }
+#endif
+        /// <summary>The lan_mode property</summary>
+        public bool? LanMode { get; set; }
+        /// <summary>Omitted unless set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LanTls { get; set; }
+#nullable restore
+#else
+        public string LanTls { get; set; }
+#endif
+        /// <summary>The max_attachment_bytes property</summary>
+        public long? MaxAttachmentBytes { get; set; }
         /// <summary>The min_pow_level property</summary>
-        public long? MinPowLevel { get; set; }
+        public int? MinPowLevel { get; set; }
         /// <summary>The min_security_level property</summary>
-        public long? MinSecurityLevel { get; set; }
+        public int? MinSecurityLevel { get; set; }
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -63,6 +119,8 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>The nsfw property</summary>
+        public bool? Nsfw { get; set; }
         /// <summary>The hub&apos;s Ed25519 identity, hex. This is the hub&apos;s ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,6 +129,40 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string PublicKey { get; set; }
 #endif
+        /// <summary>Hub key rotation payload during the transition window after a rotate-key ceremony (see `GET /key-rotation`). Omitted when no rotation is in progress.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.HubInfo_rotation? Rotation { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.HubInfo_rotation Rotation { get; set; }
+#endif
+        /// <summary>The screen_share_v2 property</summary>
+        public bool? ScreenShareV2 { get; set; }
+        /// <summary>The self_tags property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? SelfTags { get; set; }
+#nullable restore
+#else
+        public List<string> SelfTags { get; set; }
+#endif
+        /// <summary>Omitted unless the hub runs an SFU.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SfuUrl { get; set; }
+#nullable restore
+#else
+        public string SfuUrl { get; set; }
+#endif
+        /// <summary>Omitted unless set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Timezone { get; set; }
+#nullable restore
+#else
+        public string Timezone { get; set; }
+#endif
         /// <summary>For display and &quot;this hub is very old&quot; warnings **only**. Neverdecide whether a feature exists by comparing this — use`capabilities`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -78,6 +170,38 @@ namespace Wavvon.Sdk.Generated.Models
 #nullable restore
 #else
         public string Version { get; set; }
+#endif
+        /// <summary>Omitted unless set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? VoiceCertHash { get; set; }
+#nullable restore
+#else
+        public string VoiceCertHash { get; set; }
+#endif
+        /// <summary>WebTransport voice endpoint. Omitted unless set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? VoiceWtUrl { get; set; }
+#nullable restore
+#else
+        public string VoiceWtUrl { get; set; }
+#endif
+        /// <summary>Omitted unless set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WelcomeInviteUrl { get; set; }
+#nullable restore
+#else
+        public string WelcomeInviteUrl { get; set; }
+#endif
+        /// <summary>Omitted unless set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WelcomeLabel { get; set; }
+#nullable restore
+#else
+        public string WelcomeLabel { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.HubInfo"/> and sets the default values.
@@ -104,17 +228,37 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "badges", n => { Badges = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.HubInfo_badges>(global::Wavvon.Sdk.Generated.Models.HubInfo_badges.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "birthdays_enabled", n => { BirthdaysEnabled = n.GetBoolValue(); } },
                 { "canonical_url", n => { CanonicalUrl = n.GetStringValue(); } },
                 { "capabilities", n => { Capabilities = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "cert_requirement", n => { CertRequirement = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement>(global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement.CreateFromDiscriminatorValue); } },
                 { "challenge_mode", n => { ChallengeMode = n.GetEnumValue<global::Wavvon.Sdk.Generated.Models.HubInfo_challenge_mode>(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "emoji_count", n => { EmojiCount = n.GetLongValue(); } },
+                { "farewell_label", n => { FarewellLabel = n.GetStringValue(); } },
                 { "farm_url", n => { FarmUrl = n.GetStringValue(); } },
                 { "icon", n => { Icon = n.GetStringValue(); } },
                 { "invite_only", n => { InviteOnly = n.GetBoolValue(); } },
-                { "min_pow_level", n => { MinPowLevel = n.GetLongValue(); } },
-                { "min_security_level", n => { MinSecurityLevel = n.GetLongValue(); } },
+                { "lan_fingerprint", n => { LanFingerprint = n.GetStringValue(); } },
+                { "lan_mode", n => { LanMode = n.GetBoolValue(); } },
+                { "lan_tls", n => { LanTls = n.GetStringValue(); } },
+                { "max_attachment_bytes", n => { MaxAttachmentBytes = n.GetLongValue(); } },
+                { "min_pow_level", n => { MinPowLevel = n.GetIntValue(); } },
+                { "min_security_level", n => { MinSecurityLevel = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nsfw", n => { Nsfw = n.GetBoolValue(); } },
                 { "public_key", n => { PublicKey = n.GetStringValue(); } },
+                { "rotation", n => { Rotation = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_rotation>(global::Wavvon.Sdk.Generated.Models.HubInfo_rotation.CreateFromDiscriminatorValue); } },
+                { "screen_share_v2", n => { ScreenShareV2 = n.GetBoolValue(); } },
+                { "self_tags", n => { SelfTags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "sfu_url", n => { SfuUrl = n.GetStringValue(); } },
+                { "timezone", n => { Timezone = n.GetStringValue(); } },
                 { "version", n => { Version = n.GetStringValue(); } },
+                { "voice_cert_hash", n => { VoiceCertHash = n.GetStringValue(); } },
+                { "voice_wt_url", n => { VoiceWtUrl = n.GetStringValue(); } },
+                { "welcome_invite_url", n => { WelcomeInviteUrl = n.GetStringValue(); } },
+                { "welcome_label", n => { WelcomeLabel = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -124,17 +268,37 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.HubInfo_badges>("badges", Badges);
+            writer.WriteBoolValue("birthdays_enabled", BirthdaysEnabled);
             writer.WriteStringValue("canonical_url", CanonicalUrl);
             writer.WriteCollectionOfPrimitiveValues<string>("capabilities", Capabilities);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement>("cert_requirement", CertRequirement);
             writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Models.HubInfo_challenge_mode>("challenge_mode", ChallengeMode);
+            writer.WriteStringValue("description", Description);
+            writer.WriteLongValue("emoji_count", EmojiCount);
+            writer.WriteStringValue("farewell_label", FarewellLabel);
             writer.WriteStringValue("farm_url", FarmUrl);
             writer.WriteStringValue("icon", Icon);
             writer.WriteBoolValue("invite_only", InviteOnly);
-            writer.WriteLongValue("min_pow_level", MinPowLevel);
-            writer.WriteLongValue("min_security_level", MinSecurityLevel);
+            writer.WriteStringValue("lan_fingerprint", LanFingerprint);
+            writer.WriteBoolValue("lan_mode", LanMode);
+            writer.WriteStringValue("lan_tls", LanTls);
+            writer.WriteLongValue("max_attachment_bytes", MaxAttachmentBytes);
+            writer.WriteIntValue("min_pow_level", MinPowLevel);
+            writer.WriteIntValue("min_security_level", MinSecurityLevel);
             writer.WriteStringValue("name", Name);
+            writer.WriteBoolValue("nsfw", Nsfw);
             writer.WriteStringValue("public_key", PublicKey);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_rotation>("rotation", Rotation);
+            writer.WriteBoolValue("screen_share_v2", ScreenShareV2);
+            writer.WriteCollectionOfPrimitiveValues<string>("self_tags", SelfTags);
+            writer.WriteStringValue("sfu_url", SfuUrl);
+            writer.WriteStringValue("timezone", Timezone);
             writer.WriteStringValue("version", Version);
+            writer.WriteStringValue("voice_cert_hash", VoiceCertHash);
+            writer.WriteStringValue("voice_wt_url", VoiceWtUrl);
+            writer.WriteStringValue("welcome_invite_url", WelcomeInviteUrl);
+            writer.WriteStringValue("welcome_label", WelcomeLabel);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

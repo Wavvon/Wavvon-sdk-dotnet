@@ -14,6 +14,22 @@ namespace Wavvon.Sdk.Generated.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The attachments property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.ReplyView_attachments>? Attachments { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.ReplyView_attachments> Attachments { get; set; }
+#endif
+        /// <summary>Origin hub public key (hex) when authored through the alliance forum write-proxy. Omitted for local replies.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AuthorHub { get; set; }
+#nullable restore
+#else
+        public string AuthorHub { get; set; }
+#endif
         /// <summary>The author_pubkey property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,6 +68,14 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string PostId { get; set; }
 #endif
+        /// <summary>The reactions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.Reaction>? Reactions { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.Reaction> Reactions { get; set; }
+#endif
         /// <summary>Omitted on top-level replies</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -85,6 +109,8 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.ReplyView_attachments>(global::Wavvon.Sdk.Generated.Models.ReplyView_attachments.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "author_hub", n => { AuthorHub = n.GetStringValue(); } },
                 { "author_pubkey", n => { AuthorPubkey = n.GetStringValue(); } },
                 { "body", n => { Body = n.GetStringValue(); } },
                 { "created_at", n => { CreatedAt = n.GetLongValue(); } },
@@ -92,6 +118,7 @@ namespace Wavvon.Sdk.Generated.Models
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "is_deleted", n => { IsDeleted = n.GetBoolValue(); } },
                 { "post_id", n => { PostId = n.GetStringValue(); } },
+                { "reactions", n => { Reactions = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Reaction>(global::Wavvon.Sdk.Generated.Models.Reaction.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "reply_to_id", n => { ReplyToId = n.GetStringValue(); } },
             };
         }
@@ -102,6 +129,8 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.ReplyView_attachments>("attachments", Attachments);
+            writer.WriteStringValue("author_hub", AuthorHub);
             writer.WriteStringValue("author_pubkey", AuthorPubkey);
             writer.WriteStringValue("body", Body);
             writer.WriteLongValue("created_at", CreatedAt);
@@ -109,6 +138,7 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("is_deleted", IsDeleted);
             writer.WriteStringValue("post_id", PostId);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Reaction>("reactions", Reactions);
             writer.WriteStringValue("reply_to_id", ReplyToId);
             writer.WriteAdditionalData(AdditionalData);
         }

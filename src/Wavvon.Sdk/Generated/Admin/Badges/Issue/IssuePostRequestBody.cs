@@ -15,7 +15,7 @@ namespace Wavvon.Sdk.Generated.Admin.Badges.Issue
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The expires_days property</summary>
-        public long? ExpiresDays { get; set; }
+        public int? ExpiresDays { get; set; }
         /// <summary>The label property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -65,7 +65,7 @@ namespace Wavvon.Sdk.Generated.Admin.Badges.Issue
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "expires_days", n => { ExpiresDays = n.GetLongValue(); } },
+                { "expires_days", n => { ExpiresDays = n.GetIntValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "note", n => { Note = n.GetStringValue(); } },
                 { "recipient_hub_url", n => { RecipientHubUrl = n.GetStringValue(); } },
@@ -78,7 +78,7 @@ namespace Wavvon.Sdk.Generated.Admin.Badges.Issue
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteLongValue("expires_days", ExpiresDays);
+            writer.WriteIntValue("expires_days", ExpiresDays);
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("note", Note);
             writer.WriteStringValue("recipient_hub_url", RecipientHubUrl);

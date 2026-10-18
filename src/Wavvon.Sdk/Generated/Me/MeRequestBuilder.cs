@@ -95,22 +95,22 @@ namespace Wavvon.Sdk.Generated.Me
         /// <summary>
         /// Update display name and avatar
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.MeInfo"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PatchAsync(global::Wavvon.Sdk.Generated.Me.MePatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Wavvon.Sdk.Generated.Models.MeInfo?> PatchAsync(global::Wavvon.Sdk.Generated.Me.MePatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PatchAsync(global::Wavvon.Sdk.Generated.Me.MePatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Wavvon.Sdk.Generated.Models.MeInfo> PatchAsync(global::Wavvon.Sdk.Generated.Me.MePatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Models.MeInfo>(requestInfo, global::Wavvon.Sdk.Generated.Models.MeInfo.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Removes the caller from the hub: profile fields cleared, every roledeleted, sessions ended. The `users` row itself is **kept** as a barepubkey — moderation records and message authorship reference it, so adeparture must not take a ban or a report with it. Messages,reactions and RSVPs are untouched; the author becomes a pubkey withno name.Self only. Removing someone else is `/moderation`.Note that membership *is* the roles, and the invite gate is &quot;has noroles&quot;, so on an `invite_only` hub this makes the return that isotherwise free require a fresh invite. Clients say so before asking.Advertised as the `hub.leave` capability; a hub without it answers 404and the client must not offer the action.
@@ -167,6 +167,7 @@ namespace Wavvon.Sdk.Generated.Me
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }

@@ -17,7 +17,7 @@ namespace Wavvon.Sdk.Generated.Hub.Settings.Lobby
         /// <summary>The enabled property</summary>
         public bool? Enabled { get; set; }
         /// <summary>The min_security_level property</summary>
-        public long? MinSecurityLevel { get; set; }
+        public int? MinSecurityLevel { get; set; }
         /// <summary>The welcome_md property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,7 +52,7 @@ namespace Wavvon.Sdk.Generated.Hub.Settings.Lobby
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "enabled", n => { Enabled = n.GetBoolValue(); } },
-                { "min_security_level", n => { MinSecurityLevel = n.GetLongValue(); } },
+                { "min_security_level", n => { MinSecurityLevel = n.GetIntValue(); } },
                 { "welcome_md", n => { WelcomeMd = n.GetStringValue(); } },
             };
         }
@@ -64,7 +64,7 @@ namespace Wavvon.Sdk.Generated.Hub.Settings.Lobby
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("enabled", Enabled);
-            writer.WriteLongValue("min_security_level", MinSecurityLevel);
+            writer.WriteIntValue("min_security_level", MinSecurityLevel);
             writer.WriteStringValue("welcome_md", WelcomeMd);
             writer.WriteAdditionalData(AdditionalData);
         }

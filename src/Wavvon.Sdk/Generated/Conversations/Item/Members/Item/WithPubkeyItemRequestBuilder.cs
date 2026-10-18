@@ -36,22 +36,21 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Members.Item
         /// <summary>
         /// Leave a group conversation (callers may only remove themselves)
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
         /// <param name="body">The actor&apos;s signature over a group add or leave (wire-format.md, &quot;Group DM member change&quot;). Without it the change holds on this hub only; with it the hub carries the change to the other members&apos; hubs. Only on a hub advertising `dms.group.signedmembers`.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> DeleteAsync(global::Wavvon.Sdk.Generated.Models.SignedMemberChange body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task DeleteAsync(global::Wavvon.Sdk.Generated.Models.SignedMemberChange body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> DeleteAsync(global::Wavvon.Sdk.Generated.Models.SignedMemberChange body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task DeleteAsync(global::Wavvon.Sdk.Generated.Models.SignedMemberChange body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Leave a group conversation (callers may only remove themselves)

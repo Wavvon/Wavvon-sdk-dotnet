@@ -57,7 +57,7 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
         public string PublicKey { get; set; }
 #endif
         /// <summary>Claimed PoW level</summary>
-        public long? SecurityLevel { get; set; }
+        public int? SecurityLevel { get; set; }
         /// <summary>PoW nonce</summary>
         public long? SecurityNonce { get; set; }
         /// <summary>Hex-encoded Ed25519 signature over the challenge bytes</summary>
@@ -107,7 +107,7 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
                 { "invite_code", n => { InviteCode = n.GetStringValue(); } },
                 { "is_hub", n => { IsHub = n.GetBoolValue(); } },
                 { "public_key", n => { PublicKey = n.GetStringValue(); } },
-                { "security_level", n => { SecurityLevel = n.GetLongValue(); } },
+                { "security_level", n => { SecurityLevel = n.GetIntValue(); } },
                 { "security_nonce", n => { SecurityNonce = n.GetLongValue(); } },
                 { "signature", n => { Signature = n.GetStringValue(); } },
                 { "subkey_cert", n => { SubkeyCert = n.GetObjectValue<global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_subkey_cert>(global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_subkey_cert.CreateFromDiscriminatorValue); } },
@@ -126,7 +126,7 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
             writer.WriteStringValue("invite_code", InviteCode);
             writer.WriteBoolValue("is_hub", IsHub);
             writer.WriteStringValue("public_key", PublicKey);
-            writer.WriteLongValue("security_level", SecurityLevel);
+            writer.WriteIntValue("security_level", SecurityLevel);
             writer.WriteLongValue("security_nonce", SecurityNonce);
             writer.WriteStringValue("signature", Signature);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostRequestBody_subkey_cert>("subkey_cert", SubkeyCert);

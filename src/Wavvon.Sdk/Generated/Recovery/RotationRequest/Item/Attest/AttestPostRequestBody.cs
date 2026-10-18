@@ -14,7 +14,7 @@ namespace Wavvon.Sdk.Generated.Recovery.RotationRequest.Item.Attest
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Contact&apos;s public key</summary>
+        /// <summary>Contact&apos;s public key, hex</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Attester { get; set; }
@@ -22,7 +22,7 @@ namespace Wavvon.Sdk.Generated.Recovery.RotationRequest.Item.Attest
 #else
         public string Attester { get; set; }
 #endif
-        /// <summary>Ed25519 signature over the bundle</summary>
+        /// <summary>Ed25519 signature over the bundle, hex</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Signature { get; set; }

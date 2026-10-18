@@ -42,6 +42,22 @@ namespace Wavvon.Sdk.Generated.Models
         public long? CreatedAt { get; set; }
         /// <summary>The edited_at property</summary>
         public long? EditedAt { get; set; }
+        /// <summary>Omitted unless set. Rich embeds authored by an app (docs/apps.md).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.Message_embeds>? Embeds { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.Message_embeds> Embeds { get; set; }
+#endif
+        /// <summary>Omitted unless set. Game-modal launch card authored by an app (docs/apps.md).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.Message_game? Game { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.Message_game Game { get; set; }
+#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -122,6 +138,8 @@ namespace Wavvon.Sdk.Generated.Models
                 { "content", n => { Content = n.GetStringValue(); } },
                 { "created_at", n => { CreatedAt = n.GetLongValue(); } },
                 { "edited_at", n => { EditedAt = n.GetLongValue(); } },
+                { "embeds", n => { Embeds = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Message_embeds>(global::Wavvon.Sdk.Generated.Models.Message_embeds.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "game", n => { Game = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.Message_game>(global::Wavvon.Sdk.Generated.Models.Message_game.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "reactions", n => { Reactions = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Reaction>(global::Wavvon.Sdk.Generated.Models.Reaction.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "reply_count", n => { ReplyCount = n.GetLongValue(); } },
@@ -143,6 +161,8 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteStringValue("content", Content);
             writer.WriteLongValue("created_at", CreatedAt);
             writer.WriteLongValue("edited_at", EditedAt);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Message_embeds>("embeds", Embeds);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.Message_game>("game", Game);
             writer.WriteStringValue("id", Id);
             writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Reaction>("reactions", Reactions);
             writer.WriteLongValue("reply_count", ReplyCount);

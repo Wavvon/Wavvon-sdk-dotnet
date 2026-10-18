@@ -14,6 +14,22 @@ namespace Wavvon.Sdk.Generated.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The attachments property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.PostSummary_attachments>? Attachments { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.PostSummary_attachments> Attachments { get; set; }
+#endif
+        /// <summary>Origin hub public key (hex) when the post came in through the alliance forum write-proxy. Hub-asserted, not proven: render it as mediated (&quot;via HubName&quot;). Omitted for local posts.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AuthorHub { get; set; }
+#nullable restore
+#else
+        public string AuthorHub { get; set; }
+#endif
         /// <summary>Null on tombstoned posts for non-moderators</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -50,8 +66,24 @@ namespace Wavvon.Sdk.Generated.Models
         public bool? IsPinned { get; set; }
         /// <summary>The last_activity_at property</summary>
         public long? LastActivityAt { get; set; }
+        /// <summary>The reactions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.Reaction>? Reactions { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.Reaction> Reactions { get; set; }
+#endif
         /// <summary>The reply_count property</summary>
         public long? ReplyCount { get; set; }
+        /// <summary>The tags property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.PostSummary_tags>? Tags { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.PostSummary_tags> Tags { get; set; }
+#endif
         /// <summary>The title property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -87,6 +119,8 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.PostSummary_attachments>(global::Wavvon.Sdk.Generated.Models.PostSummary_attachments.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "author_hub", n => { AuthorHub = n.GetStringValue(); } },
                 { "author_pubkey", n => { AuthorPubkey = n.GetStringValue(); } },
                 { "channel_id", n => { ChannelId = n.GetStringValue(); } },
                 { "created_at", n => { CreatedAt = n.GetLongValue(); } },
@@ -96,7 +130,9 @@ namespace Wavvon.Sdk.Generated.Models
                 { "is_locked", n => { IsLocked = n.GetBoolValue(); } },
                 { "is_pinned", n => { IsPinned = n.GetBoolValue(); } },
                 { "last_activity_at", n => { LastActivityAt = n.GetLongValue(); } },
+                { "reactions", n => { Reactions = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Reaction>(global::Wavvon.Sdk.Generated.Models.Reaction.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "reply_count", n => { ReplyCount = n.GetLongValue(); } },
+                { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.PostSummary_tags>(global::Wavvon.Sdk.Generated.Models.PostSummary_tags.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
                 { "unread_reply_count", n => { UnreadReplyCount = n.GetLongValue(); } },
             };
@@ -108,6 +144,8 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.PostSummary_attachments>("attachments", Attachments);
+            writer.WriteStringValue("author_hub", AuthorHub);
             writer.WriteStringValue("author_pubkey", AuthorPubkey);
             writer.WriteStringValue("channel_id", ChannelId);
             writer.WriteLongValue("created_at", CreatedAt);
@@ -117,7 +155,9 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteBoolValue("is_locked", IsLocked);
             writer.WriteBoolValue("is_pinned", IsPinned);
             writer.WriteLongValue("last_activity_at", LastActivityAt);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Reaction>("reactions", Reactions);
             writer.WriteLongValue("reply_count", ReplyCount);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.PostSummary_tags>("tags", Tags);
             writer.WriteStringValue("title", Title);
             writer.WriteLongValue("unread_reply_count", UnreadReplyCount);
             writer.WriteAdditionalData(AdditionalData);

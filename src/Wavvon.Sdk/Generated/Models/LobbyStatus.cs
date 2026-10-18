@@ -15,11 +15,11 @@ namespace Wavvon.Sdk.Generated.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The current_level property</summary>
-        public long? CurrentLevel { get; set; }
+        public int? CurrentLevel { get; set; }
         /// <summary>The entered_at property</summary>
         public long? EnteredAt { get; set; }
         /// <summary>The required_level property</summary>
-        public long? RequiredLevel { get; set; }
+        public int? RequiredLevel { get; set; }
         /// <summary>The status property</summary>
         public global::Wavvon.Sdk.Generated.Models.LobbyStatus_status? Status { get; set; }
         /// <summary>The welcome_md property</summary>
@@ -55,9 +55,9 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "current_level", n => { CurrentLevel = n.GetLongValue(); } },
+                { "current_level", n => { CurrentLevel = n.GetIntValue(); } },
                 { "entered_at", n => { EnteredAt = n.GetLongValue(); } },
-                { "required_level", n => { RequiredLevel = n.GetLongValue(); } },
+                { "required_level", n => { RequiredLevel = n.GetIntValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Wavvon.Sdk.Generated.Models.LobbyStatus_status>(); } },
                 { "welcome_md", n => { WelcomeMd = n.GetStringValue(); } },
             };
@@ -69,9 +69,9 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteLongValue("current_level", CurrentLevel);
+            writer.WriteIntValue("current_level", CurrentLevel);
             writer.WriteLongValue("entered_at", EnteredAt);
-            writer.WriteLongValue("required_level", RequiredLevel);
+            writer.WriteIntValue("required_level", RequiredLevel);
             writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Models.LobbyStatus_status>("status", Status);
             writer.WriteStringValue("welcome_md", WelcomeMd);
             writer.WriteAdditionalData(AdditionalData);

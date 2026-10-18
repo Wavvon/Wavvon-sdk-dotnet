@@ -49,20 +49,20 @@ namespace Wavvon.Sdk.Generated.Users
         /// <summary>
         /// Members the hub knows, ordered by display name then public key. Page with `cursor` — pass the `public_key` of the last row of the previous page — until a short page comes back. Before 2026-08-08 this capped at a hardcoded 50 rows with no way to reach row 51.
         /// </summary>
-        /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Models.User&gt;</returns>
+        /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Models.UserInfo&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<List<global::Wavvon.Sdk.Generated.Models.User>?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Models.UserInfo>?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<List<global::Wavvon.Sdk.Generated.Models.User>> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Models.UserInfo>> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Wavvon.Sdk.Generated.Models.User>(requestInfo, global::Wavvon.Sdk.Generated.Models.User.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Wavvon.Sdk.Generated.Models.UserInfo>(requestInfo, global::Wavvon.Sdk.Generated.Models.UserInfo.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
         /// <summary>

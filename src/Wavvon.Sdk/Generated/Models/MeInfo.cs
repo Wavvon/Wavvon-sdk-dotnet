@@ -12,6 +12,22 @@ namespace Wavvon.Sdk.Generated.Models
     public partial class MeInfo : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>The accent_color property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AccentColor { get; set; }
+#nullable restore
+#else
+        public string AccentColor { get; set; }
+#endif
+        /// <summary>The activities property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Activities { get; set; }
+#nullable restore
+#else
+        public string Activities { get; set; }
+#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The approval_status property</summary>
@@ -24,6 +40,30 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string Avatar { get; set; }
 #endif
+        /// <summary>The bio property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Bio { get; set; }
+#nullable restore
+#else
+        public string Bio { get; set; }
+#endif
+        /// <summary>The birthday property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Birthday { get; set; }
+#nullable restore
+#else
+        public string Birthday { get; set; }
+#endif
+        /// <summary>The cover property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Cover { get; set; }
+#nullable restore
+#else
+        public string Cover { get; set; }
+#endif
         /// <summary>The display_name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -32,8 +72,32 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string DisplayName { get; set; }
 #endif
+        /// <summary>The favorite_hubs property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.MeInfo_favorite_hubs>? FavoriteHubs { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.MeInfo_favorite_hubs> FavoriteHubs { get; set; }
+#endif
         /// <summary>The findable_by_allies property</summary>
         public bool? FindableByAllies { get; set; }
+        /// <summary>The name_color property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameColor { get; set; }
+#nullable restore
+#else
+        public string NameColor { get; set; }
+#endif
+        /// <summary>The pronouns property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Pronouns { get; set; }
+#nullable restore
+#else
+        public string Pronouns { get; set; }
+#endif
         /// <summary>The public_key property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,6 +113,16 @@ namespace Wavvon.Sdk.Generated.Models
 #nullable restore
 #else
         public List<global::Wavvon.Sdk.Generated.Models.Role> Roles { get; set; }
+#endif
+        /// <summary>The show_hubs property</summary>
+        public bool? ShowHubs { get; set; }
+        /// <summary>The status_message property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StatusMessage { get; set; }
+#nullable restore
+#else
+        public string StatusMessage { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.MeInfo"/> and sets the default values.
@@ -75,12 +149,22 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "accent_color", n => { AccentColor = n.GetStringValue(); } },
+                { "activities", n => { Activities = n.GetStringValue(); } },
                 { "approval_status", n => { ApprovalStatus = n.GetEnumValue<global::Wavvon.Sdk.Generated.Models.MeInfo_approval_status>(); } },
                 { "avatar", n => { Avatar = n.GetStringValue(); } },
+                { "bio", n => { Bio = n.GetStringValue(); } },
+                { "birthday", n => { Birthday = n.GetStringValue(); } },
+                { "cover", n => { Cover = n.GetStringValue(); } },
                 { "display_name", n => { DisplayName = n.GetStringValue(); } },
+                { "favorite_hubs", n => { FavoriteHubs = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.MeInfo_favorite_hubs>(global::Wavvon.Sdk.Generated.Models.MeInfo_favorite_hubs.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "findable_by_allies", n => { FindableByAllies = n.GetBoolValue(); } },
+                { "name_color", n => { NameColor = n.GetStringValue(); } },
+                { "pronouns", n => { Pronouns = n.GetStringValue(); } },
                 { "public_key", n => { PublicKey = n.GetStringValue(); } },
                 { "roles", n => { Roles = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Role>(global::Wavvon.Sdk.Generated.Models.Role.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "show_hubs", n => { ShowHubs = n.GetBoolValue(); } },
+                { "status_message", n => { StatusMessage = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -90,12 +174,22 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("accent_color", AccentColor);
+            writer.WriteStringValue("activities", Activities);
             writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Models.MeInfo_approval_status>("approval_status", ApprovalStatus);
             writer.WriteStringValue("avatar", Avatar);
+            writer.WriteStringValue("bio", Bio);
+            writer.WriteStringValue("birthday", Birthday);
+            writer.WriteStringValue("cover", Cover);
             writer.WriteStringValue("display_name", DisplayName);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.MeInfo_favorite_hubs>("favorite_hubs", FavoriteHubs);
             writer.WriteBoolValue("findable_by_allies", FindableByAllies);
+            writer.WriteStringValue("name_color", NameColor);
+            writer.WriteStringValue("pronouns", Pronouns);
             writer.WriteStringValue("public_key", PublicKey);
             writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Role>("roles", Roles);
+            writer.WriteBoolValue("show_hubs", ShowHubs);
+            writer.WriteStringValue("status_message", StatusMessage);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
