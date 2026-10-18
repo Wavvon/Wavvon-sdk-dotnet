@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Wavvon.Sdk.AspNetCore/Wavvon.Sdk.AspNetCore.csproj" />
+    <Project Path="src/Wavvon.Sdk/Wavvon.Sdk.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Wavvon.Sdk.Tests/Wavvon.Sdk.Tests.csproj" />
+  </Folder>
+</Solution>

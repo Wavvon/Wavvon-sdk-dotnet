@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <RootNamespace>Wavvon.Sdk</RootNamespace>
+    <PackageId>Wavvon.Sdk</PackageId>
+    <Description>Write programs (bots and apps) that talk to a Wavvon hub.</Description>
+    <PackageTags>wavvon;bot;sdk;chat</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Kiota.Bundle" Version="2.1.2" />
+    <PackageReference Include="NSec.Cryptography" Version="25.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+    <None Include="../../NOTICE" Pack="true" PackagePath="/" />
+    <InternalsVisibleTo Include="Wavvon.Sdk.Tests" />
+  </ItemGroup>
+
+</Project>
