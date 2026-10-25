@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Me.Events
 {
     /// <summary>
@@ -21,7 +22,7 @@ namespace Wavvon.Sdk.Generated.Me.Events
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public EventsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/me/events{?since*}", pathParameters)
+        public EventsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/me/events{?cursor*,limit*}", pathParameters)
         {
         }
         /// <summary>
@@ -29,70 +30,35 @@ namespace Wavvon.Sdk.Generated.Me.Events
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public EventsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/me/events{?since*}", rawUrl)
+        public EventsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/me/events{?cursor*,limit*}", rawUrl)
         {
         }
         /// <summary>
-        /// Acknowledge delivered events
+        /// The polling transport for a program holding no WebSocket. It reads the audit log that WebSocket `Resume` replays, so each item is the same `hub_event` envelope the socket pushes: events of the caller&apos;s subscribed types after `cursor`, in channels it can read, oldest first. Nothing is queued or acknowledged; pass the last `seq` seen as `cursor`. Without one, the poll starts at the beginning of the 72-hour window.
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
-        /// <param name="body">The request body</param>
+        /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Models.HubEvent&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Wavvon.Sdk.Generated.Me.Events.Events410Error">When receiving a 410 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> DeleteAsync(global::Wavvon.Sdk.Generated.Me.Events.EventsDeleteRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Models.HubEvent>?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Me.Events.EventsRequestBuilder.EventsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> DeleteAsync(global::Wavvon.Sdk.Generated.Me.Events.EventsDeleteRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// The polling transport for a client holding no WebSocket: rows queued for the caller&apos;s own identity and not yet acknowledged, oldest first, at most 100 per call. After a full page, acknowledge with DELETE and poll again: `since` is strict on a whole-second timestamp, so paging by the last row&apos;s `created_at` skips rows that share its second.
-        /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Me.Events.EventsGetResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Wavvon.Sdk.Generated.Me.Events.EventsGetResponse?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Me.Events.EventsRequestBuilder.EventsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Wavvon.Sdk.Generated.Me.Events.EventsGetResponse> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Me.Events.EventsRequestBuilder.EventsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Models.HubEvent>> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Me.Events.EventsRequestBuilder.EventsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Me.Events.EventsGetResponse>(requestInfo, global::Wavvon.Sdk.Generated.Me.Events.EventsGetResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "410", global::Wavvon.Sdk.Generated.Me.Events.Events410Error.CreateFromDiscriminatorValue },
+            };
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Wavvon.Sdk.Generated.Models.HubEvent>(requestInfo, global::Wavvon.Sdk.Generated.Models.HubEvent.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return collectionResult?.AsList();
         }
         /// <summary>
-        /// Acknowledge delivered events
-        /// </summary>
-        /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public RequestInformation ToDeleteRequestInformation(global::Wavvon.Sdk.Generated.Me.Events.EventsDeleteRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
-        {
-#nullable restore
-#else
-        public RequestInformation ToDeleteRequestInformation(global::Wavvon.Sdk.Generated.Me.Events.EventsDeleteRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
-        {
-#endif
-            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
-            requestInfo.Configure(requestConfiguration);
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            return requestInfo;
-        }
-        /// <summary>
-        /// The polling transport for a client holding no WebSocket: rows queued for the caller&apos;s own identity and not yet acknowledged, oldest first, at most 100 per call. After a full page, acknowledge with DELETE and poll again: `since` is strict on a whole-second timestamp, so paging by the last row&apos;s `created_at` skips rows that share its second.
+        /// The polling transport for a program holding no WebSocket. It reads the audit log that WebSocket `Resume` replays, so each item is the same `hub_event` envelope the socket pushes: events of the caller&apos;s subscribed types after `cursor`, in channels it can read, oldest first. Nothing is queued or acknowledged; pass the last `seq` seen as `cursor`. Without one, the poll starts at the beginning of the 72-hour window.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -120,14 +86,18 @@ namespace Wavvon.Sdk.Generated.Me.Events
             return new global::Wavvon.Sdk.Generated.Me.Events.EventsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// The polling transport for a client holding no WebSocket: rows queued for the caller&apos;s own identity and not yet acknowledged, oldest first, at most 100 per call. After a full page, acknowledge with DELETE and poll again: `since` is strict on a whole-second timestamp, so paging by the last row&apos;s `created_at` skips rows that share its second.
+        /// The polling transport for a program holding no WebSocket. It reads the audit log that WebSocket `Resume` replays, so each item is the same `hub_event` envelope the socket pushes: events of the caller&apos;s subscribed types after `cursor`, in channels it can read, oldest first. Nothing is queued or acknowledged; pass the last `seq` seen as `cursor`. Without one, the poll starts at the beginning of the 72-hour window.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class EventsRequestBuilderGetQueryParameters 
         {
-            /// <summary>A `created_at` value (Unix seconds); only rows created strictly after it are returned.</summary>
-            [QueryParameter("since")]
-            public long? Since { get; set; }
+            /// <summary>The `seq` of the last event seen; only later events are returned.</summary>
+            [QueryParameter("cursor")]
+            public long? Cursor { get; set; }
+            #pragma warning disable CS1591
+            [QueryParameter("limit")]
+            public int? Limit { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

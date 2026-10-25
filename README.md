@@ -78,7 +78,7 @@ A fuller one is [samples/EchoBot](samples/EchoBot/Program.cs).
 | Capability checks | `HasCapabilityAsync`, `RequireCapabilityAsync` |
 | Keyset paging to the end of a list | `Pager.PaginateAsync` |
 | WebSocket events with resume after reconnect | `client.Connect()` -> `EventConnection.ReadAllAsync` |
-| HTTP polling instead of a socket | `PollEventsAsync`, `AckEventsAsync` |
+| HTTP polling instead of a socket | `PollEventsAsync(cursor)` |
 | App registration | `SetAppProfileAsync`, `SetAppCommandsAsync`, `SetAppSubscriptionsAsync` |
 | Slash command and button webhooks | `DispatchHandler`, `WebhookVerifier.VerifyDispatch`, `MapWavvonDispatch` |
 | Outgoing webhook receiver | `WebhookVerifier.VerifyOutgoingWebhook` |

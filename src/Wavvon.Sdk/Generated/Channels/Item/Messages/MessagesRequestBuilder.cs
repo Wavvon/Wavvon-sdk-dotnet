@@ -35,7 +35,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MessagesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/channels/{channel_id}/messages{?before*,limit*}", pathParameters)
+        public MessagesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/channels/{channel_id}/messages{?before*,cursor*,limit*,q*,thread_root*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MessagesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/channels/{channel_id}/messages{?before*,limit*}", rawUrl)
+        public MessagesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/channels/{channel_id}/messages{?before*,cursor*,limit*,q*,thread_root*}", rawUrl)
         {
         }
         /// <summary>
@@ -141,7 +141,8 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class MessagesRequestBuilderGetQueryParameters 
         {
-            /// <summary>Message ID cursor for pagination</summary>
+            /// <summary>The former name of `cursor`, still accepted for older clients.</summary>
+            [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("before")]
@@ -151,10 +152,40 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
             [QueryParameter("before")]
             public string Before { get; set; }
 #endif
+            /// <summary>The `id` of the last message of the previous page. Newest first; with `thread_root`, oldest first and the cursor pages forward.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("cursor")]
+            public string? Cursor { get; set; }
+#nullable restore
+#else
+            [QueryParameter("cursor")]
+            public string Cursor { get; set; }
+#endif
             #pragma warning disable CS1591
             [QueryParameter("limit")]
             public long? Limit { get; set; }
             #pragma warning restore CS1591
+            /// <summary>Full-text search within the channel; one page of hits, `cursor` ignored.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("q")]
+            public string? Q { get; set; }
+#nullable restore
+#else
+            [QueryParameter("q")]
+            public string Q { get; set; }
+#endif
+            /// <summary>Return only replies to this message, oldest first.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("thread_root")]
+            public string? ThreadRoot { get; set; }
+#nullable restore
+#else
+            [QueryParameter("thread_root")]
+            public string ThreadRoot { get; set; }
+#endif
         }
     }
 }

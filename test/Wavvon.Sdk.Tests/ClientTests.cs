@@ -48,6 +48,17 @@ public sealed class ClientTests
             {
                 return Http.Text(HttpStatusCode.OK);
             }
+            if (path == "/me/events")
+            {
+                var query = request.RequestUri.Query;
+                lock (Log)
+                {
+                    Log.Add(query);
+                }
+                return query == "?cursor=1"
+                    ? Http.Json(new { type = "replay_unavailable", earliest_seq = 40, earliest_at = 9 }, HttpStatusCode.Gone)
+                    : Http.Json(new[] { new { type = "hub_event", seq = 42, @event = "member.joined", hub_url = "h", at = 1, payload = new { a = 1 }, replayed = true } });
+            }
             return Http.Json(new[] { new { id = "c1", name = "general" } });
         });
 
@@ -124,5 +135,18 @@ public sealed class ClientTests
         using var with = hub.Client();
         await with.SetAppCommandsAsync([new AppCommandDef { Name = "echo", Description = "Echo" }], ct);
         Assert.Contains("PUT /me/app/commands", hub.Log);
+    }
+
+    [Fact]
+    public async Task PollsHubEventsAfterACursorAndReportsACursorOutsideTheWindow()
+    {
+        var hub = new TokenHub();
+        using var client = hub.Client();
+        var events = await client.PollEventsAsync(cursor: 41, cancellationToken: TestContext.Current.CancellationToken);
+        Assert.Equal(42, Assert.Single(events).Seq);
+        Assert.Equal("member.joined", events[0].Event);
+        Assert.Contains("?cursor=41", hub.Log);
+        var gone = await Assert.ThrowsAsync<ReplayUnavailableException>(() => client.PollEventsAsync(cursor: 1, cancellationToken: TestContext.Current.CancellationToken));
+        Assert.Equal(40, gone.EarliestSeq);
     }
 }

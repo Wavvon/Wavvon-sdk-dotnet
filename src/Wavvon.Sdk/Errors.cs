@@ -43,6 +43,20 @@ public sealed class HubException(HttpStatusCode status, string body)
     public string Body { get; } = body;
 }
 
+/// <summary>
+/// A poll cursor is older than the hub's 72-hour window: events after it were missed and cannot be
+/// replayed. Resynchronise from REST, then poll without a cursor.
+/// </summary>
+public sealed class ReplayUnavailableException(long earliestSeq, long earliestAt)
+    : WavvonException($"events before seq {earliestSeq} are outside the hub's replay window")
+{
+    /// <summary>The oldest seq the hub still holds.</summary>
+    public long EarliestSeq { get; } = earliestSeq;
+
+    /// <summary>When that event happened, in Unix seconds.</summary>
+    public long EarliestAt { get; } = earliestAt;
+}
+
 /// <summary>The challenge could not be answered safely (unknown scheme, wrong length).</summary>
 public sealed class AuthSchemeException(string message) : WavvonException(message);
 
