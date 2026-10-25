@@ -49,13 +49,6 @@ public sealed record WavvonClientOptions
     public HttpMessageHandler? Handler { get; init; }
 }
 
-/// <summary>One row of <c>GET /me/events</c>, with the payload already parsed.</summary>
-/// <param name="Id">Pass it to <see cref="WavvonClient.AckEventsAsync"/>.</param>
-/// <param name="EventType">For example <c>message.created</c>.</param>
-/// <param name="Payload">The event's JSON; a JSON string if the hub stored something that is not JSON.</param>
-/// <param name="CreatedAt">When the event was queued, as the hub reports it.</param>
-public sealed record PolledEvent(string Id, string EventType, JsonElement Payload, long CreatedAt);
-
 /// <summary>
 /// A program's connection to one hub: a session that renews itself, the generated REST client
 /// (<see cref="Rest"/>), capability checks, app registration and the event connection.
@@ -205,23 +198,37 @@ public sealed class WavvonClient : IDisposable
     public EventConnection Connect(EventConnectionOptions? options = null) =>
         new(ConnectSocketAsync, ct => ReloginAsync(_session?.Token, ct), _options.Retry, options);
 
-    /// <summary><c>GET /me/events</c>: the polling transport, for a program that holds no socket.</summary>
-    /// <param name="since">Only events queued after this <see cref="PolledEvent.CreatedAt"/>.</param>
+    /// <summary>
+    /// <c>GET /me/events</c>: the polling transport, for a program that holds no socket. Returns the
+    /// same <see cref="HubEvent"/> envelopes the socket replays, oldest first. Nothing is acknowledged:
+    /// pass the last <see cref="HubEvent.Seq"/> handled as <paramref name="cursor"/>.
+    /// </summary>
+    /// <param name="cursor">Only events after this seq; <see langword="null"/> starts at the beginning of the hub's 72-hour window.</param>
+    /// <param name="limit">Page size; <see langword="null"/> is the hub default.</param>
     /// <param name="cancellationToken">Cancels the call.</param>
-    public async Task<IReadOnlyList<PolledEvent>> PollEventsAsync(long? since = null, CancellationToken cancellationToken = default)
+    /// <exception cref="ReplayUnavailableException">The cursor is older than the window.</exception>
+    public async Task<IReadOnlyList<HubEvent>> PollEventsAsync(long? cursor = null, int? limit = null, CancellationToken cancellationToken = default)
     {
-        var page = await Rest.Me.Events.GetAsync(r => r.QueryParameters.Since = since, cancellationToken).ConfigureAwait(false);
-        var rows = page?.Events ?? throw new WavvonException("GET /me/events answered without an events array");
-        return [.. rows.Select(r => new PolledEvent(r.Id ?? "", r.EventType ?? "", ParsePayload(r.Payload), r.CreatedAt ?? 0))];
-    }
-
-    /// <summary><c>DELETE /me/events</c>: acknowledges polled events so they are not returned again.</summary>
-    public async Task AckEventsAsync(IEnumerable<string> ids, CancellationToken cancellationToken = default)
-    {
-        var stream = await Rest.Me.Events.DeleteAsync(new EventsDeleteRequestBody { Ids = [.. ids] }, cancellationToken: cancellationToken).ConfigureAwait(false);
-        if (stream is not null)
+        var query = string.Join("&", new[] { cursor is { } c ? $"cursor={c}" : null, limit is { } l ? $"limit={l}" : null }.OfType<string>());
+        using var request = new HttpRequestMessage(HttpMethod.Get, query.Length == 0 ? "me/events" : $"me/events?{query}");
+        string body;
+        try
         {
-            await stream.DisposeAsync().ConfigureAwait(false);
+            using var response = await SendAsync(request, cancellationToken).ConfigureAwait(false);
+            body = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+        }
+        catch (HubException e) when (e.Status == HttpStatusCode.Gone)
+        {
+            using var gone = JsonDocument.Parse(e.Body);
+            throw new ReplayUnavailableException(gone.RootElement.GetProperty("earliest_seq").GetInt64(), gone.RootElement.GetProperty("earliest_at").GetInt64());
+        }
+        try
+        {
+            return JsonSerializer.Deserialize<List<HubEvent>>(body, WavvonJson.Options) ?? throw new JsonException("null");
+        }
+        catch (JsonException e)
+        {
+            throw new WavvonException("GET /me/events answered without an array of hub events", e);
         }
     }
 
@@ -230,23 +237,6 @@ public sealed class WavvonClient : IDisposable
     {
         _http.Dispose();
         _transport.Dispose();
-    }
-
-    private static JsonElement ParsePayload(string? payload)
-    {
-        if (payload is null)
-        {
-            return default;
-        }
-        try
-        {
-            using var doc = JsonDocument.Parse(payload);
-            return doc.RootElement.Clone();
-        }
-        catch (JsonException)
-        {
-            return JsonSerializer.SerializeToElement(payload);
-        }
     }
 
     private async Task<WebSocket> ConnectSocketAsync(CancellationToken cancellationToken)

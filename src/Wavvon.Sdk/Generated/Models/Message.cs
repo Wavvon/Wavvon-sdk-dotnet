@@ -30,6 +30,14 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string ChannelId { get; set; }
 #endif
+        /// <summary>Omitted unless set. Buttons and selects authored by an app; a click is sent back as `component_interaction` (docs/apps.md).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.ComponentRow>? Components { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.ComponentRow> Components { get; set; }
+#endif
         /// <summary>The content property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -45,18 +53,18 @@ namespace Wavvon.Sdk.Generated.Models
         /// <summary>Omitted unless set. Rich embeds authored by an app (docs/apps.md).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Wavvon.Sdk.Generated.Models.Message_embeds>? Embeds { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.Embed>? Embeds { get; set; }
 #nullable restore
 #else
-        public List<global::Wavvon.Sdk.Generated.Models.Message_embeds> Embeds { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.Embed> Embeds { get; set; }
 #endif
         /// <summary>Omitted unless set. Game-modal launch card authored by an app (docs/apps.md).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Wavvon.Sdk.Generated.Models.Message_game? Game { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.GameLaunchCard? Game { get; set; }
 #nullable restore
 #else
-        public global::Wavvon.Sdk.Generated.Models.Message_game Game { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.GameLaunchCard Game { get; set; }
 #endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -135,11 +143,12 @@ namespace Wavvon.Sdk.Generated.Models
             {
                 { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Attachment>(global::Wavvon.Sdk.Generated.Models.Attachment.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "channel_id", n => { ChannelId = n.GetStringValue(); } },
+                { "components", n => { Components = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.ComponentRow>(global::Wavvon.Sdk.Generated.Models.ComponentRow.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "content", n => { Content = n.GetStringValue(); } },
                 { "created_at", n => { CreatedAt = n.GetLongValue(); } },
                 { "edited_at", n => { EditedAt = n.GetLongValue(); } },
-                { "embeds", n => { Embeds = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Message_embeds>(global::Wavvon.Sdk.Generated.Models.Message_embeds.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "game", n => { Game = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.Message_game>(global::Wavvon.Sdk.Generated.Models.Message_game.CreateFromDiscriminatorValue); } },
+                { "embeds", n => { Embeds = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Embed>(global::Wavvon.Sdk.Generated.Models.Embed.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "game", n => { Game = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>(global::Wavvon.Sdk.Generated.Models.GameLaunchCard.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "reactions", n => { Reactions = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Reaction>(global::Wavvon.Sdk.Generated.Models.Reaction.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "reply_count", n => { ReplyCount = n.GetLongValue(); } },
@@ -158,11 +167,12 @@ namespace Wavvon.Sdk.Generated.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Attachment>("attachments", Attachments);
             writer.WriteStringValue("channel_id", ChannelId);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.ComponentRow>("components", Components);
             writer.WriteStringValue("content", Content);
             writer.WriteLongValue("created_at", CreatedAt);
             writer.WriteLongValue("edited_at", EditedAt);
-            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Message_embeds>("embeds", Embeds);
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.Message_game>("game", Game);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Embed>("embeds", Embeds);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>("game", Game);
             writer.WriteStringValue("id", Id);
             writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Reaction>("reactions", Reactions);
             writer.WriteLongValue("reply_count", ReplyCount);

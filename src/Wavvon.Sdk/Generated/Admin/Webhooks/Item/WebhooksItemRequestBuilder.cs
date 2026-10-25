@@ -50,6 +50,24 @@ namespace Wavvon.Sdk.Generated.Admin.Webhooks.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
+        /// The old URL stops working. The returned `webhook_url` embeds the new secret token and is shown **once**.
+        /// </summary>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.Webhooks.Item.WebhooksPatchResponse"/></returns>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Wavvon.Sdk.Generated.Admin.Webhooks.Item.WebhooksPatchResponse?> PatchAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Wavvon.Sdk.Generated.Admin.Webhooks.Item.WebhooksPatchResponse> PatchAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToPatchRequestInformation(requestConfiguration);
+            return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Admin.Webhooks.Item.WebhooksPatchResponse>(requestInfo, global::Wavvon.Sdk.Generated.Admin.Webhooks.Item.WebhooksPatchResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
         /// Deactivate a webhook (admin)
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
@@ -65,6 +83,25 @@ namespace Wavvon.Sdk.Generated.Admin.Webhooks.Item
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            return requestInfo;
+        }
+        /// <summary>
+        /// The old URL stops working. The returned `webhook_url` embeds the new secret token and is shown **once**.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>

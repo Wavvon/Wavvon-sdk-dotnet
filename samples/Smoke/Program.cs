@@ -13,7 +13,8 @@
 // its owner first.
 //
 // Authenticates as a fresh identity, posts a message, registers a slash command, invokes it, and
-// checks that the verified invocation's reply lands in the channel.
+// checks that the verified invocation's reply lands in the channel, and polls the message back from
+// GET /me/events.
 
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -118,6 +119,7 @@ internal static class Smoke
                 channelId = channels.FirstOrDefault(c => c.IsCategory != true)?.Id
                     ?? throw new InvalidOperationException("no channel to post in");
             }
+            await client.SetAppSubscriptionsAsync([new AppSubscription { Event = "message.created", Channels = [channelId] }], ct);
 
             async Task<MessageEvent> WaitForAsync(Func<MessageEvent, bool> predicate, string what)
             {
@@ -157,6 +159,17 @@ internal static class Smoke
                 throw new InvalidOperationException($"reply sent by {reply.Message.Sender}");
             }
             step("verified the invocation and the reply landed");
+
+            var polled = await client.PollEventsAsync(cancellationToken: ct);
+            var ours = polled.FirstOrDefault(e => e.Event == "message.created"
+                && e.Payload.TryGetProperty("content", out var c) && c.GetString() == text)
+                ?? throw new InvalidOperationException($"polling did not return our message: {string.Join(", ", polled.Select(e => e.Event))}");
+            var last = polled[^1].Seq;
+            if ((await client.PollEventsAsync(last, cancellationToken: ct)).Any(e => e.Seq <= last))
+            {
+                throw new InvalidOperationException("the cursor did not page forward");
+            }
+            step($"polled {polled.Count} events, ours at seq {ours.Seq}");
 
             if (!unknown.IsEmpty)
             {
