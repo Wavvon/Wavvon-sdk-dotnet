@@ -41,9 +41,9 @@ public sealed class WebhookTests
         Assert.Throws<WebhookVerificationException>(() => Verify(h, Slash, AtNow with { Now = DateTimeOffset.FromUnixTimeSeconds(Now + 301) }));
         Assert.IsType<SlashInvocation>(Verify(h, Slash, AtNow with { Now = DateTimeOffset.FromUnixTimeSeconds(Now + 300) }));
 
-        var legacyOnly = new Dictionary<string, string>(h);
-        legacyOnly.Remove("X-Wavvon-Signature-V1");
-        Assert.Throws<WebhookVerificationException>(() => Verify(legacyOnly, Slash));
+        var noV1 = new Dictionary<string, string>(h);
+        noV1.Remove("X-Wavvon-Signature-V1");
+        Assert.Throws<WebhookVerificationException>(() => Verify(noV1, Slash));
 
         using var other = Identity.FromSeed(Enumerable.Repeat((byte)6, 32).ToArray());
         Assert.Throws<WebhookVerificationException>(() => Verify(h, Slash, hubKey: other.PublicKey));

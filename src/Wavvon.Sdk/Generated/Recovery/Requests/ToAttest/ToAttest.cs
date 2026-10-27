@@ -5,27 +5,19 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Wavvon.Sdk.Generated.Me.Devices
+namespace Wavvon.Sdk.Generated.Recovery.Requests.ToAttest
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class Devices : IAdditionalDataHolder, IParsable
+    public partial class ToAttest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The attestation_count property</summary>
+        public long? AttestationCount { get; set; }
         /// <summary>The created_at property</summary>
         public long? CreatedAt { get; set; }
-        /// <summary>The device_name property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? DeviceName { get; set; }
-#nullable restore
-#else
-        public string DeviceName { get; set; }
-#endif
-        /// <summary>The expires_at property</summary>
-        public long? ExpiresAt { get; set; }
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -34,24 +26,48 @@ namespace Wavvon.Sdk.Generated.Me.Devices
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>The last_used_at property</summary>
-        public long? LastUsedAt { get; set; }
+        /// <summary>The new_pubkey property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NewPubkey { get; set; }
+#nullable restore
+#else
+        public string NewPubkey { get; set; }
+#endif
+        /// <summary>The old_pubkey property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OldPubkey { get; set; }
+#nullable restore
+#else
+        public string OldPubkey { get; set; }
+#endif
+        /// <summary>The reason property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Reason { get; set; }
+#nullable restore
+#else
+        public string Reason { get; set; }
+#endif
+        /// <summary>The threshold property</summary>
+        public long? Threshold { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Me.Devices.Devices"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Recovery.Requests.ToAttest.ToAttest"/> and sets the default values.
         /// </summary>
-        public Devices()
+        public ToAttest()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Me.Devices.Devices"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Recovery.Requests.ToAttest.ToAttest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Me.Devices.Devices CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Recovery.Requests.ToAttest.ToAttest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Me.Devices.Devices();
+            return new global::Wavvon.Sdk.Generated.Recovery.Requests.ToAttest.ToAttest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,11 +77,13 @@ namespace Wavvon.Sdk.Generated.Me.Devices
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "attestation_count", n => { AttestationCount = n.GetLongValue(); } },
                 { "created_at", n => { CreatedAt = n.GetLongValue(); } },
-                { "device_name", n => { DeviceName = n.GetStringValue(); } },
-                { "expires_at", n => { ExpiresAt = n.GetLongValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "last_used_at", n => { LastUsedAt = n.GetLongValue(); } },
+                { "new_pubkey", n => { NewPubkey = n.GetStringValue(); } },
+                { "old_pubkey", n => { OldPubkey = n.GetStringValue(); } },
+                { "reason", n => { Reason = n.GetStringValue(); } },
+                { "threshold", n => { Threshold = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -75,11 +93,13 @@ namespace Wavvon.Sdk.Generated.Me.Devices
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteLongValue("attestation_count", AttestationCount);
             writer.WriteLongValue("created_at", CreatedAt);
-            writer.WriteStringValue("device_name", DeviceName);
-            writer.WriteLongValue("expires_at", ExpiresAt);
             writer.WriteStringValue("id", Id);
-            writer.WriteLongValue("last_used_at", LastUsedAt);
+            writer.WriteStringValue("new_pubkey", NewPubkey);
+            writer.WriteStringValue("old_pubkey", OldPubkey);
+            writer.WriteStringValue("reason", Reason);
+            writer.WriteLongValue("threshold", Threshold);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

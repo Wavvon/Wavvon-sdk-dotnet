@@ -7,7 +7,6 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 using Wavvon.Sdk.Generated.Auth.Challenge;
-using Wavvon.Sdk.Generated.Auth.DeviceToken;
 using Wavvon.Sdk.Generated.Auth.Verify;
 using Wavvon.Sdk.Generated.Auth.Webauthn;
 namespace Wavvon.Sdk.Generated.Auth
@@ -22,11 +21,6 @@ namespace Wavvon.Sdk.Generated.Auth
         public global::Wavvon.Sdk.Generated.Auth.Challenge.ChallengeRequestBuilder Challenge
         {
             get => new global::Wavvon.Sdk.Generated.Auth.Challenge.ChallengeRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The deviceToken property</summary>
-        public global::Wavvon.Sdk.Generated.Auth.DeviceToken.DeviceTokenRequestBuilder DeviceToken
-        {
-            get => new global::Wavvon.Sdk.Generated.Auth.DeviceToken.DeviceTokenRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The verify property</summary>
         public global::Wavvon.Sdk.Generated.Auth.Verify.VerifyRequestBuilder Verify

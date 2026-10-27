@@ -350,8 +350,6 @@ public static class WebhookVerifier
     {
         var signatureHex = header("X-Wavvon-Signature-V1");
         var timestampText = header("X-Wavvon-Timestamp");
-        // The body-only X-Wavvon-Signature is deliberately not accepted: on its own a captured
-        // request replays forever.
         if (string.IsNullOrEmpty(signatureHex) || string.IsNullOrEmpty(timestampText))
         {
             throw new WebhookVerificationException("missing X-Wavvon-Signature-V1 or X-Wavvon-Timestamp");

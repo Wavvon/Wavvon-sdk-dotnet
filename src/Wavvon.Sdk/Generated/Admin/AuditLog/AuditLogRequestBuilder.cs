@@ -21,7 +21,7 @@ namespace Wavvon.Sdk.Generated.Admin.AuditLog
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AuditLogRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/audit-log{?cursor*,event_type*,limit*,since*,until*}", pathParameters)
+        public AuditLogRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/audit-log{?actor*,cursor*,event_type*,limit*,since*,until*}", pathParameters)
         {
         }
         /// <summary>
@@ -29,29 +29,30 @@ namespace Wavvon.Sdk.Generated.Admin.AuditLog
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AuditLogRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/audit-log{?cursor*,event_type*,limit*,since*,until*}", rawUrl)
+        public AuditLogRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/audit-log{?actor*,cursor*,event_type*,limit*,since*,until*}", rawUrl)
         {
         }
         /// <summary>
-        /// Cursor-paginated hub audit log (admin)
+        /// Pages backwards: each page holds entries older than `cursor`. Hubs advertising the `audit.newest` capability serve this shape; older hubs answer `{entries, next_cursor}` oldest first. Apps that replay the log forwards use `GET /me/events`.
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogGetResponse"/></returns>
+        /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLog&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogGetResponse?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogRequestBuilder.AuditLogRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLog>?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogRequestBuilder.AuditLogRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogGetResponse> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogRequestBuilder.AuditLogRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLog>> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogRequestBuilder.AuditLogRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogGetResponse>(requestInfo, global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogGetResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLog>(requestInfo, global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLog.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return collectionResult?.AsList();
         }
         /// <summary>
-        /// Cursor-paginated hub audit log (admin)
+        /// Pages backwards: each page holds entries older than `cursor`. Hubs advertising the `audit.newest` capability serve this shape; older hubs answer `{entries, next_cursor}` oldest first. Apps that replay the log forwards use `GET /me/events`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -79,12 +80,22 @@ namespace Wavvon.Sdk.Generated.Admin.AuditLog
             return new global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Cursor-paginated hub audit log (admin)
+        /// Pages backwards: each page holds entries older than `cursor`. Hubs advertising the `audit.newest` capability serve this shape; older hubs answer `{entries, next_cursor}` oldest first. Apps that replay the log forwards use `GET /me/events`.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class AuditLogRequestBuilderGetQueryParameters 
         {
-            /// <summary>`next_cursor` from the previous page</summary>
+            /// <summary>Only entries by this public key</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("actor")]
+            public string? Actor { get; set; }
+#nullable restore
+#else
+            [QueryParameter("actor")]
+            public string Actor { get; set; }
+#endif
+            /// <summary>`seq` of the oldest entry already shown</summary>
             [QueryParameter("cursor")]
             public long? Cursor { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

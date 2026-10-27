@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using Wavvon.Sdk.Generated.Recovery.Requests.ToAttest;
 namespace Wavvon.Sdk.Generated.Recovery.Requests
 {
     /// <summary>
@@ -16,6 +17,11 @@ namespace Wavvon.Sdk.Generated.Recovery.Requests
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RequestsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The toAttest property</summary>
+        public global::Wavvon.Sdk.Generated.Recovery.Requests.ToAttest.ToAttestRequestBuilder ToAttest
+        {
+            get => new global::Wavvon.Sdk.Generated.Recovery.Requests.ToAttest.ToAttestRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Recovery.Requests.RequestsRequestBuilder"/> and sets the default values.
         /// </summary>
