@@ -56,14 +56,6 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
 #else
         public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_require CertRequire { get; set; }
 #endif
-        /// <summary>The cert_standing_days property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_standing_days? CertStandingDays { get; set; }
-#nullable restore
-#else
-        public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_standing_days CertStandingDays { get; set; }
-#endif
         /// <summary>The cert_trusted_issuers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -111,7 +103,6 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
                 { "cert_min_pow_level", n => { CertMinPowLevel = n.GetObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level>(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level.CreateFromDiscriminatorValue); } },
                 { "cert_mode", n => { CertMode = n.GetEnumValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_mode>(); } },
                 { "cert_require", n => { CertRequire = n.GetObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_require>(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_require.CreateFromDiscriminatorValue); } },
-                { "cert_standing_days", n => { CertStandingDays = n.GetObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_standing_days>(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_standing_days.CreateFromDiscriminatorValue); } },
                 { "cert_trusted_issuers", n => { CertTrustedIssuers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "cert_validity_days", n => { CertValidityDays = n.GetObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_validity_days>(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_validity_days.CreateFromDiscriminatorValue); } },
             };
@@ -129,7 +120,6 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level>("cert_min_pow_level", CertMinPowLevel);
             writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_mode>("cert_mode", CertMode);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_require>("cert_require", CertRequire);
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_standing_days>("cert_standing_days", CertStandingDays);
             writer.WriteCollectionOfPrimitiveValues<string>("cert_trusted_issuers", CertTrustedIssuers);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_validity_days>("cert_validity_days", CertValidityDays);
             writer.WriteAdditionalData(AdditionalData);
@@ -282,67 +272,6 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level();
-                if(parseNode.GetIntValue() is int integerValue)
-                {
-                    result.Integer = integerValue;
-                }
-                else if(parseNode.GetStringValue() is string stringValue)
-                {
-                    result.String = stringValue;
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(Integer != null)
-                {
-                    writer.WriteIntValue(null, Integer);
-                }
-                else if(String != null)
-                {
-                    writer.WriteStringValue(null, String);
-                }
-            }
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="int"/>, <see cref="string"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class CertsPatchRequestBody_cert_standing_days : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="int"/></summary>
-            public int? Integer { get; set; }
-            /// <summary>Composed type representation for type <see cref="string"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? String { get; set; }
-#nullable restore
-#else
-            public string String { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_standing_days"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_standing_days CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
-                var result = new global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_standing_days();
                 if(parseNode.GetIntValue() is int integerValue)
                 {
                     result.Integer = integerValue;

@@ -70,8 +70,9 @@ Actions workflow files: explain choices in the commit message.
 - **Re-auth on its own**, with the state observable (`StateChanged`).
   Concurrent callers share one login; one caller cancelling does not cancel it.
 - **Auth challenge**: `scheme: "tagged-v1"` -> sign
-  `"wavvon/auth-challenge/v1\0" || challenge`; no scheme -> raw only at exactly
-  32 bytes; unknown scheme -> `AuthSchemeException`.
+  `"wavvon/auth-challenge/v1\0" || challenge`; a missing or unknown scheme ->
+  `AuthSchemeException`, never a raw signature (hubs refuse it since
+  Wavvon-server#199).
 - **Never send the seed** or any private key anywhere. Never invent a wire
   format: signed bytes come from wire-format.md and the vectors; a new one is
   a server-side change first. Never model a bot as an account or send
@@ -95,8 +96,7 @@ report the doc bug to Wavvon-docs.
 - Paging: a bare array plus `limit` (default 100, max 500) and `cursor` = key
   of the previous page's last row; the key differs per endpoint (`code`,
   `public_key`, `id`), hence the key selector. A hub that ignores the cursor
-  is detected. Channel messages too since Wavvon-server#184 (`before` is a
-  deprecated alias).
+  is detected. Channel messages too since Wavvon-server#184.
 - Outgoing-webhook HKDF input is the **decoded** secret bytes (the admin sees
   base64url without padding); the HMAC key is the 32 HKDF bytes, not hex.
 - `GET /me/events` reads the audit log (Wavvon-server#183): `hub_event`

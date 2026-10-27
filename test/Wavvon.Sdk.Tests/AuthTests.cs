@@ -19,16 +19,9 @@ public sealed class AuthTests
     }
 
     [Fact]
-    public void RawChallengeIsSignedOnlyAtExactly32Bytes()
+    public void MissingOrUnknownSchemeIsRefusedInsteadOfSignedRaw()
     {
-        Assert.Equal(Challenge32, WavvonAuth.ChallengeSigningBytes(Challenge32, null));
-        Assert.Throws<AuthSchemeException>(() => WavvonAuth.ChallengeSigningBytes(new byte[31], null));
-        Assert.Throws<AuthSchemeException>(() => WavvonAuth.ChallengeSigningBytes(new byte[64], null));
-    }
-
-    [Fact]
-    public void UnknownSchemeIsRefusedInsteadOfFallingBackToRaw()
-    {
+        Assert.Throws<AuthSchemeException>(() => WavvonAuth.ChallengeSigningBytes(Challenge32, null));
         Assert.Throws<AuthSchemeException>(() => WavvonAuth.ChallengeSigningBytes(Challenge32, "tagged-v2"));
         Assert.Throws<AuthSchemeException>(() => WavvonAuth.ChallengeSigningBytes(Challenge32, ""));
     }
@@ -93,14 +86,25 @@ public sealed class AuthTests
     }
 
     [Fact]
-    public async Task SignsTheRawChallengeForAnOlderHub()
+    public async Task OmitsTheInviteWhenNoneIsGiven()
+    {
+        var hub = new ChallengeHub();
+        using var http = new HttpClient(hub.Handler);
+        using var identity = Identity.FromSeed(Seed);
+        await WavvonAuth.AuthenticateAsync(http, Hub, identity, cancellationToken: TestContext.Current.CancellationToken);
+        Assert.False(hub.Verifies[0].TryGetProperty("invite_code", out _));
+    }
+
+    [Fact]
+    public async Task RefusesAHubThatNamesNoSchemeWithoutSendingAVerify()
     {
         var hub = new ChallengeHub(scheme: null);
         using var http = new HttpClient(hub.Handler);
         using var identity = Identity.FromSeed(Seed);
-        var session = await WavvonAuth.AuthenticateAsync(http, Hub, identity, cancellationToken: TestContext.Current.CancellationToken);
-        Assert.Equal("tok", session.Token);
-        Assert.False(hub.Verifies[0].TryGetProperty("invite_code", out _));
+        await Assert.ThrowsAsync<AuthSchemeException>(() =>
+            WavvonAuth.AuthenticateAsync(http, Hub, identity, retry: Fast.Retry, cancellationToken: TestContext.Current.CancellationToken));
+        Assert.Single(hub.Challenges);
+        Assert.Empty(hub.Verifies);
     }
 
     [Fact]

@@ -51,7 +51,7 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse>(requestInfo, global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// All fields optional. Scalars are accepted as strings, booleans or numbers and stored as text; `cert_min_age_days` is an accepted alias for `cert_standing_days`, which is what GET calls the same setting.
+        /// All fields optional. Scalars are accepted as strings, booleans or numbers and stored as text. `cert_min_age_days` is the standing period, under the name GET returns.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -89,7 +89,7 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             return requestInfo;
         }
         /// <summary>
-        /// All fields optional. Scalars are accepted as strings, booleans or numbers and stored as text; `cert_min_age_days` is an accepted alias for `cert_standing_days`, which is what GET calls the same setting.
+        /// All fields optional. Scalars are accepted as strings, booleans or numbers and stored as text. `cert_min_age_days` is the standing period, under the name GET returns.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

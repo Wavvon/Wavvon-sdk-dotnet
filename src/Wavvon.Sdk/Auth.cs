@@ -12,37 +12,22 @@ public sealed record Session(string Token, string Scope, string CanonicalPubkey)
 /// <summary>Challenge-response login (wire-format.md, "Auth challenge answer").</summary>
 public static class WavvonAuth
 {
-    /// <summary>The only challenge scheme this SDK signs besides the raw 32-byte fallback.</summary>
+    /// <summary>The only challenge scheme this SDK signs.</summary>
     public const string ChallengeScheme = "tagged-v1";
-
-    /// <summary>The only length a raw (untagged) challenge is ever signed at.</summary>
-    public const int RawChallengeLength = 32;
 
     private static readonly byte[] ChallengeTag = Encoding.UTF8.GetBytes("wavvon/auth-challenge/v1\0");
 
     /// <summary>
-    /// The bytes a client signs to answer a challenge. Under <c>tagged-v1</c>: the domain prefix plus
-    /// the challenge. With no scheme (an older hub): the raw challenge, and only at exactly 32 bytes,
-    /// so this can never be used to sign arbitrary bytes. Any other scheme is refused, not guessed at.
+    /// The bytes a client signs to answer a challenge: under <c>tagged-v1</c>, the domain prefix plus
+    /// the challenge. Any other scheme, or none, is refused rather than signed untagged.
     /// </summary>
-    /// <exception cref="AuthSchemeException">Unknown scheme, or a raw challenge of the wrong length.</exception>
-    public static byte[] ChallengeSigningBytes(ReadOnlySpan<byte> challenge, string? scheme)
-    {
-        if (scheme == ChallengeScheme)
-        {
-            return [.. ChallengeTag, .. challenge];
-        }
-        if (scheme is null)
-        {
-            if (challenge.Length != RawChallengeLength)
-            {
-                throw new AuthSchemeException(
-                    $"refusing to sign a raw {challenge.Length}-byte challenge; only {RawChallengeLength} bytes are ever signed raw");
-            }
-            return challenge.ToArray();
-        }
-        throw new AuthSchemeException($"unknown auth challenge scheme \"{scheme}\"");
-    }
+    /// <exception cref="AuthSchemeException">A missing or unknown scheme.</exception>
+    public static byte[] ChallengeSigningBytes(ReadOnlySpan<byte> challenge, string? scheme) =>
+        scheme == ChallengeScheme
+            ? [.. ChallengeTag, .. challenge]
+            : throw new AuthSchemeException(scheme is null
+                ? "the hub named no auth challenge scheme; untagged challenges are not signed"
+                : $"unknown auth challenge scheme \"{scheme}\"");
 
     /// <summary>
     /// Challenge, sign, verify. A transient failure at either step restarts from a fresh challenge,

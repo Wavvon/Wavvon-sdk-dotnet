@@ -30,6 +30,8 @@ namespace Wavvon.Sdk.Generated.Channels.Item
 #else
         public string BannerUrl { get; set; }
 #endif
+        /// <summary>Switch between text and voice; both keep their chat.</summary>
+        public global::Wavvon.Sdk.Generated.Channels.Item.WithChannel_PatchRequestBody_channel_type? ChannelType { get; set; }
         /// <summary>The color property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -113,6 +115,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item
             {
                 { "banner_file_id", n => { BannerFileId = n.GetStringValue(); } },
                 { "banner_url", n => { BannerUrl = n.GetStringValue(); } },
+                { "channel_type", n => { ChannelType = n.GetEnumValue<global::Wavvon.Sdk.Generated.Channels.Item.WithChannel_PatchRequestBody_channel_type>(); } },
                 { "color", n => { Color = n.GetStringValue(); } },
                 { "custom_icon_svg", n => { CustomIconSvg = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
@@ -134,6 +137,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("banner_file_id", BannerFileId);
             writer.WriteStringValue("banner_url", BannerUrl);
+            writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Channels.Item.WithChannel_PatchRequestBody_channel_type>("channel_type", ChannelType);
             writer.WriteStringValue("color", Color);
             writer.WriteStringValue("custom_icon_svg", CustomIconSvg);
             writer.WriteStringValue("description", Description);

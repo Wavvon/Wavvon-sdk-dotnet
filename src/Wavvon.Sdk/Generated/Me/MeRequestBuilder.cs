@@ -10,7 +10,6 @@ using System.Threading;
 using System;
 using Wavvon.Sdk.Generated.Me.App;
 using Wavvon.Sdk.Generated.Me.Credentials;
-using Wavvon.Sdk.Generated.Me.Devices;
 using Wavvon.Sdk.Generated.Me.Events;
 using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Me
@@ -30,11 +29,6 @@ namespace Wavvon.Sdk.Generated.Me
         public global::Wavvon.Sdk.Generated.Me.Credentials.CredentialsRequestBuilder Credentials
         {
             get => new global::Wavvon.Sdk.Generated.Me.Credentials.CredentialsRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The devices property</summary>
-        public global::Wavvon.Sdk.Generated.Me.Devices.DevicesRequestBuilder Devices
-        {
-            get => new global::Wavvon.Sdk.Generated.Me.Devices.DevicesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The events property</summary>
         public global::Wavvon.Sdk.Generated.Me.Events.EventsRequestBuilder Events

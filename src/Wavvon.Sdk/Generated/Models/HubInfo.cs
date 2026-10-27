@@ -137,8 +137,6 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public global::Wavvon.Sdk.Generated.Models.HubInfo_rotation Rotation { get; set; }
 #endif
-        /// <summary>The screen_share_v2 property</summary>
-        public bool? ScreenShareV2 { get; set; }
         /// <summary>The self_tags property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -250,7 +248,6 @@ namespace Wavvon.Sdk.Generated.Models
                 { "nsfw", n => { Nsfw = n.GetBoolValue(); } },
                 { "public_key", n => { PublicKey = n.GetStringValue(); } },
                 { "rotation", n => { Rotation = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_rotation>(global::Wavvon.Sdk.Generated.Models.HubInfo_rotation.CreateFromDiscriminatorValue); } },
-                { "screen_share_v2", n => { ScreenShareV2 = n.GetBoolValue(); } },
                 { "self_tags", n => { SelfTags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "sfu_url", n => { SfuUrl = n.GetStringValue(); } },
                 { "timezone", n => { Timezone = n.GetStringValue(); } },
@@ -290,7 +287,6 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteBoolValue("nsfw", Nsfw);
             writer.WriteStringValue("public_key", PublicKey);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_rotation>("rotation", Rotation);
-            writer.WriteBoolValue("screen_share_v2", ScreenShareV2);
             writer.WriteCollectionOfPrimitiveValues<string>("self_tags", SelfTags);
             writer.WriteStringValue("sfu_url", SfuUrl);
             writer.WriteStringValue("timezone", Timezone);

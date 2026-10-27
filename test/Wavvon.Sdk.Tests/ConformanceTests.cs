@@ -113,12 +113,10 @@ public sealed class ConformanceTests
         using var hub = Identity.FromSeed(S(v, "inputs.hub_seed"));
         Assert.Equal(S(v, "hub_pubkey"), hub.PublicKey);
         Assert.Equal(S(v, "signature_v1"), Hex(hub.Sign(bytes)));
-        Assert.Equal(S(v, "signature_legacy"), Hex(hub.Sign(body)));
 
         var headers = HeadersOf(v,
             ("hub_pubkey", S(v, "hub_pubkey")),
             ("signature_v1", S(v, "signature_v1")),
-            ("signature_legacy", S(v, "signature_legacy")),
             ("timestamp", timestamp.ToString(System.Globalization.CultureInfo.InvariantCulture)));
         var dispatch = WebhookVerifier.VerifyDispatch(headers, body, S(v, "hub_pubkey"), new VerifyOptions { Now = DateTimeOffset.FromUnixTimeSeconds(timestamp) });
         Assert.IsType<SlashInvocation>(dispatch);
@@ -139,11 +137,9 @@ public sealed class ConformanceTests
         var bytes = WebhookVerifier.DeliverySigningBytes((ulong)timestamp, body);
         Assert.Equal(S(v, "signing_bytes"), Hex(bytes));
         Assert.Equal(S(v, "signature_v1"), Hex(HMACSHA256.HashData(key, bytes)));
-        Assert.Equal(S(v, "signature_legacy"), Hex(HMACSHA256.HashData(key, body)));
 
         var headers = HeadersOf(v,
             ("signature_v1", S(v, "signature_v1")),
-            ("signature_legacy", S(v, "signature_legacy")),
             ("timestamp", timestamp.ToString(System.Globalization.CultureInfo.InvariantCulture)),
             ("webhook_id", "wh_test"));
         var options = new VerifyOptions { Now = DateTimeOffset.FromUnixTimeSeconds(timestamp) };
