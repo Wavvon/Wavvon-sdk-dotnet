@@ -33,7 +33,7 @@ namespace Wavvon.Sdk.Generated.Admin.AuditLog
         {
         }
         /// <summary>
-        /// Pages backwards: each page holds entries older than `cursor`. Hubs advertising the `audit.newest` capability serve this shape; older hubs answer `{entries, next_cursor}` oldest first. Apps that replay the log forwards use `GET /me/events`.
+        /// Pages backwards: each page holds entries older than `cursor`. Apps that replay the log forwards use `GET /me/events`.
         /// </summary>
         /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLog&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Wavvon.Sdk.Generated.Admin.AuditLog
             return collectionResult?.AsList();
         }
         /// <summary>
-        /// Pages backwards: each page holds entries older than `cursor`. Hubs advertising the `audit.newest` capability serve this shape; older hubs answer `{entries, next_cursor}` oldest first. Apps that replay the log forwards use `GET /me/events`.
+        /// Pages backwards: each page holds entries older than `cursor`. Apps that replay the log forwards use `GET /me/events`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -80,7 +80,7 @@ namespace Wavvon.Sdk.Generated.Admin.AuditLog
             return new global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Pages backwards: each page holds entries older than `cursor`. Hubs advertising the `audit.newest` capability serve this shape; older hubs answer `{entries, next_cursor}` oldest first. Apps that replay the log forwards use `GET /me/events`.
+        /// Pages backwards: each page holds entries older than `cursor`. Apps that replay the log forwards use `GET /me/events`.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class AuditLogRequestBuilderGetQueryParameters 

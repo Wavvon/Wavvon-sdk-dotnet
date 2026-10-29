@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System;
-using Wavvon.Sdk.Generated.Admin.Badges.Issue;
 using Wavvon.Sdk.Generated.Admin.Badges.Issued;
 namespace Wavvon.Sdk.Generated.Admin.Badges
 {
@@ -16,11 +15,6 @@ namespace Wavvon.Sdk.Generated.Admin.Badges
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class BadgesRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The issue property</summary>
-        public global::Wavvon.Sdk.Generated.Admin.Badges.Issue.IssueRequestBuilder Issue
-        {
-            get => new global::Wavvon.Sdk.Generated.Admin.Badges.Issue.IssueRequestBuilder(PathParameters, RequestAdapter);
-        }
         /// <summary>The issued property</summary>
         public global::Wavvon.Sdk.Generated.Admin.Badges.Issued.IssuedRequestBuilder Issued
         {

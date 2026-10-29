@@ -5,47 +5,42 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions
+namespace Wavvon.Sdk.Generated.Admin.Settings.Lobby
 {
+    /// <summary>
+    /// Absent fields keep their stored value.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class SubscriptionsGetResponse_subscriptions : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class LobbyPatchRequestBody : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The channels property</summary>
+        /// <summary>The lobby_enabled property</summary>
+        public bool? LobbyEnabled { get; set; }
+        /// <summary>The welcome_md property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Channels { get; set; }
+        public string? WelcomeMd { get; set; }
 #nullable restore
 #else
-        public List<string> Channels { get; set; }
-#endif
-        /// <summary>The event property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Event { get; set; }
-#nullable restore
-#else
-        public string Event { get; set; }
+        public string WelcomeMd { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsGetResponse_subscriptions"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Admin.Settings.Lobby.LobbyPatchRequestBody"/> and sets the default values.
         /// </summary>
-        public SubscriptionsGetResponse_subscriptions()
+        public LobbyPatchRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsGetResponse_subscriptions"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.Settings.Lobby.LobbyPatchRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsGetResponse_subscriptions CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Admin.Settings.Lobby.LobbyPatchRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsGetResponse_subscriptions();
+            return new global::Wavvon.Sdk.Generated.Admin.Settings.Lobby.LobbyPatchRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,8 +50,8 @@ namespace Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "channels", n => { Channels = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "event", n => { Event = n.GetStringValue(); } },
+                { "lobby_enabled", n => { LobbyEnabled = n.GetBoolValue(); } },
+                { "welcome_md", n => { WelcomeMd = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -66,8 +61,8 @@ namespace Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("channels", Channels);
-            writer.WriteStringValue("event", Event);
+            writer.WriteBoolValue("lobby_enabled", LobbyEnabled);
+            writer.WriteStringValue("welcome_md", WelcomeMd);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

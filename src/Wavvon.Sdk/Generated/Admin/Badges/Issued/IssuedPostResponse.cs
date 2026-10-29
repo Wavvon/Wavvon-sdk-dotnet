@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 using Wavvon.Sdk.Generated.Models;
-namespace Wavvon.Sdk.Generated.Admin.Badges.Issue
+namespace Wavvon.Sdk.Generated.Admin.Badges.Issued
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class IssuePostResponse : IAdditionalDataHolder, IParsable
+    public partial class IssuedPostResponse : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -72,21 +72,21 @@ namespace Wavvon.Sdk.Generated.Admin.Badges.Issue
         public string RecipientHubUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Admin.Badges.Issue.IssuePostResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Admin.Badges.Issued.IssuedPostResponse"/> and sets the default values.
         /// </summary>
-        public IssuePostResponse()
+        public IssuedPostResponse()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.Badges.Issue.IssuePostResponse"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.Badges.Issued.IssuedPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Admin.Badges.Issue.IssuePostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Admin.Badges.Issued.IssuedPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Admin.Badges.Issue.IssuePostResponse();
+            return new global::Wavvon.Sdk.Generated.Admin.Badges.Issued.IssuedPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -12,7 +12,7 @@ using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Identity.Item.Devices
 {
     /// <summary>
-    /// Builds and executes requests for operations under \identity\{master-id}\devices
+    /// Builds and executes requests for operations under \identity\{pubkey}\devices
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DevicesRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Wavvon.Sdk.Generated.Identity.Item.Devices
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DevicesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{master%2Did}/devices", pathParameters)
+        public DevicesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{pubkey}/devices", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Wavvon.Sdk.Generated.Identity.Item.Devices
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DevicesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{master%2Did}/devices", rawUrl)
+        public DevicesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{pubkey}/devices", rawUrl)
         {
         }
         /// <summary>

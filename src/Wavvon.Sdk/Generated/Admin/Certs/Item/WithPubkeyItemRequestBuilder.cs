@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using Wavvon.Sdk.Generated.Admin.Certs.Item.Badge;
-using Wavvon.Sdk.Generated.Admin.Certs.Item.Revoke;
 using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Admin.Certs.Item
 {
@@ -23,11 +22,6 @@ namespace Wavvon.Sdk.Generated.Admin.Certs.Item
         public global::Wavvon.Sdk.Generated.Admin.Certs.Item.Badge.BadgeRequestBuilder Badge
         {
             get => new global::Wavvon.Sdk.Generated.Admin.Certs.Item.Badge.BadgeRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The revoke property</summary>
-        public global::Wavvon.Sdk.Generated.Admin.Certs.Item.Revoke.RevokeRequestBuilder Revoke
-        {
-            get => new global::Wavvon.Sdk.Generated.Admin.Certs.Item.Revoke.RevokeRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Admin.Certs.Item.WithPubkeyItemRequestBuilder"/> and sets the default values.
@@ -46,6 +40,23 @@ namespace Wavvon.Sdk.Generated.Admin.Certs.Item
         {
         }
         /// <summary>
+        /// Marks existing certs revoked and re-issues a short-lived standing=revoked cert so pull-path verifiers see it.
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToDeleteRequestInformation(requestConfiguration);
+            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
         /// Manually issue a cert for a user (admin)
         /// </summary>
         /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.Certification"/></returns>
@@ -62,6 +73,24 @@ namespace Wavvon.Sdk.Generated.Admin.Certs.Item
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
             return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Models.Certification>(requestInfo, global::Wavvon.Sdk.Generated.Models.Certification.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
+        /// Marks existing certs revoked and re-issues a short-lived standing=revoked cert so pull-path verifiers see it.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            return requestInfo;
         }
         /// <summary>
         /// Manually issue a cert for a user (admin)

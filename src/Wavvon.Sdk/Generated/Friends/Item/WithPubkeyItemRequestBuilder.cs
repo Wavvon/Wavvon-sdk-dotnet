@@ -8,32 +8,38 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace Wavvon.Sdk.Generated.Moderation.Bans.Item
+using Wavvon.Sdk.Generated.Friends.Item.Accept;
+namespace Wavvon.Sdk.Generated.Friends.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \moderation\bans\{target_key}
+    /// Builds and executes requests for operations under \friends\{pubkey}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class WithTarget_keyItemRequestBuilder : BaseRequestBuilder
+    public partial class WithPubkeyItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The accept property</summary>
+        public global::Wavvon.Sdk.Generated.Friends.Item.Accept.AcceptRequestBuilder Accept
+        {
+            get => new global::Wavvon.Sdk.Generated.Friends.Item.Accept.AcceptRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Moderation.Bans.Item.WithTarget_keyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Friends.Item.WithPubkeyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTarget_keyItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/moderation/bans/{target_key}", pathParameters)
+        public WithPubkeyItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/friends/{pubkey}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Moderation.Bans.Item.WithTarget_keyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Friends.Item.WithPubkeyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTarget_keyItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/moderation/bans/{target_key}", rawUrl)
+        public WithPubkeyItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/friends/{pubkey}", rawUrl)
         {
         }
         /// <summary>
-        /// Lifts either kind. It stays on the permanent permission because removing a ban is never the escalation the split guards against.
+        /// Remove a friend
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -50,7 +56,7 @@ namespace Wavvon.Sdk.Generated.Moderation.Bans.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Lifts either kind. It stays on the permanent permission because removing a ban is never the escalation the split guards against.
+        /// Remove a friend
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -70,11 +76,11 @@ namespace Wavvon.Sdk.Generated.Moderation.Bans.Item
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Moderation.Bans.Item.WithTarget_keyItemRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Friends.Item.WithPubkeyItemRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::Wavvon.Sdk.Generated.Moderation.Bans.Item.WithTarget_keyItemRequestBuilder WithUrl(string rawUrl)
+        public global::Wavvon.Sdk.Generated.Friends.Item.WithPubkeyItemRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::Wavvon.Sdk.Generated.Moderation.Bans.Item.WithTarget_keyItemRequestBuilder(rawUrl, RequestAdapter);
+            return new global::Wavvon.Sdk.Generated.Friends.Item.WithPubkeyItemRequestBuilder(rawUrl, RequestAdapter);
         }
     }
 }

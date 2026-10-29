@@ -34,7 +34,7 @@ namespace Wavvon.Sdk.Generated.Admin.Survey.Responses
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ResponsesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/survey/responses", pathParameters)
+        public ResponsesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/survey/responses{?cursor*,limit*,status*}", pathParameters)
         {
         }
         /// <summary>
@@ -42,39 +42,39 @@ namespace Wavvon.Sdk.Generated.Admin.Survey.Responses
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ResponsesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/survey/responses", rawUrl)
+        public ResponsesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/survey/responses{?cursor*,limit*,status*}", rawUrl)
         {
         }
         /// <summary>
-        /// List all survey responses (manage_hub)
+        /// List survey responses, newest first (manage_hub)
         /// </summary>
         /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Admin.Survey.Responses.ResponsesRequestBuilder.ResponsesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Admin.Survey.Responses.ResponsesRequestBuilder.ResponsesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List all survey responses (manage_hub)
+        /// List survey responses, newest first (manage_hub)
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Admin.Survey.Responses.ResponsesRequestBuilder.ResponsesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Admin.Survey.Responses.ResponsesRequestBuilder.ResponsesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -89,6 +89,31 @@ namespace Wavvon.Sdk.Generated.Admin.Survey.Responses
         public global::Wavvon.Sdk.Generated.Admin.Survey.Responses.ResponsesRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Wavvon.Sdk.Generated.Admin.Survey.Responses.ResponsesRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// List survey responses, newest first (manage_hub)
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class ResponsesRequestBuilderGetQueryParameters 
+        {
+            /// <summary>The `response_id` of the last response of the previous page</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("cursor")]
+            public string? Cursor { get; set; }
+#nullable restore
+#else
+            [QueryParameter("cursor")]
+            public string Cursor { get; set; }
+#endif
+            #pragma warning disable CS1591
+            [QueryParameter("limit")]
+            public long? Limit { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("status")]
+            public global::Wavvon.Sdk.Generated.Admin.Survey.Responses.GetStatusQueryParameterType? Status { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

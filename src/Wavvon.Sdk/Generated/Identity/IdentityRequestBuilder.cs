@@ -29,14 +29,14 @@ namespace Wavvon.Sdk.Generated.Identity
         }
         /// <summary>Gets an item from the Wavvon.Sdk.Generated.identity.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Identity.Item.MasterItemRequestBuilder"/></returns>
-        public global::Wavvon.Sdk.Generated.Identity.Item.MasterItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Identity.Item.WithPubkeyItemRequestBuilder"/></returns>
+        public global::Wavvon.Sdk.Generated.Identity.Item.WithPubkeyItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("master%2Did", position);
-                return new global::Wavvon.Sdk.Generated.Identity.Item.MasterItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("pubkey", position);
+                return new global::Wavvon.Sdk.Generated.Identity.Item.WithPubkeyItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

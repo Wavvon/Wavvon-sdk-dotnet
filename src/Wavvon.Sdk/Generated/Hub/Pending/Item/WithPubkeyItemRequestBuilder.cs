@@ -10,10 +10,10 @@ using Wavvon.Sdk.Generated.Hub.Pending.Item.Approve;
 namespace Wavvon.Sdk.Generated.Hub.Pending.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \hub\pending\{target_key}
+    /// Builds and executes requests for operations under \hub\pending\{pubkey}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class WithTarget_keyItemRequestBuilder : BaseRequestBuilder
+    public partial class WithPubkeyItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The approve property</summary>
         public global::Wavvon.Sdk.Generated.Hub.Pending.Item.Approve.ApproveRequestBuilder Approve
@@ -21,19 +21,19 @@ namespace Wavvon.Sdk.Generated.Hub.Pending.Item
             get => new global::Wavvon.Sdk.Generated.Hub.Pending.Item.Approve.ApproveRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Hub.Pending.Item.WithTarget_keyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Hub.Pending.Item.WithPubkeyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTarget_keyItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/hub/pending/{target_key}", pathParameters)
+        public WithPubkeyItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/hub/pending/{pubkey}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Hub.Pending.Item.WithTarget_keyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Hub.Pending.Item.WithPubkeyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTarget_keyItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/hub/pending/{target_key}", rawUrl)
+        public WithPubkeyItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/hub/pending/{pubkey}", rawUrl)
         {
         }
     }

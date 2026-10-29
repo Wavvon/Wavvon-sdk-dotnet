@@ -8,8 +8,6 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-using Wavvon.Sdk.Generated.Hub.Settings.Challenge;
-using Wavvon.Sdk.Generated.Hub.Settings.Lobby;
 namespace Wavvon.Sdk.Generated.Hub.Settings
 {
     /// <summary>
@@ -18,16 +16,6 @@ namespace Wavvon.Sdk.Generated.Hub.Settings
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SettingsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The challenge property</summary>
-        public global::Wavvon.Sdk.Generated.Hub.Settings.Challenge.ChallengeRequestBuilder Challenge
-        {
-            get => new global::Wavvon.Sdk.Generated.Hub.Settings.Challenge.ChallengeRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The lobby property</summary>
-        public global::Wavvon.Sdk.Generated.Hub.Settings.Lobby.LobbyRequestBuilder Lobby
-        {
-            get => new global::Wavvon.Sdk.Generated.Hub.Settings.Lobby.LobbyRequestBuilder(PathParameters, RequestAdapter);
-        }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Hub.Settings.SettingsRequestBuilder"/> and sets the default values.
         /// </summary>

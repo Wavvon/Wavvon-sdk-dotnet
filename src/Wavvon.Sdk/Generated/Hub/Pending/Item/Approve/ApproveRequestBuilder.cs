@@ -11,7 +11,7 @@ using System;
 namespace Wavvon.Sdk.Generated.Hub.Pending.Item.Approve
 {
     /// <summary>
-    /// Builds and executes requests for operations under \hub\pending\{target_key}\approve
+    /// Builds and executes requests for operations under \hub\pending\{pubkey}\approve
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ApproveRequestBuilder : BaseRequestBuilder
@@ -21,7 +21,7 @@ namespace Wavvon.Sdk.Generated.Hub.Pending.Item.Approve
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ApproveRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/hub/pending/{target_key}/approve", pathParameters)
+        public ApproveRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/hub/pending/{pubkey}/approve", pathParameters)
         {
         }
         /// <summary>
@@ -29,7 +29,7 @@ namespace Wavvon.Sdk.Generated.Hub.Pending.Item.Approve
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ApproveRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/hub/pending/{target_key}/approve", rawUrl)
+        public ApproveRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/hub/pending/{pubkey}/approve", rawUrl)
         {
         }
         /// <summary>

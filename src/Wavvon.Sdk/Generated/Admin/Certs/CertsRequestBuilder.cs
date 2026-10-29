@@ -34,7 +34,7 @@ namespace Wavvon.Sdk.Generated.Admin.Certs
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CertsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/certs", pathParameters)
+        public CertsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/certs{?cursor*,limit*}", pathParameters)
         {
         }
         /// <summary>
@@ -42,22 +42,22 @@ namespace Wavvon.Sdk.Generated.Admin.Certs
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CertsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/certs", rawUrl)
+        public CertsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/certs{?cursor*,limit*}", rawUrl)
         {
         }
         /// <summary>
-        /// List all cert issuances (admin)
+        /// List cert issuances, newest first (admin; paged on hubs advertising list.cursor.admin)
         /// </summary>
         /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Admin.Certs.Certs&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<List<global::Wavvon.Sdk.Generated.Admin.Certs.Certs>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Admin.Certs.Certs>?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Admin.Certs.CertsRequestBuilder.CertsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<List<global::Wavvon.Sdk.Generated.Admin.Certs.Certs>> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Admin.Certs.Certs>> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Admin.Certs.CertsRequestBuilder.CertsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -65,17 +65,17 @@ namespace Wavvon.Sdk.Generated.Admin.Certs
             return collectionResult?.AsList();
         }
         /// <summary>
-        /// List all cert issuances (admin)
+        /// List cert issuances, newest first (admin; paged on hubs advertising list.cursor.admin)
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Admin.Certs.CertsRequestBuilder.CertsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Admin.Certs.CertsRequestBuilder.CertsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -91,6 +91,27 @@ namespace Wavvon.Sdk.Generated.Admin.Certs
         public global::Wavvon.Sdk.Generated.Admin.Certs.CertsRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Wavvon.Sdk.Generated.Admin.Certs.CertsRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// List cert issuances, newest first (admin; paged on hubs advertising list.cursor.admin)
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class CertsRequestBuilderGetQueryParameters 
+        {
+            /// <summary>The `id` of the last issuance of the previous page</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("cursor")]
+            public string? Cursor { get; set; }
+#nullable restore
+#else
+            [QueryParameter("cursor")]
+            public string Cursor { get; set; }
+#endif
+            #pragma warning disable CS1591
+            [QueryParameter("limit")]
+            public long? Limit { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

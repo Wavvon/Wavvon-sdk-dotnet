@@ -11,7 +11,7 @@ using System;
 namespace Wavvon.Sdk.Generated.Identity.Item.Designation
 {
     /// <summary>
-    /// Builds and executes requests for operations under \identity\{master-id}\designation
+    /// Builds and executes requests for operations under \identity\{pubkey}\designation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DesignationRequestBuilder : BaseRequestBuilder
@@ -21,7 +21,7 @@ namespace Wavvon.Sdk.Generated.Identity.Item.Designation
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DesignationRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{master%2Did}/designation", pathParameters)
+        public DesignationRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{pubkey}/designation", pathParameters)
         {
         }
         /// <summary>
@@ -29,7 +29,7 @@ namespace Wavvon.Sdk.Generated.Identity.Item.Designation
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DesignationRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{master%2Did}/designation", rawUrl)
+        public DesignationRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{pubkey}/designation", rawUrl)
         {
         }
         /// <summary>

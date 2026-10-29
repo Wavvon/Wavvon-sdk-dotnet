@@ -11,7 +11,7 @@ using System;
 namespace Wavvon.Sdk.Generated.Identity.Item.DhKey
 {
     /// <summary>
-    /// Builds and executes requests for operations under \identity\{master-id}\dh-key
+    /// Builds and executes requests for operations under \identity\{pubkey}\dh-key
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DhKeyRequestBuilder : BaseRequestBuilder
@@ -21,7 +21,7 @@ namespace Wavvon.Sdk.Generated.Identity.Item.DhKey
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DhKeyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{master%2Did}/dh-key", pathParameters)
+        public DhKeyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{pubkey}/dh-key", pathParameters)
         {
         }
         /// <summary>
@@ -29,7 +29,7 @@ namespace Wavvon.Sdk.Generated.Identity.Item.DhKey
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DhKeyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{master%2Did}/dh-key", rawUrl)
+        public DhKeyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{pubkey}/dh-key", rawUrl)
         {
         }
         /// <summary>

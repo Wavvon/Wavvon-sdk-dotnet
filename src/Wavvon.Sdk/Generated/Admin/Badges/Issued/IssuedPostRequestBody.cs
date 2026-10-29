@@ -5,48 +5,57 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-using Wavvon.Sdk.Generated.Models;
-namespace Wavvon.Sdk.Generated.Channels.Item.Posts
+namespace Wavvon.Sdk.Generated.Admin.Badges.Issued
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PostsGetResponse : IAdditionalDataHolder, IParsable
+    public partial class IssuedPostRequestBody : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Omitted on the last page</summary>
+        /// <summary>The expires_days property</summary>
+        public int? ExpiresDays { get; set; }
+        /// <summary>The label property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Cursor { get; set; }
+        public string? Label { get; set; }
 #nullable restore
 #else
-        public string Cursor { get; set; }
+        public string Label { get; set; }
 #endif
-        /// <summary>The posts property</summary>
+        /// <summary>The note property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Wavvon.Sdk.Generated.Models.PostSummary>? Posts { get; set; }
+        public string? Note { get; set; }
 #nullable restore
 #else
-        public List<global::Wavvon.Sdk.Generated.Models.PostSummary> Posts { get; set; }
+        public string Note { get; set; }
+#endif
+        /// <summary>The recipient_hub_url property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RecipientHubUrl { get; set; }
+#nullable restore
+#else
+        public string RecipientHubUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Channels.Item.Posts.PostsGetResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Admin.Badges.Issued.IssuedPostRequestBody"/> and sets the default values.
         /// </summary>
-        public PostsGetResponse()
+        public IssuedPostRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Channels.Item.Posts.PostsGetResponse"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.Badges.Issued.IssuedPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Channels.Item.Posts.PostsGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Admin.Badges.Issued.IssuedPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Channels.Item.Posts.PostsGetResponse();
+            return new global::Wavvon.Sdk.Generated.Admin.Badges.Issued.IssuedPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,8 +65,10 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "cursor", n => { Cursor = n.GetStringValue(); } },
-                { "posts", n => { Posts = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.PostSummary>(global::Wavvon.Sdk.Generated.Models.PostSummary.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "expires_days", n => { ExpiresDays = n.GetIntValue(); } },
+                { "label", n => { Label = n.GetStringValue(); } },
+                { "note", n => { Note = n.GetStringValue(); } },
+                { "recipient_hub_url", n => { RecipientHubUrl = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -67,8 +78,10 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("cursor", Cursor);
-            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.PostSummary>("posts", Posts);
+            writer.WriteIntValue("expires_days", ExpiresDays);
+            writer.WriteStringValue("label", Label);
+            writer.WriteStringValue("note", Note);
+            writer.WriteStringValue("recipient_hub_url", RecipientHubUrl);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

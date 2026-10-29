@@ -47,7 +47,7 @@ namespace Wavvon.Sdk.Generated.Invites
         {
         }
         /// <summary>
-        /// Newest first, and only the invites that can still admit someone — an expired or used-up one is returned only with `include_inactive=true`, on hubs advertising `invites.status`. Paged only on hubs advertising `list.cursor.lists`.
+        /// Newest first, and only the invites that can still admit someone — an expired or used-up one is returned only with `include_inactive=true`. Paged only on hubs advertising `list.cursor.lists`.
         /// </summary>
         /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Models.Invite&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -86,7 +86,7 @@ namespace Wavvon.Sdk.Generated.Invites
             return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Models.Invite>(requestInfo, global::Wavvon.Sdk.Generated.Models.Invite.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Newest first, and only the invites that can still admit someone — an expired or used-up one is returned only with `include_inactive=true`, on hubs advertising `invites.status`. Paged only on hubs advertising `list.cursor.lists`.
+        /// Newest first, and only the invites that can still admit someone — an expired or used-up one is returned only with `include_inactive=true`. Paged only on hubs advertising `list.cursor.lists`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -136,7 +136,7 @@ namespace Wavvon.Sdk.Generated.Invites
             return new global::Wavvon.Sdk.Generated.Invites.InvitesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Newest first, and only the invites that can still admit someone — an expired or used-up one is returned only with `include_inactive=true`, on hubs advertising `invites.status`. Paged only on hubs advertising `list.cursor.lists`.
+        /// Newest first, and only the invites that can still admit someone — an expired or used-up one is returned only with `include_inactive=true`. Paged only on hubs advertising `list.cursor.lists`.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class InvitesRequestBuilderGetQueryParameters 

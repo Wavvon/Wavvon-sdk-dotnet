@@ -29,7 +29,6 @@ using Wavvon.Sdk.Generated.Identity;
 using Wavvon.Sdk.Generated.Info;
 using Wavvon.Sdk.Generated.Invites;
 using Wavvon.Sdk.Generated.Join;
-using Wavvon.Sdk.Generated.KeyRotation;
 using Wavvon.Sdk.Generated.Lobby;
 using Wavvon.Sdk.Generated.Me;
 using Wavvon.Sdk.Generated.Messages;
@@ -154,11 +153,6 @@ namespace Wavvon.Sdk.Generated
         public global::Wavvon.Sdk.Generated.Join.JoinRequestBuilder Join
         {
             get => new global::Wavvon.Sdk.Generated.Join.JoinRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The keyRotation property</summary>
-        public global::Wavvon.Sdk.Generated.KeyRotation.KeyRotationRequestBuilder KeyRotation
-        {
-            get => new global::Wavvon.Sdk.Generated.KeyRotation.KeyRotationRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The lobby property</summary>
         public global::Wavvon.Sdk.Generated.Lobby.LobbyRequestBuilder Lobby

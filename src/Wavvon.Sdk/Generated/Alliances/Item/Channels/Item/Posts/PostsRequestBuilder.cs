@@ -49,20 +49,21 @@ namespace Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Posts
         /// <summary>
         /// List posts in an alliance-shared forum channel
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Posts.PostsGetResponse"/></returns>
+        /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Models.PostSummary&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Posts.PostsGetResponse?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Posts.PostsRequestBuilder.PostsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Models.PostSummary>?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Posts.PostsRequestBuilder.PostsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Posts.PostsGetResponse> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Posts.PostsRequestBuilder.PostsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Models.PostSummary>> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Posts.PostsRequestBuilder.PostsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Posts.PostsGetResponse>(requestInfo, global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Posts.PostsGetResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Wavvon.Sdk.Generated.Models.PostSummary>(requestInfo, global::Wavvon.Sdk.Generated.Models.PostSummary.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return collectionResult?.AsList();
         }
         /// <summary>
         /// Subject to the owning channel&apos;s `forum_remote_write` policy — `none`, `replies_only` (rejects this) or `posts_and_replies`.

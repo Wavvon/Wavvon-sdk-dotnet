@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 using System;
 using Wavvon.Sdk.Generated.Admin.Settings.Banlist;
 using Wavvon.Sdk.Generated.Admin.Settings.Certs;
+using Wavvon.Sdk.Generated.Admin.Settings.Challenge;
 using Wavvon.Sdk.Generated.Admin.Settings.Listing;
+using Wavvon.Sdk.Generated.Admin.Settings.Lobby;
 using Wavvon.Sdk.Generated.Admin.Settings.Moderation;
 using Wavvon.Sdk.Generated.Admin.Settings.Pow;
 using Wavvon.Sdk.Generated.Admin.Settings.Tags;
@@ -30,10 +32,20 @@ namespace Wavvon.Sdk.Generated.Admin.Settings
         {
             get => new global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The challenge property</summary>
+        public global::Wavvon.Sdk.Generated.Admin.Settings.Challenge.ChallengeRequestBuilder Challenge
+        {
+            get => new global::Wavvon.Sdk.Generated.Admin.Settings.Challenge.ChallengeRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The listing property</summary>
         public global::Wavvon.Sdk.Generated.Admin.Settings.Listing.ListingRequestBuilder Listing
         {
             get => new global::Wavvon.Sdk.Generated.Admin.Settings.Listing.ListingRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The lobby property</summary>
+        public global::Wavvon.Sdk.Generated.Admin.Settings.Lobby.LobbyRequestBuilder Lobby
+        {
+            get => new global::Wavvon.Sdk.Generated.Admin.Settings.Lobby.LobbyRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The moderation property</summary>
         public global::Wavvon.Sdk.Generated.Admin.Settings.Moderation.ModerationRequestBuilder Moderation

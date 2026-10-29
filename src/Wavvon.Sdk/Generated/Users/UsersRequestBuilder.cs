@@ -20,14 +20,14 @@ namespace Wavvon.Sdk.Generated.Users
     {
         /// <summary>Gets an item from the Wavvon.Sdk.Generated.users.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Users.Item.PubkeyItemRequestBuilder"/></returns>
-        public global::Wavvon.Sdk.Generated.Users.Item.PubkeyItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Users.Item.WithPubkeyItemRequestBuilder"/></returns>
+        public global::Wavvon.Sdk.Generated.Users.Item.WithPubkeyItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("pubkey%2Did", position);
-                return new global::Wavvon.Sdk.Generated.Users.Item.PubkeyItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("pubkey", position);
+                return new global::Wavvon.Sdk.Generated.Users.Item.WithPubkeyItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>
