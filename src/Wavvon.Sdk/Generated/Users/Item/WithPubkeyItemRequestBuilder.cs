@@ -12,10 +12,10 @@ using Wavvon.Sdk.Generated.Users.Item.Roles;
 namespace Wavvon.Sdk.Generated.Users.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \users\{pubkey-id}
+    /// Builds and executes requests for operations under \users\{pubkey}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PubkeyItemRequestBuilder : BaseRequestBuilder
+    public partial class WithPubkeyItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The permissions property</summary>
         public global::Wavvon.Sdk.Generated.Users.Item.Permissions.PermissionsRequestBuilder Permissions
@@ -33,19 +33,19 @@ namespace Wavvon.Sdk.Generated.Users.Item
             get => new global::Wavvon.Sdk.Generated.Users.Item.Roles.RolesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Users.Item.PubkeyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Users.Item.WithPubkeyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PubkeyItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey%2Did}", pathParameters)
+        public WithPubkeyItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Users.Item.PubkeyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Users.Item.WithPubkeyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PubkeyItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey%2Did}", rawUrl)
+        public WithPubkeyItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey}", rawUrl)
         {
         }
     }

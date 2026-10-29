@@ -35,20 +35,21 @@ namespace Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions
         /// <summary>
         /// List an outgoing webhook&apos;s event subscriptions (admin)
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsGetResponse"/></returns>
+        /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.Subscriptions&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsGetResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.Subscriptions>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsGetResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.Subscriptions>> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsGetResponse>(requestInfo, global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsGetResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.Subscriptions>(requestInfo, global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.Subscriptions.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return collectionResult?.AsList();
         }
         /// <summary>
         /// `message.*` events (other than `message.mention_bot`) require an explicit `channels` list.

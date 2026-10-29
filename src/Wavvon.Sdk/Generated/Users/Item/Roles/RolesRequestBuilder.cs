@@ -13,7 +13,7 @@ using Wavvon.Sdk.Generated.Users.Item.Roles.Item;
 namespace Wavvon.Sdk.Generated.Users.Item.Roles
 {
     /// <summary>
-    /// Builds and executes requests for operations under \users\{pubkey-id}\roles
+    /// Builds and executes requests for operations under \users\{pubkey}\roles
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RolesRequestBuilder : BaseRequestBuilder
@@ -35,7 +35,7 @@ namespace Wavvon.Sdk.Generated.Users.Item.Roles
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RolesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey%2Did}/roles", pathParameters)
+        public RolesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey}/roles", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Wavvon.Sdk.Generated.Users.Item.Roles
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RolesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey%2Did}/roles", rawUrl)
+        public RolesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey}/roles", rawUrl)
         {
         }
         /// <summary>

@@ -15,10 +15,10 @@ using Wavvon.Sdk.Generated.Identity.Item.Revocations;
 namespace Wavvon.Sdk.Generated.Identity.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \identity\{master-id}
+    /// Builds and executes requests for operations under \identity\{pubkey}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class MasterItemRequestBuilder : BaseRequestBuilder
+    public partial class WithPubkeyItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The certs property</summary>
         public global::Wavvon.Sdk.Generated.Identity.Item.Certs.CertsRequestBuilder Certs
@@ -51,19 +51,19 @@ namespace Wavvon.Sdk.Generated.Identity.Item
             get => new global::Wavvon.Sdk.Generated.Identity.Item.Revocations.RevocationsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Identity.Item.MasterItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Identity.Item.WithPubkeyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MasterItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{master%2Did}", pathParameters)
+        public WithPubkeyItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{pubkey}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Identity.Item.MasterItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Identity.Item.WithPubkeyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MasterItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{master%2Did}", rawUrl)
+        public WithPubkeyItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{pubkey}", rawUrl)
         {
         }
     }

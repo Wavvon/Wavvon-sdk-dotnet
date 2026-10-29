@@ -30,7 +30,7 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string BannerUrl { get; set; }
 #endif
-        /// <summary>The caller&apos;s own `voice.move_members` on this channel, resolved channel-scoped, so a move-destination picker can offer only the channels that will accept the move (events.md §7.1). Advertised as the `channels.move.targets` capability; absent on hubs that do not advertise it, which is not the same as `false`.</summary>
+        /// <summary>The caller&apos;s own `voice.move_members` on this channel, resolved channel-scoped, so a move-destination picker can offer only the channels that will accept the move (events.md §7.1).</summary>
         public bool? CanMoveMembers { get; set; }
         /// <summary>`text`, `voice`, `forum`, `banner` or `spawner`. Always `text` for categories. On hubs with the `channels.voice` capability only a `voice` channel can be joined for voice; it has a chat as well, and a spawner&apos;s rooms are `voice`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

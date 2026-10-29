@@ -22,7 +22,7 @@ namespace Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MessagesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/alliances/{alliance_id}/channels/{channel_id}/messages", pathParameters)
+        public MessagesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/alliances/{alliance_id}/channels/{channel_id}/messages{?cursor*,limit*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MessagesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/alliances/{alliance_id}/channels/{channel_id}/messages", rawUrl)
+        public MessagesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/alliances/{alliance_id}/channels/{channel_id}/messages{?cursor*,limit*}", rawUrl)
         {
         }
         /// <summary>
@@ -41,11 +41,11 @@ namespace Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<List<global::Wavvon.Sdk.Generated.Models.Message>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Models.Message>?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages.MessagesRequestBuilder.MessagesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<List<global::Wavvon.Sdk.Generated.Models.Message>> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Models.Message>> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages.MessagesRequestBuilder.MessagesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -79,11 +79,11 @@ namespace Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages.MessagesRequestBuilder.MessagesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages.MessagesRequestBuilder.MessagesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -121,6 +121,27 @@ namespace Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages
         public global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages.MessagesRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages.MessagesRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Fetch federated channel messages
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class MessagesRequestBuilderGetQueryParameters 
+        {
+            /// <summary>The `id` of the last message of the previous page, newest first. Forwarded to the owning hub when the channel is a partner&apos;s.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("cursor")]
+            public string? Cursor { get; set; }
+#nullable restore
+#else
+            [QueryParameter("cursor")]
+            public string Cursor { get; set; }
+#endif
+            #pragma warning disable CS1591
+            [QueryParameter("limit")]
+            public long? Limit { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

@@ -19,14 +19,14 @@ namespace Wavvon.Sdk.Generated.Moderation.Mutes
     {
         /// <summary>Gets an item from the Wavvon.Sdk.Generated.moderation.mutes.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Moderation.Mutes.Item.WithTarget_keyItemRequestBuilder"/></returns>
-        public global::Wavvon.Sdk.Generated.Moderation.Mutes.Item.WithTarget_keyItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Moderation.Mutes.Item.WithPubkeyItemRequestBuilder"/></returns>
+        public global::Wavvon.Sdk.Generated.Moderation.Mutes.Item.WithPubkeyItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("target_key", position);
-                return new global::Wavvon.Sdk.Generated.Moderation.Mutes.Item.WithTarget_keyItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("pubkey", position);
+                return new global::Wavvon.Sdk.Generated.Moderation.Mutes.Item.WithPubkeyItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

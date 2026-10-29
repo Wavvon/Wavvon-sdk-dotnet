@@ -6,10 +6,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System;
-using Wavvon.Sdk.Generated.Voice.ActiveUsers;
 using Wavvon.Sdk.Generated.Voice.Leave;
 using Wavvon.Sdk.Generated.Voice.Participants;
-using Wavvon.Sdk.Generated.Voice.Populations;
 namespace Wavvon.Sdk.Generated.Voice
 {
     /// <summary>
@@ -18,11 +16,6 @@ namespace Wavvon.Sdk.Generated.Voice
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class VoiceRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The activeUsers property</summary>
-        public global::Wavvon.Sdk.Generated.Voice.ActiveUsers.ActiveUsersRequestBuilder ActiveUsers
-        {
-            get => new global::Wavvon.Sdk.Generated.Voice.ActiveUsers.ActiveUsersRequestBuilder(PathParameters, RequestAdapter);
-        }
         /// <summary>The leave property</summary>
         public global::Wavvon.Sdk.Generated.Voice.Leave.LeaveRequestBuilder Leave
         {
@@ -32,11 +25,6 @@ namespace Wavvon.Sdk.Generated.Voice
         public global::Wavvon.Sdk.Generated.Voice.Participants.ParticipantsRequestBuilder Participants
         {
             get => new global::Wavvon.Sdk.Generated.Voice.Participants.ParticipantsRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The populations property</summary>
-        public global::Wavvon.Sdk.Generated.Voice.Populations.PopulationsRequestBuilder Populations
-        {
-            get => new global::Wavvon.Sdk.Generated.Voice.Populations.PopulationsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Voice.VoiceRequestBuilder"/> and sets the default values.

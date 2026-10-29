@@ -33,7 +33,7 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string CanonicalUrl { get; set; }
 #endif
-        /// <summary>What this hub can do, e.g. `voice.wt`, `list.cursor`. Testmembership to decide what to offer; absent or empty means a hubpredating capability advertising, which reads correctly as &quot;knowsnothing&quot;. The list only ever grows — a string never changesspelling or meaning once published.</summary>
+        /// <summary>What this hub can do, e.g. `voice.alliance`, `list.cursor`. Testmembership to decide what to offer; absent or empty means a hubpredating capability advertising, which reads correctly as &quot;knowsnothing&quot;. The list only ever grows — a string never changesspelling or meaning once published.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Capabilities { get; set; }

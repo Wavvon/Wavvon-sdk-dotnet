@@ -11,7 +11,7 @@ using System;
 namespace Wavvon.Sdk.Generated.Identity.Item.Prefs
 {
     /// <summary>
-    /// Builds and executes requests for operations under \identity\{master-id}\prefs
+    /// Builds and executes requests for operations under \identity\{pubkey}\prefs
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PrefsRequestBuilder : BaseRequestBuilder
@@ -21,7 +21,7 @@ namespace Wavvon.Sdk.Generated.Identity.Item.Prefs
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PrefsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{master%2Did}/prefs", pathParameters)
+        public PrefsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{pubkey}/prefs", pathParameters)
         {
         }
         /// <summary>
@@ -29,7 +29,7 @@ namespace Wavvon.Sdk.Generated.Identity.Item.Prefs
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PrefsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{master%2Did}/prefs", rawUrl)
+        public PrefsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{pubkey}/prefs", rawUrl)
         {
         }
         /// <summary>

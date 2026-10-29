@@ -52,7 +52,7 @@ namespace Wavvon.Sdk.Generated.Models
 #endif
         /// <summary>The max_uses property</summary>
         public long? MaxUses { get; set; }
-        /// <summary>Whether this invite can still admit anyone, and if not, which of the two ways it retired. Advertised as the `invites.status` capability; absent on hubs that do not advertise it.</summary>
+        /// <summary>Whether this invite can still admit anyone, and if not, which of the two ways it retired.</summary>
         public global::Wavvon.Sdk.Generated.Models.Invite_status? Status { get; set; }
         /// <summary>The uses property</summary>
         public long? Uses { get; set; }

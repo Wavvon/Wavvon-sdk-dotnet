@@ -22,7 +22,7 @@ namespace Wavvon.Sdk.Generated.Hub.Members
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MembersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/hub/members", pathParameters)
+        public MembersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/hub/members{?cursor*,limit*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,22 +30,22 @@ namespace Wavvon.Sdk.Generated.Hub.Members
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MembersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/hub/members", rawUrl)
+        public MembersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/hub/members{?cursor*,limit*}", rawUrl)
         {
         }
         /// <summary>
-        /// List all hub members
+        /// List hub members, oldest first (paged on hubs advertising list.cursor.admin)
         /// </summary>
         /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Models.MemberAdminInfo&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<List<global::Wavvon.Sdk.Generated.Models.MemberAdminInfo>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Models.MemberAdminInfo>?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Hub.Members.MembersRequestBuilder.MembersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<List<global::Wavvon.Sdk.Generated.Models.MemberAdminInfo>> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Models.MemberAdminInfo>> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Hub.Members.MembersRequestBuilder.MembersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -53,17 +53,17 @@ namespace Wavvon.Sdk.Generated.Hub.Members
             return collectionResult?.AsList();
         }
         /// <summary>
-        /// List all hub members
+        /// List hub members, oldest first (paged on hubs advertising list.cursor.admin)
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Hub.Members.MembersRequestBuilder.MembersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Hub.Members.MembersRequestBuilder.MembersRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -79,6 +79,27 @@ namespace Wavvon.Sdk.Generated.Hub.Members
         public global::Wavvon.Sdk.Generated.Hub.Members.MembersRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Wavvon.Sdk.Generated.Hub.Members.MembersRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// List hub members, oldest first (paged on hubs advertising list.cursor.admin)
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class MembersRequestBuilderGetQueryParameters 
+        {
+            /// <summary>The `public_key` of the last member of the previous page</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("cursor")]
+            public string? Cursor { get; set; }
+#nullable restore
+#else
+            [QueryParameter("cursor")]
+            public string Cursor { get; set; }
+#endif
+            #pragma warning disable CS1591
+            [QueryParameter("limit")]
+            public long? Limit { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

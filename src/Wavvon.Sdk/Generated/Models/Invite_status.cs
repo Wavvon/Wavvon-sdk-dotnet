@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Wavvon.Sdk.Generated.Models
 {
-    /// <summary>Whether this invite can still admit anyone, and if not, which of the two ways it retired. Advertised as the `invites.status` capability; absent on hubs that do not advertise it.</summary>
+    /// <summary>Whether this invite can still admit anyone, and if not, which of the two ways it retired.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum Invite_status
     {

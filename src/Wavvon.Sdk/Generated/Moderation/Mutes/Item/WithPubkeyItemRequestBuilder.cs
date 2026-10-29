@@ -8,32 +8,32 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace Wavvon.Sdk.Generated.Admin.Badges.Issued.Item.Revoke
+namespace Wavvon.Sdk.Generated.Moderation.Mutes.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \admin\badges\issued\{id}\revoke
+    /// Builds and executes requests for operations under \moderation\mutes\{pubkey}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class RevokeRequestBuilder : BaseRequestBuilder
+    public partial class WithPubkeyItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Admin.Badges.Issued.Item.Revoke.RevokeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Moderation.Mutes.Item.WithPubkeyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RevokeRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/badges/issued/{id}/revoke", pathParameters)
+        public WithPubkeyItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/moderation/mutes/{pubkey}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Admin.Badges.Issued.Item.Revoke.RevokeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Moderation.Mutes.Item.WithPubkeyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RevokeRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/badges/issued/{id}/revoke", rawUrl)
+        public WithPubkeyItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/moderation/mutes/{pubkey}", rawUrl)
         {
         }
         /// <summary>
-        /// Sets `revoked_at`; the revocation appears in /federation/badge-revocations.
+        /// Unmute (manage_users)
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -50,7 +50,7 @@ namespace Wavvon.Sdk.Generated.Admin.Badges.Issued.Item.Revoke
             await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Sets `revoked_at`; the revocation appears in /federation/badge-revocations.
+        /// Unmute (manage_users)
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -70,11 +70,11 @@ namespace Wavvon.Sdk.Generated.Admin.Badges.Issued.Item.Revoke
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.Badges.Issued.Item.Revoke.RevokeRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Moderation.Mutes.Item.WithPubkeyItemRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::Wavvon.Sdk.Generated.Admin.Badges.Issued.Item.Revoke.RevokeRequestBuilder WithUrl(string rawUrl)
+        public global::Wavvon.Sdk.Generated.Moderation.Mutes.Item.WithPubkeyItemRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::Wavvon.Sdk.Generated.Admin.Badges.Issued.Item.Revoke.RevokeRequestBuilder(rawUrl, RequestAdapter);
+            return new global::Wavvon.Sdk.Generated.Moderation.Mutes.Item.WithPubkeyItemRequestBuilder(rawUrl, RequestAdapter);
         }
     }
 }
