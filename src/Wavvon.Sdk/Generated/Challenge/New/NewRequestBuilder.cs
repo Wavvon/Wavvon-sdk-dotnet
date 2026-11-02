@@ -22,7 +22,7 @@ namespace Wavvon.Sdk.Generated.Challenge.New
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public NewRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/challenge/new", pathParameters)
+        public NewRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/challenge/new?pubkey={pubkey}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Wavvon.Sdk.Generated.Challenge.New
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public NewRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/challenge/new", rawUrl)
+        public NewRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/challenge/new?pubkey={pubkey}", rawUrl)
         {
         }
         /// <summary>
@@ -41,11 +41,11 @@ namespace Wavvon.Sdk.Generated.Challenge.New
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Wavvon.Sdk.Generated.Models.ChallengePrompt?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Wavvon.Sdk.Generated.Models.ChallengePrompt?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Challenge.New.NewRequestBuilder.NewRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Wavvon.Sdk.Generated.Models.ChallengePrompt> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Wavvon.Sdk.Generated.Models.ChallengePrompt> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Challenge.New.NewRequestBuilder.NewRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -58,11 +58,11 @@ namespace Wavvon.Sdk.Generated.Challenge.New
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Challenge.New.NewRequestBuilder.NewRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Challenge.New.NewRequestBuilder.NewRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -78,6 +78,23 @@ namespace Wavvon.Sdk.Generated.Challenge.New
         public global::Wavvon.Sdk.Generated.Challenge.New.NewRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Wavvon.Sdk.Generated.Challenge.New.NewRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Returns a challenge the user must solve before auth. Mode is set by the hub admin.- `click`: no SVG, user just confirms they are human.- `puzzle`: SVG math puzzle, user types the answer.- `both`: SVG puzzle shown, click confirmation also required.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class NewRequestBuilderGetQueryParameters 
+        {
+            /// <summary>Hex public key of the identity about to authenticate.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("pubkey")]
+            public string? Pubkey { get; set; }
+#nullable restore
+#else
+            [QueryParameter("pubkey")]
+            public string Pubkey { get; set; }
+#endif
         }
     }
 }

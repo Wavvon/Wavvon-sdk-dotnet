@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Channels.Item.Upload
 {
     /// <summary>
@@ -33,27 +34,27 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Upload
         {
         }
         /// <summary>
-        /// Multipart upload with the file in a `file` field. Max is the hub&apos;s `max_upload_bytes` setting (1–25 MB, default 25 MB; `PATCH /hub`) (512 KB for banner channels, which also only accept PNG/JPEG/GIF/WebP). SVG is rejected. Allowed types otherwise: image/*, video/mp4, application/pdf, text/plain.
+        /// The one way bytes enter, for messages, forum posts and banners alike. Multipart with the file in `file`, and optionally `as_file=true`. The type comes from the magic bytes, never from the declared one; the response describes what was stored. PNG, APNG, JPEG, GIF and WebP are re-encoded (4096 px long edge, metadata dropped; JPEG stays JPEG, the rest becomes WebP) unless `as_file`, which keeps the original as a download. Everything else, executables and SVG included, is stored as is and only ever downloaded. The hub hashes what it stores and keeps one copy of equal bytes; the response never says whether it already held them. Send the returned `id` in `attachment_ids`; an upload nothing claims within 24 hours is deleted. Max is the hub&apos;s `max_upload_bytes` (512 KB for banner channels, which take a raster image only and always re-encode). A full disk expires the oldest attachments rather than refusing; only a disk full of something else answers 507. Advertised by `attachments.stored`.
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Channels.Item.Upload.UploadPostResponse"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.AttachmentRef"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Wavvon.Sdk.Generated.Channels.Item.Upload.UploadPostResponse?> PostAsync(MultipartBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Wavvon.Sdk.Generated.Models.AttachmentRef?> PostAsync(MultipartBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Wavvon.Sdk.Generated.Channels.Item.Upload.UploadPostResponse> PostAsync(MultipartBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Wavvon.Sdk.Generated.Models.AttachmentRef> PostAsync(MultipartBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Channels.Item.Upload.UploadPostResponse>(requestInfo, global::Wavvon.Sdk.Generated.Channels.Item.Upload.UploadPostResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Models.AttachmentRef>(requestInfo, global::Wavvon.Sdk.Generated.Models.AttachmentRef.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Multipart upload with the file in a `file` field. Max is the hub&apos;s `max_upload_bytes` setting (1–25 MB, default 25 MB; `PATCH /hub`) (512 KB for banner channels, which also only accept PNG/JPEG/GIF/WebP). SVG is rejected. Allowed types otherwise: image/*, video/mp4, application/pdf, text/plain.
+        /// The one way bytes enter, for messages, forum posts and banners alike. Multipart with the file in `file`, and optionally `as_file=true`. The type comes from the magic bytes, never from the declared one; the response describes what was stored. PNG, APNG, JPEG, GIF and WebP are re-encoded (4096 px long edge, metadata dropped; JPEG stays JPEG, the rest becomes WebP) unless `as_file`, which keeps the original as a download. Everything else, executables and SVG included, is stored as is and only ever downloaded. The hub hashes what it stores and keeps one copy of equal bytes; the response never says whether it already held them. Send the returned `id` in `attachment_ids`; an upload nothing claims within 24 hours is deleted. Max is the hub&apos;s `max_upload_bytes` (512 KB for banner channels, which take a raster image only and always re-encode). A full disk expires the oldest attachments rather than refusing; only a disk full of something else answers 507. Advertised by `attachments.stored`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

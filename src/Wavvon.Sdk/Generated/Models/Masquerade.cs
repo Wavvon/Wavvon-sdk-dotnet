@@ -5,65 +5,47 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Wavvon.Sdk.Generated.Channels.Item.Upload
+namespace Wavvon.Sdk.Generated.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class UploadPostResponse : IAdditionalDataHolder, IParsable
+    public partial class Masquerade : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The filename property</summary>
+        /// <summary>Sent as an http(s) URL. The hub fetches it (PNG, JPEG, GIF, WebP or AVIF up to 1 MB) and stores its own copy, so on a message it is the hub-relative `/uploads/...` path; an avatar it cannot fetch is dropped and the name kept.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Filename { get; set; }
+        public string? AvatarUrl { get; set; }
 #nullable restore
 #else
-        public string Filename { get; set; }
+        public string AvatarUrl { get; set; }
 #endif
-        /// <summary>The id property</summary>
+        /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; set; }
+        public string? Name { get; set; }
 #nullable restore
 #else
-        public string Id { get; set; }
-#endif
-        /// <summary>The mime_type property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MimeType { get; set; }
-#nullable restore
-#else
-        public string MimeType { get; set; }
-#endif
-        /// <summary>The size_bytes property</summary>
-        public long? SizeBytes { get; set; }
-        /// <summary>Path under /uploads/</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Url { get; set; }
-#nullable restore
-#else
-        public string Url { get; set; }
+        public string Name { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Channels.Item.Upload.UploadPostResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.Masquerade"/> and sets the default values.
         /// </summary>
-        public UploadPostResponse()
+        public Masquerade()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Channels.Item.Upload.UploadPostResponse"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.Masquerade"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Wavvon.Sdk.Generated.Channels.Item.Upload.UploadPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Wavvon.Sdk.Generated.Models.Masquerade CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Wavvon.Sdk.Generated.Channels.Item.Upload.UploadPostResponse();
+            return new global::Wavvon.Sdk.Generated.Models.Masquerade();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -73,11 +55,8 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Upload
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "filename", n => { Filename = n.GetStringValue(); } },
-                { "id", n => { Id = n.GetStringValue(); } },
-                { "mime_type", n => { MimeType = n.GetStringValue(); } },
-                { "size_bytes", n => { SizeBytes = n.GetLongValue(); } },
-                { "url", n => { Url = n.GetStringValue(); } },
+                { "avatar_url", n => { AvatarUrl = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -87,11 +66,8 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Upload
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("filename", Filename);
-            writer.WriteStringValue("id", Id);
-            writer.WriteStringValue("mime_type", MimeType);
-            writer.WriteLongValue("size_bytes", SizeBytes);
-            writer.WriteStringValue("url", Url);
+            writer.WriteStringValue("avatar_url", AvatarUrl);
+            writer.WriteStringValue("name", Name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

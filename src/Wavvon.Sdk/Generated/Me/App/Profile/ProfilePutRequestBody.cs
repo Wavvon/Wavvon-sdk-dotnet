@@ -63,6 +63,14 @@ namespace Wavvon.Sdk.Generated.Me.App.Profile
 #else
         public string HomepageUrl { get; set; }
 #endif
+        /// <summary>Needs `messages.masquerade` in the channel (403 without it, 400 when malformed).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.Masquerade? Masquerade { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.Masquerade Masquerade { get; set; }
+#endif
         /// <summary>The mini_app_url property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -120,6 +128,7 @@ namespace Wavvon.Sdk.Generated.Me.App.Profile
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "game", n => { Game = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>(global::Wavvon.Sdk.Generated.Models.GameLaunchCard.CreateFromDiscriminatorValue); } },
                 { "homepage_url", n => { HomepageUrl = n.GetStringValue(); } },
+                { "masquerade", n => { Masquerade = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.Masquerade>(global::Wavvon.Sdk.Generated.Models.Masquerade.CreateFromDiscriminatorValue); } },
                 { "mini_app_url", n => { MiniAppUrl = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "requires_camera", n => { RequiresCamera = n.GetBoolValue(); } },
@@ -139,6 +148,7 @@ namespace Wavvon.Sdk.Generated.Me.App.Profile
             writer.WriteStringValue("description", Description);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>("game", Game);
             writer.WriteStringValue("homepage_url", HomepageUrl);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.Masquerade>("masquerade", Masquerade);
             writer.WriteStringValue("mini_app_url", MiniAppUrl);
             writer.WriteStringValue("name", Name);
             writer.WriteBoolValue("requires_camera", RequiresCamera);

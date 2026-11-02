@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using Wavvon.Sdk.Generated.Preview.Image;
 namespace Wavvon.Sdk.Generated.Preview
 {
     /// <summary>
@@ -16,6 +17,11 @@ namespace Wavvon.Sdk.Generated.Preview
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PreviewRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The image property</summary>
+        public global::Wavvon.Sdk.Generated.Preview.Image.ImageRequestBuilder Image
+        {
+            get => new global::Wavvon.Sdk.Generated.Preview.Image.ImageRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Preview.PreviewRequestBuilder"/> and sets the default values.
         /// </summary>

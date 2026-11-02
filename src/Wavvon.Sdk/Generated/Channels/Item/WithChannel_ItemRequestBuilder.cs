@@ -18,6 +18,7 @@ using Wavvon.Sdk.Generated.Channels.Item.Posts;
 using Wavvon.Sdk.Generated.Channels.Item.RaiseHand;
 using Wavvon.Sdk.Generated.Channels.Item.RaiseHands;
 using Wavvon.Sdk.Generated.Channels.Item.Read;
+using Wavvon.Sdk.Generated.Channels.Item.Stickers;
 using Wavvon.Sdk.Generated.Channels.Item.Tags;
 using Wavvon.Sdk.Generated.Channels.Item.TalkGrants;
 using Wavvon.Sdk.Generated.Channels.Item.TalkPower;
@@ -80,6 +81,11 @@ namespace Wavvon.Sdk.Generated.Channels.Item
         public global::Wavvon.Sdk.Generated.Channels.Item.Read.ReadRequestBuilder Read
         {
             get => new global::Wavvon.Sdk.Generated.Channels.Item.Read.ReadRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The stickers property</summary>
+        public global::Wavvon.Sdk.Generated.Channels.Item.Stickers.StickersRequestBuilder Stickers
+        {
+            get => new global::Wavvon.Sdk.Generated.Channels.Item.Stickers.StickersRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The tags property</summary>
         public global::Wavvon.Sdk.Generated.Channels.Item.Tags.TagsRequestBuilder Tags

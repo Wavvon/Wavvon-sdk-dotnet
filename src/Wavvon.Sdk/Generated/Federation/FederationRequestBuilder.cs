@@ -15,6 +15,7 @@ using Wavvon.Sdk.Generated.Federation.Dm;
 using Wavvon.Sdk.Generated.Federation.DmMemberChange;
 using Wavvon.Sdk.Generated.Federation.Forum;
 using Wavvon.Sdk.Generated.Federation.Listing;
+using Wavvon.Sdk.Generated.Federation.Stickers;
 namespace Wavvon.Sdk.Generated.Federation
 {
     /// <summary>
@@ -67,6 +68,11 @@ namespace Wavvon.Sdk.Generated.Federation
         public global::Wavvon.Sdk.Generated.Federation.Listing.ListingRequestBuilder Listing
         {
             get => new global::Wavvon.Sdk.Generated.Federation.Listing.ListingRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The stickers property</summary>
+        public global::Wavvon.Sdk.Generated.Federation.Stickers.StickersRequestBuilder Stickers
+        {
+            get => new global::Wavvon.Sdk.Generated.Federation.Stickers.StickersRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Federation.FederationRequestBuilder"/> and sets the default values.

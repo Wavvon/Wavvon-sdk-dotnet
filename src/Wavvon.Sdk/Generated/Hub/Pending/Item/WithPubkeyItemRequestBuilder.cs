@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 using Wavvon.Sdk.Generated.Hub.Pending.Item.Approve;
+using Wavvon.Sdk.Generated.Hub.Pending.Item.Reject;
 namespace Wavvon.Sdk.Generated.Hub.Pending.Item
 {
     /// <summary>
@@ -19,6 +20,11 @@ namespace Wavvon.Sdk.Generated.Hub.Pending.Item
         public global::Wavvon.Sdk.Generated.Hub.Pending.Item.Approve.ApproveRequestBuilder Approve
         {
             get => new global::Wavvon.Sdk.Generated.Hub.Pending.Item.Approve.ApproveRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The reject property</summary>
+        public global::Wavvon.Sdk.Generated.Hub.Pending.Item.Reject.RejectRequestBuilder Reject
+        {
+            get => new global::Wavvon.Sdk.Generated.Hub.Pending.Item.Reject.RejectRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Hub.Pending.Item.WithPubkeyItemRequestBuilder"/> and sets the default values.

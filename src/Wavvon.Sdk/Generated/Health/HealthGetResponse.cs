@@ -14,6 +14,14 @@ namespace Wavvon.Sdk.Generated.Health
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>`ok`, or `error: ` followed by the reason the database did not answer.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DbStatus { get; set; }
+#nullable restore
+#else
+        public string DbStatus { get; set; }
+#endif
         /// <summary>The status property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -21,6 +29,16 @@ namespace Wavvon.Sdk.Generated.Health
 #nullable restore
 #else
         public string Status { get; set; }
+#endif
+        /// <summary>The uptime_seconds property</summary>
+        public long? UptimeSeconds { get; set; }
+        /// <summary>The hub&apos;s version.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Version { get; set; }
+#nullable restore
+#else
+        public string Version { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Health.HealthGetResponse"/> and sets the default values.
@@ -47,7 +65,10 @@ namespace Wavvon.Sdk.Generated.Health
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "db_status", n => { DbStatus = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetStringValue(); } },
+                { "uptime_seconds", n => { UptimeSeconds = n.GetLongValue(); } },
+                { "version", n => { Version = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -57,7 +78,10 @@ namespace Wavvon.Sdk.Generated.Health
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("db_status", DbStatus);
             writer.WriteStringValue("status", Status);
+            writer.WriteLongValue("uptime_seconds", UptimeSeconds);
+            writer.WriteStringValue("version", Version);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System;
 using Wavvon.Sdk.Generated.Admin;
 using Wavvon.Sdk.Generated.Alliances;
+using Wavvon.Sdk.Generated.Application;
 using Wavvon.Sdk.Generated.Apps;
 using Wavvon.Sdk.Generated.Auth;
 using Wavvon.Sdk.Generated.Badges;
@@ -44,6 +45,7 @@ using Wavvon.Sdk.Generated.Roles;
 using Wavvon.Sdk.Generated.Screenshare;
 using Wavvon.Sdk.Generated.Search;
 using Wavvon.Sdk.Generated.Soundboard;
+using Wavvon.Sdk.Generated.Stickers;
 using Wavvon.Sdk.Generated.Survey;
 using Wavvon.Sdk.Generated.Tags;
 using Wavvon.Sdk.Generated.Uploads;
@@ -68,6 +70,11 @@ namespace Wavvon.Sdk.Generated
         public global::Wavvon.Sdk.Generated.Alliances.AlliancesRequestBuilder Alliances
         {
             get => new global::Wavvon.Sdk.Generated.Alliances.AlliancesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The application property</summary>
+        public global::Wavvon.Sdk.Generated.Application.ApplicationRequestBuilder Application
+        {
+            get => new global::Wavvon.Sdk.Generated.Application.ApplicationRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The apps property</summary>
         public global::Wavvon.Sdk.Generated.Apps.AppsRequestBuilder Apps
@@ -228,6 +235,11 @@ namespace Wavvon.Sdk.Generated
         public global::Wavvon.Sdk.Generated.Soundboard.SoundboardRequestBuilder Soundboard
         {
             get => new global::Wavvon.Sdk.Generated.Soundboard.SoundboardRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The stickers property</summary>
+        public global::Wavvon.Sdk.Generated.Stickers.StickersRequestBuilder Stickers
+        {
+            get => new global::Wavvon.Sdk.Generated.Stickers.StickersRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The survey property</summary>
         public global::Wavvon.Sdk.Generated.Survey.SurveyRequestBuilder Survey

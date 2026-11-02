@@ -15,13 +15,13 @@ namespace Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The attachments property</summary>
+        /// <summary>The attachment_ids property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Wavvon.Sdk.Generated.Models.Attachment>? Attachments { get; set; }
+        public List<string>? AttachmentIds { get; set; }
 #nullable restore
 #else
-        public List<global::Wavvon.Sdk.Generated.Models.Attachment> Attachments { get; set; }
+        public List<string> AttachmentIds { get; set; }
 #endif
         /// <summary>The content property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -72,7 +72,7 @@ namespace Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Attachment>(global::Wavvon.Sdk.Generated.Models.Attachment.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "attachment_ids", n => { AttachmentIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "content", n => { Content = n.GetStringValue(); } },
                 { "game", n => { Game = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>(global::Wavvon.Sdk.Generated.Models.GameLaunchCard.CreateFromDiscriminatorValue); } },
                 { "reply_to", n => { ReplyTo = n.GetStringValue(); } },
@@ -85,7 +85,7 @@ namespace Wavvon.Sdk.Generated.Alliances.Item.Channels.Item.Messages
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Attachment>("attachments", Attachments);
+            writer.WriteCollectionOfPrimitiveValues<string>("attachment_ids", AttachmentIds);
             writer.WriteStringValue("content", Content);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>("game", Game);
             writer.WriteStringValue("reply_to", ReplyTo);

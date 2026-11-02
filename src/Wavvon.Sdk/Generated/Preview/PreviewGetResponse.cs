@@ -22,7 +22,7 @@ namespace Wavvon.Sdk.Generated.Preview
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The image_url property</summary>
+        /// <summary>The page&apos;s image as fetched and served by this hub (`/preview/image/{id}` under its public URL), so readers never contact the third-party host. Null when the page has no PNG/JPEG/GIF/WebP/AVIF image of at most 1 MB, or the hub has no public URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ImageUrl { get; set; }

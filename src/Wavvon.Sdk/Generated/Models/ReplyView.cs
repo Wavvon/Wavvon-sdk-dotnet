@@ -17,10 +17,10 @@ namespace Wavvon.Sdk.Generated.Models
         /// <summary>The attachments property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Wavvon.Sdk.Generated.Models.ReplyView_attachments>? Attachments { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.AttachmentRef>? Attachments { get; set; }
 #nullable restore
 #else
-        public List<global::Wavvon.Sdk.Generated.Models.ReplyView_attachments> Attachments { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.AttachmentRef> Attachments { get; set; }
 #endif
         /// <summary>Origin hub public key (hex) when authored through the alliance forum write-proxy. Omitted for local replies.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -109,7 +109,7 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.ReplyView_attachments>(global::Wavvon.Sdk.Generated.Models.ReplyView_attachments.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.AttachmentRef>(global::Wavvon.Sdk.Generated.Models.AttachmentRef.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "author_hub", n => { AuthorHub = n.GetStringValue(); } },
                 { "author_pubkey", n => { AuthorPubkey = n.GetStringValue(); } },
                 { "body", n => { Body = n.GetStringValue(); } },
@@ -129,7 +129,7 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.ReplyView_attachments>("attachments", Attachments);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.AttachmentRef>("attachments", Attachments);
             writer.WriteStringValue("author_hub", AuthorHub);
             writer.WriteStringValue("author_pubkey", AuthorPubkey);
             writer.WriteStringValue("body", Body);

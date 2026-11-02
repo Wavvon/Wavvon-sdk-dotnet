@@ -33,7 +33,7 @@ namespace Wavvon.Sdk.Generated.Hub.Settings
         {
         }
         /// <summary>
-        /// Get hub settings (admin)
+        /// Besides the settings, `attachments_usage` is `{used_bytes, cap_bytes, warning, evictions}`: disk used by attachment blobs against `attachments_cap_bytes`, whether it is at `attachments_warn_percent`, and the blobs evicted for space since the hub started.
         /// </summary>
         /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -51,7 +51,7 @@ namespace Wavvon.Sdk.Generated.Hub.Settings
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get hub settings (admin)
+        /// Besides the settings, `attachments_usage` is `{used_bytes, cap_bytes, warning, evictions}`: disk used by attachment blobs against `attachments_cap_bytes`, whether it is at `attachments_warn_percent`, and the blobs evicted for space since the hub started.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
