@@ -17,10 +17,10 @@ namespace Wavvon.Sdk.Generated.Models
         /// <summary>The attachments property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Wavvon.Sdk.Generated.Models.PostSummary_attachments>? Attachments { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.AttachmentRef>? Attachments { get; set; }
 #nullable restore
 #else
-        public List<global::Wavvon.Sdk.Generated.Models.PostSummary_attachments> Attachments { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.AttachmentRef> Attachments { get; set; }
 #endif
         /// <summary>Origin hub public key (hex) when the post came in through the alliance forum write-proxy. Hub-asserted, not proven: render it as mediated (&quot;via HubName&quot;). Omitted for local posts.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -119,7 +119,7 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.PostSummary_attachments>(global::Wavvon.Sdk.Generated.Models.PostSummary_attachments.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.AttachmentRef>(global::Wavvon.Sdk.Generated.Models.AttachmentRef.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "author_hub", n => { AuthorHub = n.GetStringValue(); } },
                 { "author_pubkey", n => { AuthorPubkey = n.GetStringValue(); } },
                 { "channel_id", n => { ChannelId = n.GetStringValue(); } },
@@ -144,7 +144,7 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.PostSummary_attachments>("attachments", Attachments);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.AttachmentRef>("attachments", Attachments);
             writer.WriteStringValue("author_hub", AuthorHub);
             writer.WriteStringValue("author_pubkey", AuthorPubkey);
             writer.WriteStringValue("channel_id", ChannelId);

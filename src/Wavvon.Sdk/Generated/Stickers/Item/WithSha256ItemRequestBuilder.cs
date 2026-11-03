@@ -8,32 +8,32 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace Wavvon.Sdk.Generated.Uploads.Item
+namespace Wavvon.Sdk.Generated.Stickers.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \uploads\{filename}
+    /// Builds and executes requests for operations under \stickers\{sha256}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class WithFilenameItemRequestBuilder : BaseRequestBuilder
+    public partial class WithSha256ItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Uploads.Item.WithFilenameItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Stickers.Item.WithSha256ItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithFilenameItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/uploads/{filename}", pathParameters)
+        public WithSha256ItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/stickers/{sha256}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Uploads.Item.WithFilenameItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Stickers.Item.WithSha256ItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithFilenameItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/uploads/{filename}", rawUrl)
+        public WithSha256ItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/stickers/{sha256}", rawUrl)
         {
         }
         /// <summary>
-        /// Public — filenames are unguessable UUIDs. Always served with `Content-Disposition: attachment`.
+        /// Public: an `&lt;img&gt;` sends no token. Always `image/webp`, `nosniff`, `Cache-Control: public, max-age=31536000, immutable`. 404 for a removed or evicted sticker.
         /// </summary>
         /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -51,7 +51,7 @@ namespace Wavvon.Sdk.Generated.Uploads.Item
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Public — filenames are unguessable UUIDs. Always served with `Content-Disposition: attachment`.
+        /// Public: an `&lt;img&gt;` sends no token. Always `image/webp`, `nosniff`, `Cache-Control: public, max-age=31536000, immutable`. 404 for a removed or evicted sticker.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -71,11 +71,11 @@ namespace Wavvon.Sdk.Generated.Uploads.Item
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Uploads.Item.WithFilenameItemRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Stickers.Item.WithSha256ItemRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::Wavvon.Sdk.Generated.Uploads.Item.WithFilenameItemRequestBuilder WithUrl(string rawUrl)
+        public global::Wavvon.Sdk.Generated.Stickers.Item.WithSha256ItemRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::Wavvon.Sdk.Generated.Uploads.Item.WithFilenameItemRequestBuilder(rawUrl, RequestAdapter);
+            return new global::Wavvon.Sdk.Generated.Stickers.Item.WithSha256ItemRequestBuilder(rawUrl, RequestAdapter);
         }
     }
 }

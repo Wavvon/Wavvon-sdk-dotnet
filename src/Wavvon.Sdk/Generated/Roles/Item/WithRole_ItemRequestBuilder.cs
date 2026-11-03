@@ -57,7 +57,7 @@ namespace Wavvon.Sdk.Generated.Roles.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update a role (manage_roles)
+        /// Built-in roles are refused, except that the permissions of builtin-everyone may be changed; any other field on it is a 403.
         /// </summary>
         /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.Role"/></returns>
         /// <param name="body">The request body</param>
@@ -95,7 +95,7 @@ namespace Wavvon.Sdk.Generated.Roles.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update a role (manage_roles)
+        /// Built-in roles are refused, except that the permissions of builtin-everyone may be changed; any other field on it is a 403.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -7,20 +7,31 @@ using System.IO;
 using System;
 namespace Wavvon.Sdk.Generated.Models
 {
+    /// <summary>
+    /// One answer; the field used follows the question&apos;s `kind`.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class SurveyAnswerInput : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The choice_id property</summary>
+        /// <summary>A `consent` answer.</summary>
+        public bool? Checked { get; set; }
+        /// <summary>A `choice` answer.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ChoiceId { get; set; }
 #nullable restore
 #else
         public string ChoiceId { get; set; }
+#endif
+        /// <summary>A `multi` answer.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? ChoiceIds { get; set; }
+#nullable restore
+#else
+        public List<string> ChoiceIds { get; set; }
 #endif
         /// <summary>The question_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -30,7 +41,7 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string QuestionId { get; set; }
 #endif
-        /// <summary>The text_answer property</summary>
+        /// <summary>A `text` answer.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TextAnswer { get; set; }
@@ -63,7 +74,9 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "checked", n => { Checked = n.GetBoolValue(); } },
                 { "choice_id", n => { ChoiceId = n.GetStringValue(); } },
+                { "choice_ids", n => { ChoiceIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "question_id", n => { QuestionId = n.GetStringValue(); } },
                 { "text_answer", n => { TextAnswer = n.GetStringValue(); } },
             };
@@ -75,7 +88,9 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("checked", Checked);
             writer.WriteStringValue("choice_id", ChoiceId);
+            writer.WriteCollectionOfPrimitiveValues<string>("choice_ids", ChoiceIds);
             writer.WriteStringValue("question_id", QuestionId);
             writer.WriteStringValue("text_answer", TextAnswer);
             writer.WriteAdditionalData(AdditionalData);

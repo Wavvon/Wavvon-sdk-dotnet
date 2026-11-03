@@ -17,10 +17,10 @@ namespace Wavvon.Sdk.Generated.Models
         /// <summary>The attachments property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Wavvon.Sdk.Generated.Models.Attachment>? Attachments { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.AttachmentRef>? Attachments { get; set; }
 #nullable restore
 #else
-        public List<global::Wavvon.Sdk.Generated.Models.Attachment> Attachments { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.AttachmentRef> Attachments { get; set; }
 #endif
         /// <summary>The channel_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -74,6 +74,14 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string Id { get; set; }
 #endif
+        /// <summary>Omitted unless set. A name and avatar to show instead of the sender&apos;s own (a bridge relaying someone from another network, or a webhook&apos;s `username`). `sender` and `sender_name` stay the real author, and clients show both.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.Masquerade? Masquerade { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.Masquerade Masquerade { get; set; }
+#endif
         /// <summary>The reactions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -108,6 +116,14 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string SenderName { get; set; }
 #endif
+        /// <summary>Omitted unless set. The sticker sent with this message, held by this hub (stickers.md). A removed or evicted one carries its `state` so a client renders a sentence rather than a gap.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.Sticker? Sticker { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.Sticker Sticker { get; set; }
+#endif
         /// <summary>Omitted unless set. When present, only the named user should see this message (ephemeral bot replies).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -141,7 +157,7 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Attachment>(global::Wavvon.Sdk.Generated.Models.Attachment.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.AttachmentRef>(global::Wavvon.Sdk.Generated.Models.AttachmentRef.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "channel_id", n => { ChannelId = n.GetStringValue(); } },
                 { "components", n => { Components = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.ComponentRow>(global::Wavvon.Sdk.Generated.Models.ComponentRow.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "content", n => { Content = n.GetStringValue(); } },
@@ -150,11 +166,13 @@ namespace Wavvon.Sdk.Generated.Models
                 { "embeds", n => { Embeds = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Embed>(global::Wavvon.Sdk.Generated.Models.Embed.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "game", n => { Game = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>(global::Wavvon.Sdk.Generated.Models.GameLaunchCard.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },
+                { "masquerade", n => { Masquerade = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.Masquerade>(global::Wavvon.Sdk.Generated.Models.Masquerade.CreateFromDiscriminatorValue); } },
                 { "reactions", n => { Reactions = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Reaction>(global::Wavvon.Sdk.Generated.Models.Reaction.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "reply_count", n => { ReplyCount = n.GetLongValue(); } },
                 { "reply_to", n => { ReplyTo = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.ReplyContext>(global::Wavvon.Sdk.Generated.Models.ReplyContext.CreateFromDiscriminatorValue); } },
                 { "sender", n => { Sender = n.GetStringValue(); } },
                 { "sender_name", n => { SenderName = n.GetStringValue(); } },
+                { "sticker", n => { Sticker = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.Sticker>(global::Wavvon.Sdk.Generated.Models.Sticker.CreateFromDiscriminatorValue); } },
                 { "visible_to_pubkey", n => { VisibleToPubkey = n.GetStringValue(); } },
             };
         }
@@ -165,7 +183,7 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Attachment>("attachments", Attachments);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.AttachmentRef>("attachments", Attachments);
             writer.WriteStringValue("channel_id", ChannelId);
             writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.ComponentRow>("components", Components);
             writer.WriteStringValue("content", Content);
@@ -174,11 +192,13 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Embed>("embeds", Embeds);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>("game", Game);
             writer.WriteStringValue("id", Id);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.Masquerade>("masquerade", Masquerade);
             writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Reaction>("reactions", Reactions);
             writer.WriteLongValue("reply_count", ReplyCount);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.ReplyContext>("reply_to", ReplyTo);
             writer.WriteStringValue("sender", Sender);
             writer.WriteStringValue("sender_name", SenderName);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.Sticker>("sticker", Sticker);
             writer.WriteStringValue("visible_to_pubkey", VisibleToPubkey);
             writer.WriteAdditionalData(AdditionalData);
         }

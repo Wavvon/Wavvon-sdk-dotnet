@@ -14,7 +14,7 @@ namespace Wavvon.Sdk.Generated.Webhooks.Item.Item
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The avatar_url property</summary>
+        /// <summary>An http(s) URL, shown as this message&apos;s avatar (stored as its `masquerade`)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AvatarUrl { get; set; }
@@ -38,7 +38,7 @@ namespace Wavvon.Sdk.Generated.Webhooks.Item.Item
 #else
         public global::Wavvon.Sdk.Generated.Webhooks.Item.Item.WithTokenPostRequestBody_embeds Embeds { get; set; }
 #endif
-        /// <summary>Overrides the webhook&apos;s display name</summary>
+        /// <summary>Shown instead of the webhook&apos;s display name on this message (stored as its `masquerade`)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Username { get; set; }

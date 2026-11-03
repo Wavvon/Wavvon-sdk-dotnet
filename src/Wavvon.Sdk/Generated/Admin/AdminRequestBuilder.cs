@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System;
+using Wavvon.Sdk.Generated.Admin.Application;
 using Wavvon.Sdk.Generated.Admin.AuditLog;
 using Wavvon.Sdk.Generated.Admin.Badges;
 using Wavvon.Sdk.Generated.Admin.Banlist;
@@ -17,6 +18,7 @@ using Wavvon.Sdk.Generated.Admin.Recovery;
 using Wavvon.Sdk.Generated.Admin.Reports;
 using Wavvon.Sdk.Generated.Admin.Search;
 using Wavvon.Sdk.Generated.Admin.Settings;
+using Wavvon.Sdk.Generated.Admin.Stickers;
 using Wavvon.Sdk.Generated.Admin.Survey;
 using Wavvon.Sdk.Generated.Admin.Webhooks;
 namespace Wavvon.Sdk.Generated.Admin
@@ -27,6 +29,11 @@ namespace Wavvon.Sdk.Generated.Admin
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AdminRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The application property</summary>
+        public global::Wavvon.Sdk.Generated.Admin.Application.ApplicationRequestBuilder Application
+        {
+            get => new global::Wavvon.Sdk.Generated.Admin.Application.ApplicationRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The auditLog property</summary>
         public global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogRequestBuilder AuditLog
         {
@@ -81,6 +88,11 @@ namespace Wavvon.Sdk.Generated.Admin
         public global::Wavvon.Sdk.Generated.Admin.Settings.SettingsRequestBuilder Settings
         {
             get => new global::Wavvon.Sdk.Generated.Admin.Settings.SettingsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The stickers property</summary>
+        public global::Wavvon.Sdk.Generated.Admin.Stickers.StickersRequestBuilder Stickers
+        {
+            get => new global::Wavvon.Sdk.Generated.Admin.Stickers.StickersRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The survey property</summary>
         public global::Wavvon.Sdk.Generated.Admin.Survey.SurveyRequestBuilder Survey

@@ -24,6 +24,14 @@ namespace Wavvon.Sdk.Generated.Models
 #endif
         /// <summary>The display_order property</summary>
         public long? DisplayOrder { get; set; }
+        /// <summary>The help property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Help { get; set; }
+#nullable restore
+#else
+        public string Help { get; set; }
+#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -32,14 +40,16 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>The kind property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Kind { get; set; }
-#nullable restore
-#else
-        public string Kind { get; set; }
-#endif
+        /// <summary>A required `consent` must be checked; an unchecked one is refused with 422 `consent_refused:&lt;question id&gt;`.</summary>
+        public global::Wavvon.Sdk.Generated.Models.SurveyQuestionAdmin_kind? Kind { get; set; }
+        /// <summary>The max_choices property</summary>
+        public int? MaxChoices { get; set; }
+        /// <summary>The max_len property</summary>
+        public int? MaxLen { get; set; }
+        /// <summary>The min_choices property</summary>
+        public int? MinChoices { get; set; }
+        /// <summary>The multiline property</summary>
+        public bool? Multiline { get; set; }
         /// <summary>The prompt property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -56,6 +66,7 @@ namespace Wavvon.Sdk.Generated.Models
         public SurveyQuestionAdmin()
         {
             AdditionalData = new Dictionary<string, object>();
+            Multiline = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -77,8 +88,13 @@ namespace Wavvon.Sdk.Generated.Models
             {
                 { "choices", n => { Choices = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.SurveyChoiceAdmin>(global::Wavvon.Sdk.Generated.Models.SurveyChoiceAdmin.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "display_order", n => { DisplayOrder = n.GetLongValue(); } },
+                { "help", n => { Help = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "kind", n => { Kind = n.GetStringValue(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Wavvon.Sdk.Generated.Models.SurveyQuestionAdmin_kind>(); } },
+                { "max_choices", n => { MaxChoices = n.GetIntValue(); } },
+                { "max_len", n => { MaxLen = n.GetIntValue(); } },
+                { "min_choices", n => { MinChoices = n.GetIntValue(); } },
+                { "multiline", n => { Multiline = n.GetBoolValue(); } },
                 { "prompt", n => { Prompt = n.GetStringValue(); } },
                 { "required", n => { Required = n.GetBoolValue(); } },
             };
@@ -92,8 +108,13 @@ namespace Wavvon.Sdk.Generated.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.SurveyChoiceAdmin>("choices", Choices);
             writer.WriteLongValue("display_order", DisplayOrder);
+            writer.WriteStringValue("help", Help);
             writer.WriteStringValue("id", Id);
-            writer.WriteStringValue("kind", Kind);
+            writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Models.SurveyQuestionAdmin_kind>("kind", Kind);
+            writer.WriteIntValue("max_choices", MaxChoices);
+            writer.WriteIntValue("max_len", MaxLen);
+            writer.WriteIntValue("min_choices", MinChoices);
+            writer.WriteBoolValue("multiline", Multiline);
             writer.WriteStringValue("prompt", Prompt);
             writer.WriteBoolValue("required", Required);
             writer.WriteAdditionalData(AdditionalData);

@@ -16,6 +16,7 @@ using Wavvon.Sdk.Generated.Alliances.Item.Managers;
 using Wavvon.Sdk.Generated.Alliances.Item.People;
 using Wavvon.Sdk.Generated.Alliances.Item.PeopleVisibility;
 using Wavvon.Sdk.Generated.Alliances.Item.PushInvite;
+using Wavvon.Sdk.Generated.Alliances.Item.Uploads;
 using Wavvon.Sdk.Generated.Alliances.Item.VoiceGrant;
 namespace Wavvon.Sdk.Generated.Alliances.Item
 {
@@ -64,6 +65,11 @@ namespace Wavvon.Sdk.Generated.Alliances.Item
         public global::Wavvon.Sdk.Generated.Alliances.Item.PushInvite.PushInviteRequestBuilder PushInvite
         {
             get => new global::Wavvon.Sdk.Generated.Alliances.Item.PushInvite.PushInviteRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The uploads property</summary>
+        public global::Wavvon.Sdk.Generated.Alliances.Item.Uploads.UploadsRequestBuilder Uploads
+        {
+            get => new global::Wavvon.Sdk.Generated.Alliances.Item.Uploads.UploadsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The voiceGrant property</summary>
         public global::Wavvon.Sdk.Generated.Alliances.Item.VoiceGrant.VoiceGrantRequestBuilder VoiceGrant

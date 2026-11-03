@@ -17,14 +17,14 @@ namespace Wavvon.Sdk.Generated.Uploads
     {
         /// <summary>Gets an item from the Wavvon.Sdk.Generated.uploads.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Uploads.Item.WithFilenameItemRequestBuilder"/></returns>
-        public global::Wavvon.Sdk.Generated.Uploads.Item.WithFilenameItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Uploads.Item.UploadsItemRequestBuilder"/></returns>
+        public global::Wavvon.Sdk.Generated.Uploads.Item.UploadsItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("filename", position);
-                return new global::Wavvon.Sdk.Generated.Uploads.Item.WithFilenameItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("id", position);
+                return new global::Wavvon.Sdk.Generated.Uploads.Item.UploadsItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

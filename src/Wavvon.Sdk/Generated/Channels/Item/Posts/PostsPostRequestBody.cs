@@ -14,13 +14,13 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The attachments property</summary>
+        /// <summary>Uploads to this channel (see POST /channels/{channel_id}/messages). Outside URLs are no longer accepted; the retired `attachments` field answers 400.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Wavvon.Sdk.Generated.Channels.Item.Posts.PostsPostRequestBody_attachments>? Attachments { get; set; }
+        public List<string>? AttachmentIds { get; set; }
 #nullable restore
 #else
-        public List<global::Wavvon.Sdk.Generated.Channels.Item.Posts.PostsPostRequestBody_attachments> Attachments { get; set; }
+        public List<string> AttachmentIds { get; set; }
 #endif
         /// <summary>The body property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,7 +71,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Channels.Item.Posts.PostsPostRequestBody_attachments>(global::Wavvon.Sdk.Generated.Channels.Item.Posts.PostsPostRequestBody_attachments.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "attachment_ids", n => { AttachmentIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "body", n => { Body = n.GetStringValue(); } },
                 { "tag_ids", n => { TagIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
@@ -84,7 +84,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Channels.Item.Posts.PostsPostRequestBody_attachments>("attachments", Attachments);
+            writer.WriteCollectionOfPrimitiveValues<string>("attachment_ids", AttachmentIds);
             writer.WriteStringValue("body", Body);
             writer.WriteCollectionOfPrimitiveValues<string>("tag_ids", TagIds);
             writer.WriteStringValue("title", Title);
