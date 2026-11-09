@@ -136,7 +136,7 @@ Every signed byte sequence is checked against the shared wire vectors in
 Wavvon-server (`crates/identity/wire-vectors.json`, format 1): the auth
 challenge, the Ed25519 dispatch signature, and the outgoing-webhook HKDF +
 HMAC. CI reads them from Wavvon-server at commit
-`eb11d75657ee8362dd42a7982fc5b13a3dcc4e68`.
+`78ff4aab3ba905ef4480d02d47f24d63762cc697`.
 
 The REST client was generated from Wavvon-docs at the commit in
 [src/Wavvon.Sdk/Generated/SPEC_COMMIT](src/Wavvon.Sdk/Generated/SPEC_COMMIT).
