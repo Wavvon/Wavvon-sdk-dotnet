@@ -9,6 +9,7 @@ public sealed class AuthTests
 {
     private const string Seed = "5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a";
     private static readonly byte[] Challenge32 = Enumerable.Repeat((byte)9, 32).ToArray();
+    private static readonly string HubKey = string.Concat(Enumerable.Repeat("cd", 32));
 
     [Fact]
     public void TaggedV1PrefixesTheTag()
@@ -19,10 +20,24 @@ public sealed class AuthTests
     }
 
     [Fact]
+    public void TaggedV2BindsTheServerKey()
+    {
+        var bytes = WavvonAuth.ChallengeSigningBytes(Challenge32, "tagged-v2", "ab");
+        Assert.Equal([.. Encoding.UTF8.GetBytes("wavvon/auth-challenge/v2\0"), 2, 0, 0, 0, (byte)0x61, (byte)0x62, .. Challenge32], bytes);
+    }
+
+    [Fact]
+    public void AChallengeThatIsNot32BytesIsRefused()
+    {
+        Assert.Throws<AuthSchemeException>(() => WavvonAuth.ChallengeSigningBytes(Challenge32.AsSpan(0, 31), "tagged-v1"));
+        Assert.Throws<AuthSchemeException>(() => WavvonAuth.ChallengeSigningBytes(Challenge32.AsSpan(0, 31), "tagged-v2", HubKey));
+    }
+
+    [Fact]
     public void MissingOrUnknownSchemeIsRefusedInsteadOfSignedRaw()
     {
         Assert.Throws<AuthSchemeException>(() => WavvonAuth.ChallengeSigningBytes(Challenge32, null));
-        Assert.Throws<AuthSchemeException>(() => WavvonAuth.ChallengeSigningBytes(Challenge32, "tagged-v2"));
+        Assert.Throws<AuthSchemeException>(() => WavvonAuth.ChallengeSigningBytes(Challenge32, "tagged-v3"));
         Assert.Throws<AuthSchemeException>(() => WavvonAuth.ChallengeSigningBytes(Challenge32, ""));
     }
 
@@ -47,6 +62,10 @@ public sealed class AuthTests
         public FakeHandler Handler => new((request, body) =>
         {
             Bodies.Add(body ?? "");
+            if (request.RequestUri!.AbsolutePath == "/info")
+            {
+                return Http.Json(new { public_key = HubKey });
+            }
             if (request.RequestUri!.AbsolutePath.EndsWith("/auth/challenge", StringComparison.Ordinal))
             {
                 var challenge = Convert.ToHexString(Enumerable.Repeat((byte)(Challenges.Count + 1), 32).ToArray()).ToLowerInvariant();
@@ -63,7 +82,7 @@ public sealed class AuthTests
             {
                 return Http.Text(status, "This hub requires an invite code");
             }
-            var signed = WavvonAuth.ChallengeSigningBytes(Convert.FromHexString(verify.GetProperty("challenge").GetString()!), scheme);
+            var signed = WavvonAuth.ChallengeSigningBytes(Convert.FromHexString(verify.GetProperty("challenge").GetString()!), scheme, HubKey);
             var ok = Identity.Verify(verify.GetProperty("public_key").GetString()!, signed, Convert.FromHexString(verify.GetProperty("signature").GetString()!));
             return ok
                 ? Http.Json(new { token = "tok", scope = "member", canonical_pubkey = verify.GetProperty("public_key").GetString() })
@@ -72,6 +91,16 @@ public sealed class AuthTests
     }
 
     private static readonly Uri Hub = new("http://hub/");
+
+    [Fact]
+    public async Task LogsInWithTaggedV2ForTheKeyInfoPresented()
+    {
+        var hub = new ChallengeHub(scheme: "tagged-v2");
+        using var http = new HttpClient(hub.Handler);
+        using var identity = Identity.FromSeed(Seed);
+        var session = await WavvonAuth.AuthenticateAsync(http, Hub, identity, cancellationToken: TestContext.Current.CancellationToken);
+        Assert.Equal("tok", session.Token);
+    }
 
     [Fact]
     public async Task LogsInWithTaggedV1AndPassesTheInvite()

@@ -102,6 +102,16 @@ public sealed class ConformanceTests
     }
 
     [Fact]
+    public void BoundAuthChallengeTaggedV2SigningBytesAndSignature()
+    {
+        var v = Vector("bound_auth_challenge");
+        var bytes = WavvonAuth.ChallengeSigningBytes(Convert.FromHexString(S(v, "inputs.challenge")), "tagged-v2", S(v, "inputs.server_pubkey"));
+        Assert.Equal(S(v, "signing_bytes"), Hex(bytes));
+        using var signer = Identity.FromSeed(S(v, "inputs.signer_seed"));
+        Assert.Equal(S(v, "signature"), Hex(signer.Sign(bytes)));
+    }
+
+    [Fact]
     public void WebhookDeliveryHubEd25519DispatchSignatureVerifies()
     {
         var v = Vector("webhook_delivery_hub");

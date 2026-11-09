@@ -69,10 +69,13 @@ Actions workflow files: explain choices in the commit message.
   known type whose shape does not parse is also delivered as unknown.
 - **Re-auth on its own**, with the state observable (`StateChanged`).
   Concurrent callers share one login; one caller cancelling does not cancel it.
-- **Auth challenge**: `scheme: "tagged-v1"` -> sign
-  `"wavvon/auth-challenge/v1\0" || challenge`; a missing or unknown scheme ->
-  `AuthSchemeException`, never a raw signature (hubs refuse it since
-  Wavvon-server#199).
+- **Auth challenge**: `scheme: "tagged-v2"` -> sign
+  `"wavvon/auth-challenge/v2\0" || u32le(len) || server_pubkey || challenge`,
+  where `server_pubkey` is the hub's own `GET /info` `public_key`, never a key
+  from the challenge response (Wavvon-server#294). `"tagged-v1"` (older hubs)
+  -> sign `"wavvon/auth-challenge/v1\0" || challenge`. A missing or unknown
+  scheme -> `AuthSchemeException`, never a raw signature (hubs refuse it since
+  Wavvon-server#199). The challenge is exactly 32 bytes.
 - **Never send the seed** or any private key anywhere. Never invent a wire
   format: signed bytes come from wire-format.md and the vectors; a new one is
   a server-side change first. Never model a bot as an account or send

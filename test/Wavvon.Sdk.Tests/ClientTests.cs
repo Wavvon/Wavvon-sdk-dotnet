@@ -27,7 +27,7 @@ public sealed class ClientTests
                 case "/info":
                     return Http.Json(new { public_key = "aa", capabilities });
                 case "/auth/challenge":
-                    return Http.Json(new { challenge = new string('0', 64), scheme = "tagged-v1" });
+                    return Http.Json(new { challenge = new string('0', 64), scheme = "tagged-v2" });
                 case "/auth/verify":
                     _valid = $"t{++_tokens}";
                     return Http.Json(new { token = _valid, scope = "member", canonical_pubkey = "me" });
