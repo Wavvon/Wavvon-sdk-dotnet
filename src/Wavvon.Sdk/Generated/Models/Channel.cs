@@ -132,6 +132,8 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string ParentId { get; set; }
 #endif
+        /// <summary>Seconds a member must wait between messages here; 0 is off (capability channels.slowmode)</summary>
+        public int? SlowmodeSecs { get; set; }
         /// <summary>Spawner channels only (omitted otherwise) — the name template for spawned rooms.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -185,6 +187,7 @@ namespace Wavvon.Sdk.Generated.Models
                 { "nsfw", n => { Nsfw = n.GetBoolValue(); } },
                 { "owner_pubkey", n => { OwnerPubkey = n.GetStringValue(); } },
                 { "parent_id", n => { ParentId = n.GetStringValue(); } },
+                { "slowmode_secs", n => { SlowmodeSecs = n.GetIntValue(); } },
                 { "spawner_name_template", n => { SpawnerNameTemplate = n.GetStringValue(); } },
             };
         }
@@ -215,6 +218,7 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteBoolValue("nsfw", Nsfw);
             writer.WriteStringValue("owner_pubkey", OwnerPubkey);
             writer.WriteStringValue("parent_id", ParentId);
+            writer.WriteIntValue("slowmode_secs", SlowmodeSecs);
             writer.WriteStringValue("spawner_name_template", SpawnerNameTemplate);
             writer.WriteAdditionalData(AdditionalData);
         }

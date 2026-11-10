@@ -33,7 +33,7 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
         {
         }
         /// <summary>
-        /// Submit the signed challenge to receive a Bearer token.**Signing:** hex-decode `challenge` to its 32 bytes. If`POST /auth/challenge` returned `scheme: &quot;tagged-v1&quot;`, sign`b&quot;wavvon/auth-challenge/v1\0&quot; || challenge_bytes`; with no `scheme`,sign the raw 32 bytes (wire-format.md). Encode the 64-byte signatureas lowercase hex. Send `challenge` back as the hex string you received.**PoW:** if the hub requires a security level &gt; 0, compute:`SHA256(utf8(public_key_hex) || little_endian_u64(nonce))` and find a`nonce` (u64, starting from 1) whose hash has ≥ N leading zero bits.Submit that nonce as `security_nonce` and N as `security_level`.
+        /// Submit the signed challenge to receive a Bearer token.**Signing:** hex-decode `challenge` to its 32 bytes and sign the answerthe challenge&apos;s `scheme` names (see the Auth flow above andwire-format.md): `tagged-v2` binds it to the server&apos;s own `/info` key.Encode the 64-byte signature as lowercase hex. Send `challenge` back asthe hex string you received.**PoW:** if the hub requires a security level &gt; 0, compute:`SHA256(utf8(public_key_hex) || little_endian_u64(nonce))` and find a`nonce` (u64, starting from 1) whose hash has ≥ N leading zero bits.Submit that nonce as `security_nonce` and N as `security_level`.
         /// </summary>
         /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -53,7 +53,7 @@ namespace Wavvon.Sdk.Generated.Auth.Verify
             return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostResponse>(requestInfo, global::Wavvon.Sdk.Generated.Auth.Verify.VerifyPostResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Submit the signed challenge to receive a Bearer token.**Signing:** hex-decode `challenge` to its 32 bytes. If`POST /auth/challenge` returned `scheme: &quot;tagged-v1&quot;`, sign`b&quot;wavvon/auth-challenge/v1\0&quot; || challenge_bytes`; with no `scheme`,sign the raw 32 bytes (wire-format.md). Encode the 64-byte signatureas lowercase hex. Send `challenge` back as the hex string you received.**PoW:** if the hub requires a security level &gt; 0, compute:`SHA256(utf8(public_key_hex) || little_endian_u64(nonce))` and find a`nonce` (u64, starting from 1) whose hash has ≥ N leading zero bits.Submit that nonce as `security_nonce` and N as `security_level`.
+        /// Submit the signed challenge to receive a Bearer token.**Signing:** hex-decode `challenge` to its 32 bytes and sign the answerthe challenge&apos;s `scheme` names (see the Auth flow above andwire-format.md): `tagged-v2` binds it to the server&apos;s own `/info` key.Encode the 64-byte signature as lowercase hex. Send `challenge` back asthe hex string you received.**PoW:** if the hub requires a security level &gt; 0, compute:`SHA256(utf8(public_key_hex) || little_endian_u64(nonce))` and find a`nonce` (u64, starting from 1) whose hash has ≥ N leading zero bits.Submit that nonce as `security_nonce` and N as `security_level`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

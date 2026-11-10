@@ -22,7 +22,7 @@ namespace Wavvon.Sdk.Generated.Auth.Challenge
 #else
         public string Challenge { get; set; }
 #endif
-        /// <summary>Present when the answer may be signed over &quot;wavvon/auth-challenge/v1\0&quot; || hex-decoded challenge (wire-format.md). Omitted by older hubs, which take a signature over the raw decoded bytes only. A hub that sends it still accepts the raw form.</summary>
+        /// <summary>tagged-v2 from a current hub or farm: the answer must be bound to the server&apos;s public key (wire-format.md), and no other answer is accepted. tagged-v1 from an older one.</summary>
         public global::Wavvon.Sdk.Generated.Auth.Challenge.ChallengePostResponse_scheme? Scheme { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Auth.Challenge.ChallengePostResponse"/> and sets the default values.

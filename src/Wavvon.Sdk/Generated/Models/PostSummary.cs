@@ -50,6 +50,14 @@ namespace Wavvon.Sdk.Generated.Models
         public long? CreatedAt { get; set; }
         /// <summary>Omitted when never edited</summary>
         public long? EditedAt { get; set; }
+        /// <summary>The body on one line, at most 240 characters and an ellipsis when cut. Omitted on a deleted post.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Excerpt { get; set; }
+#nullable restore
+#else
+        public string Excerpt { get; set; }
+#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -125,6 +133,7 @@ namespace Wavvon.Sdk.Generated.Models
                 { "channel_id", n => { ChannelId = n.GetStringValue(); } },
                 { "created_at", n => { CreatedAt = n.GetLongValue(); } },
                 { "edited_at", n => { EditedAt = n.GetLongValue(); } },
+                { "excerpt", n => { Excerpt = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "is_deleted", n => { IsDeleted = n.GetBoolValue(); } },
                 { "is_locked", n => { IsLocked = n.GetBoolValue(); } },
@@ -150,6 +159,7 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteStringValue("channel_id", ChannelId);
             writer.WriteLongValue("created_at", CreatedAt);
             writer.WriteLongValue("edited_at", EditedAt);
+            writer.WriteStringValue("excerpt", Excerpt);
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("is_deleted", IsDeleted);
             writer.WriteBoolValue("is_locked", IsLocked);

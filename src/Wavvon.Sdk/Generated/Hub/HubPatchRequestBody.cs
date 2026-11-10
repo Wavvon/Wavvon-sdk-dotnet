@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Hub
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -64,6 +65,22 @@ namespace Wavvon.Sdk.Generated.Hub
 #else
         public string Icon { get; set; }
 #endif
+        /// <summary>Two colours for the invite landing; an empty array clears them.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? LandingColors { get; set; }
+#nullable restore
+#else
+        public List<string> LandingColors { get; set; }
+#endif
+        /// <summary>Invite landing image as a base64 data: URL, at most 1 MB decoded, re-encoded by the hub. Empty clears it. 413 when too large, 400 when not an image.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LandingImage { get; set; }
+#nullable restore
+#else
+        public string LandingImage { get; set; }
+#endif
         /// <summary>The max_attachment_bytes property</summary>
         public long? MaxAttachmentBytes { get; set; }
         /// <summary>1 to 25, default 10. That message is refused.</summary>
@@ -110,6 +127,14 @@ namespace Wavvon.Sdk.Generated.Hub
         public int? StickersPacksWarnPercent { get; set; }
         /// <summary>1 to 500, default 60</summary>
         public int? StickersPerPack { get; set; }
+        /// <summary>The most a screen share or camera may declare in `screen_share_start` (hubs advertising `screenshare.limits`). Each field is omitted when uncapped. Read-only on `/info` and `GET /hub/settings`; in `PATCH /hub` the object replaces all four, and a field left out or 0 clears it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.StreamLimits? StreamLimits { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.StreamLimits StreamLimits { get; set; }
+#endif
         /// <summary>The timezone property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -169,6 +194,8 @@ namespace Wavvon.Sdk.Generated.Hub
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "farewell_label", n => { FarewellLabel = n.GetStringValue(); } },
                 { "icon", n => { Icon = n.GetStringValue(); } },
+                { "landing_colors", n => { LandingColors = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "landing_image", n => { LandingImage = n.GetStringValue(); } },
                 { "max_attachment_bytes", n => { MaxAttachmentBytes = n.GetLongValue(); } },
                 { "max_attachments_per_message", n => { MaxAttachmentsPerMessage = n.GetIntValue(); } },
                 { "max_channel_depth", n => { MaxChannelDepth = n.GetIntValue(); } },
@@ -186,6 +213,7 @@ namespace Wavvon.Sdk.Generated.Hub
                 { "stickers_packs_cap_bytes", n => { StickersPacksCapBytes = n.GetLongValue(); } },
                 { "stickers_packs_warn_percent", n => { StickersPacksWarnPercent = n.GetIntValue(); } },
                 { "stickers_per_pack", n => { StickersPerPack = n.GetIntValue(); } },
+                { "stream_limits", n => { StreamLimits = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.StreamLimits>(global::Wavvon.Sdk.Generated.Models.StreamLimits.CreateFromDiscriminatorValue); } },
                 { "timezone", n => { Timezone = n.GetStringValue(); } },
                 { "welcome_invite_url", n => { WelcomeInviteUrl = n.GetStringValue(); } },
                 { "welcome_label", n => { WelcomeLabel = n.GetStringValue(); } },
@@ -208,6 +236,8 @@ namespace Wavvon.Sdk.Generated.Hub
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("farewell_label", FarewellLabel);
             writer.WriteStringValue("icon", Icon);
+            writer.WriteCollectionOfPrimitiveValues<string>("landing_colors", LandingColors);
+            writer.WriteStringValue("landing_image", LandingImage);
             writer.WriteLongValue("max_attachment_bytes", MaxAttachmentBytes);
             writer.WriteIntValue("max_attachments_per_message", MaxAttachmentsPerMessage);
             writer.WriteIntValue("max_channel_depth", MaxChannelDepth);
@@ -225,6 +255,7 @@ namespace Wavvon.Sdk.Generated.Hub
             writer.WriteLongValue("stickers_packs_cap_bytes", StickersPacksCapBytes);
             writer.WriteIntValue("stickers_packs_warn_percent", StickersPacksWarnPercent);
             writer.WriteIntValue("stickers_per_pack", StickersPerPack);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.StreamLimits>("stream_limits", StreamLimits);
             writer.WriteStringValue("timezone", Timezone);
             writer.WriteStringValue("welcome_invite_url", WelcomeInviteUrl);
             writer.WriteStringValue("welcome_label", WelcomeLabel);

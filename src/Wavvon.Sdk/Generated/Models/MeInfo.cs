@@ -124,6 +124,8 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string StatusMessage { get; set; }
 #endif
+        /// <summary>Left out of the hub&apos;s public online widget. Hubs advertising `hub.widget`.</summary>
+        public bool? WidgetHidden { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.MeInfo"/> and sets the default values.
         /// </summary>
@@ -165,6 +167,7 @@ namespace Wavvon.Sdk.Generated.Models
                 { "roles", n => { Roles = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Role>(global::Wavvon.Sdk.Generated.Models.Role.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "show_hubs", n => { ShowHubs = n.GetBoolValue(); } },
                 { "status_message", n => { StatusMessage = n.GetStringValue(); } },
+                { "widget_hidden", n => { WidgetHidden = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -190,6 +193,7 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Role>("roles", Roles);
             writer.WriteBoolValue("show_hubs", ShowHubs);
             writer.WriteStringValue("status_message", StatusMessage);
+            writer.WriteBoolValue("widget_hidden", WidgetHidden);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

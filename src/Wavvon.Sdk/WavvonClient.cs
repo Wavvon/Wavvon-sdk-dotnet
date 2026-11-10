@@ -239,13 +239,37 @@ public sealed class WavvonClient : IDisposable
         _transport.Dispose();
     }
 
+    // A single-use ticket keeps the session token out of URLs, and so out of
+    // proxy logs. An older hub only takes the token, and a ticket request that
+    // fails falls back to it: the socket then answers 401 and the stream
+    // re-authenticates as before.
+    private async Task<string> SocketQueryAsync(Session session, CancellationToken cancellationToken)
+    {
+        if (await HasCapabilityAsync("ws.ticket", cancellationToken).ConfigureAwait(false))
+        {
+            try
+            {
+                var got = await Rest.Ws.Ticket.PostAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
+                if (!string.IsNullOrEmpty(got?.Ticket))
+                {
+                    return "ticket=" + Uri.EscapeDataString(got.Ticket);
+                }
+            }
+            catch (Exception) when (!cancellationToken.IsCancellationRequested)
+            {
+            }
+        }
+
+        return "token=" + Uri.EscapeDataString(session.Token);
+    }
+
     private async Task<WebSocket> ConnectSocketAsync(CancellationToken cancellationToken)
     {
         var session = await LoginAsync(cancellationToken).ConfigureAwait(false);
         var url = new UriBuilder(new Uri(_hubUrl, "ws"))
         {
             Scheme = _hubUrl.Scheme == Uri.UriSchemeHttps ? "wss" : "ws",
-            Query = "token=" + Uri.EscapeDataString(session.Token),
+            Query = await SocketQueryAsync(session, cancellationToken).ConfigureAwait(false),
         };
         var socket = new ClientWebSocket();
         try

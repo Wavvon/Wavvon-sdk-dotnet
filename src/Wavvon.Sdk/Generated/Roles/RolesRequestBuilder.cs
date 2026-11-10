@@ -10,6 +10,7 @@ using System.Threading;
 using System;
 using Wavvon.Sdk.Generated.Models;
 using Wavvon.Sdk.Generated.Roles.Item;
+using Wavvon.Sdk.Generated.Roles.Order;
 namespace Wavvon.Sdk.Generated.Roles
 {
     /// <summary>
@@ -18,6 +19,11 @@ namespace Wavvon.Sdk.Generated.Roles
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RolesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The order property</summary>
+        public global::Wavvon.Sdk.Generated.Roles.Order.OrderRequestBuilder Order
+        {
+            get => new global::Wavvon.Sdk.Generated.Roles.Order.OrderRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Wavvon.Sdk.Generated.roles.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Roles.Item.WithRole_ItemRequestBuilder"/></returns>

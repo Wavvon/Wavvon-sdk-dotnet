@@ -39,6 +39,7 @@ using Wavvon.Sdk.Generated.Permissions;
 using Wavvon.Sdk.Generated.Polls;
 using Wavvon.Sdk.Generated.Preview;
 using Wavvon.Sdk.Generated.Profile;
+using Wavvon.Sdk.Generated.Public;
 using Wavvon.Sdk.Generated.Recovery;
 using Wavvon.Sdk.Generated.RoleCategories;
 using Wavvon.Sdk.Generated.Roles;
@@ -52,6 +53,7 @@ using Wavvon.Sdk.Generated.Uploads;
 using Wavvon.Sdk.Generated.Users;
 using Wavvon.Sdk.Generated.Voice;
 using Wavvon.Sdk.Generated.Webhooks;
+using Wavvon.Sdk.Generated.Widget;
 using Wavvon.Sdk.Generated.Ws;
 namespace Wavvon.Sdk.Generated
 {
@@ -206,6 +208,11 @@ namespace Wavvon.Sdk.Generated
         {
             get => new global::Wavvon.Sdk.Generated.Profile.ProfileRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The public property</summary>
+        public global::Wavvon.Sdk.Generated.Public.PublicRequestBuilder Public
+        {
+            get => new global::Wavvon.Sdk.Generated.Public.PublicRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The recovery property</summary>
         public global::Wavvon.Sdk.Generated.Recovery.RecoveryRequestBuilder Recovery
         {
@@ -270,6 +277,11 @@ namespace Wavvon.Sdk.Generated
         public global::Wavvon.Sdk.Generated.Webhooks.WebhooksRequestBuilder Webhooks
         {
             get => new global::Wavvon.Sdk.Generated.Webhooks.WebhooksRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The widget property</summary>
+        public global::Wavvon.Sdk.Generated.Widget.WidgetRequestBuilder Widget
+        {
+            get => new global::Wavvon.Sdk.Generated.Widget.WidgetRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The ws property</summary>
         public global::Wavvon.Sdk.Generated.Ws.WsRequestBuilder Ws
