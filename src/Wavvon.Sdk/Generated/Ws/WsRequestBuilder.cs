@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using Wavvon.Sdk.Generated.Ws.Ticket;
 namespace Wavvon.Sdk.Generated.Ws
 {
     /// <summary>
@@ -16,12 +17,17 @@ namespace Wavvon.Sdk.Generated.Ws
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The ticket property</summary>
+        public global::Wavvon.Sdk.Generated.Ws.Ticket.TicketRequestBuilder Ticket
+        {
+            get => new global::Wavvon.Sdk.Generated.Ws.Ticket.TicketRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Ws.WsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/ws?token={token}", pathParameters)
+        public WsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/ws{?ticket*,token*}", pathParameters)
         {
         }
         /// <summary>
@@ -29,11 +35,11 @@ namespace Wavvon.Sdk.Generated.Ws
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/ws?token={token}", rawUrl)
+        public WsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/ws{?ticket*,token*}", rawUrl)
         {
         }
         /// <summary>
-        /// Upgrades to a WebSocket carrying all realtime traffic. Authenticatewith the `token` query parameter (the session token); theupgrade is rejected with `401`/`403` on invalid, expired, or bannedcredentials.The full message catalogue — every client→server and server→clientJSON message with exact field names and types — is documented in[`docs/ws-protocol.md`](docs/ws-protocol.md) (see also the&quot;WebSocket protocol&quot; section of this file&apos;s description).
+        /// Upgrades to a WebSocket carrying all realtime traffic. Authenticatewith a single-use `ticket` from `POST /ws/ticket` (hubs advertisingthe `ws.ticket` capability), or with the `token` query parameter(the session token itself, which then sits in the URL). The upgradeis rejected with `401`/`403` on invalid, expired, or bannedcredentials, and `429` when the identity already holds the maximumnumber of open sockets.The full message catalogue — every client→server and server→clientJSON message with exact field names and types — is documented in[`docs/ws-protocol.md`](docs/ws-protocol.md) (see also the&quot;WebSocket protocol&quot; section of this file&apos;s description).
         /// </summary>
         /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -51,7 +57,7 @@ namespace Wavvon.Sdk.Generated.Ws
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Upgrades to a WebSocket carrying all realtime traffic. Authenticatewith the `token` query parameter (the session token); theupgrade is rejected with `401`/`403` on invalid, expired, or bannedcredentials.The full message catalogue — every client→server and server→clientJSON message with exact field names and types — is documented in[`docs/ws-protocol.md`](docs/ws-protocol.md) (see also the&quot;WebSocket protocol&quot; section of this file&apos;s description).
+        /// Upgrades to a WebSocket carrying all realtime traffic. Authenticatewith a single-use `ticket` from `POST /ws/ticket` (hubs advertisingthe `ws.ticket` capability), or with the `token` query parameter(the session token itself, which then sits in the URL). The upgradeis rejected with `401`/`403` on invalid, expired, or bannedcredentials, and `429` when the identity already holds the maximumnumber of open sockets.The full message catalogue — every client→server and server→clientJSON message with exact field names and types — is documented in[`docs/ws-protocol.md`](docs/ws-protocol.md) (see also the&quot;WebSocket protocol&quot; section of this file&apos;s description).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -78,12 +84,22 @@ namespace Wavvon.Sdk.Generated.Ws
             return new global::Wavvon.Sdk.Generated.Ws.WsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Upgrades to a WebSocket carrying all realtime traffic. Authenticatewith the `token` query parameter (the session token); theupgrade is rejected with `401`/`403` on invalid, expired, or bannedcredentials.The full message catalogue — every client→server and server→clientJSON message with exact field names and types — is documented in[`docs/ws-protocol.md`](docs/ws-protocol.md) (see also the&quot;WebSocket protocol&quot; section of this file&apos;s description).
+        /// Upgrades to a WebSocket carrying all realtime traffic. Authenticatewith a single-use `ticket` from `POST /ws/ticket` (hubs advertisingthe `ws.ticket` capability), or with the `token` query parameter(the session token itself, which then sits in the URL). The upgradeis rejected with `401`/`403` on invalid, expired, or bannedcredentials, and `429` when the identity already holds the maximumnumber of open sockets.The full message catalogue — every client→server and server→clientJSON message with exact field names and types — is documented in[`docs/ws-protocol.md`](docs/ws-protocol.md) (see also the&quot;WebSocket protocol&quot; section of this file&apos;s description).
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WsRequestBuilderGetQueryParameters 
         {
-            /// <summary>Session token from `POST /auth/verify`.</summary>
+            /// <summary>Single-use ticket from `POST /ws/ticket`, valid 30 seconds.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("ticket")]
+            public string? Ticket { get; set; }
+#nullable restore
+#else
+            [QueryParameter("ticket")]
+            public string Ticket { get; set; }
+#endif
+            /// <summary>Session token from `POST /auth/verify`, when no ticket is used.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("token")]

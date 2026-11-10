@@ -88,6 +88,8 @@ namespace Wavvon.Sdk.Generated.Channels.Item
 #endif
         /// <summary>The retention_days property</summary>
         public long? RetentionDays { get; set; }
+        /// <summary>Seconds between one member&apos;s messages here, 0 to turn slowmode off. Needs channels.manage.</summary>
+        public int? SlowmodeSecs { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Channels.Item.WithChannel_PatchRequestBody"/> and sets the default values.
         /// </summary>
@@ -126,6 +128,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item
                 { "nsfw", n => { Nsfw = n.GetBoolValue(); } },
                 { "parent_id", n => { ParentId = n.GetStringValue(); } },
                 { "retention_days", n => { RetentionDays = n.GetLongValue(); } },
+                { "slowmode_secs", n => { SlowmodeSecs = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -148,6 +151,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item
             writer.WriteBoolValue("nsfw", Nsfw);
             writer.WriteStringValue("parent_id", ParentId);
             writer.WriteLongValue("retention_days", RetentionDays);
+            writer.WriteIntValue("slowmode_secs", SlowmodeSecs);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

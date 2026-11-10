@@ -11,9 +11,11 @@ using Wavvon.Sdk.Generated.Admin.Settings.Certs;
 using Wavvon.Sdk.Generated.Admin.Settings.Challenge;
 using Wavvon.Sdk.Generated.Admin.Settings.Listing;
 using Wavvon.Sdk.Generated.Admin.Settings.Lobby;
+using Wavvon.Sdk.Generated.Admin.Settings.Lockdown;
 using Wavvon.Sdk.Generated.Admin.Settings.Moderation;
 using Wavvon.Sdk.Generated.Admin.Settings.Pow;
 using Wavvon.Sdk.Generated.Admin.Settings.Tags;
+using Wavvon.Sdk.Generated.Admin.Settings.Widget;
 namespace Wavvon.Sdk.Generated.Admin.Settings
 {
     /// <summary>
@@ -47,6 +49,11 @@ namespace Wavvon.Sdk.Generated.Admin.Settings
         {
             get => new global::Wavvon.Sdk.Generated.Admin.Settings.Lobby.LobbyRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The lockdown property</summary>
+        public global::Wavvon.Sdk.Generated.Admin.Settings.Lockdown.LockdownRequestBuilder Lockdown
+        {
+            get => new global::Wavvon.Sdk.Generated.Admin.Settings.Lockdown.LockdownRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The moderation property</summary>
         public global::Wavvon.Sdk.Generated.Admin.Settings.Moderation.ModerationRequestBuilder Moderation
         {
@@ -61,6 +68,11 @@ namespace Wavvon.Sdk.Generated.Admin.Settings
         public global::Wavvon.Sdk.Generated.Admin.Settings.Tags.TagsRequestBuilder Tags
         {
             get => new global::Wavvon.Sdk.Generated.Admin.Settings.Tags.TagsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The widget property</summary>
+        public global::Wavvon.Sdk.Generated.Admin.Settings.Widget.WidgetRequestBuilder Widget
+        {
+            get => new global::Wavvon.Sdk.Generated.Admin.Settings.Widget.WidgetRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Admin.Settings.SettingsRequestBuilder"/> and sets the default values.

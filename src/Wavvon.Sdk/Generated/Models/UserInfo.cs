@@ -47,6 +47,8 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string GroupRole { get; set; }
 #endif
+        /// <summary>Priority of group_role; omitted when there is none.</summary>
+        public long? GroupRolePriority { get; set; }
         /// <summary>The name_color property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -110,6 +112,7 @@ namespace Wavvon.Sdk.Generated.Models
                 { "birthday", n => { Birthday = n.GetStringValue(); } },
                 { "display_name", n => { DisplayName = n.GetStringValue(); } },
                 { "group_role", n => { GroupRole = n.GetStringValue(); } },
+                { "group_role_priority", n => { GroupRolePriority = n.GetLongValue(); } },
                 { "name_color", n => { NameColor = n.GetStringValue(); } },
                 { "online", n => { Online = n.GetBoolValue(); } },
                 { "public_key", n => { PublicKey = n.GetStringValue(); } },
@@ -128,6 +131,7 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteStringValue("birthday", Birthday);
             writer.WriteStringValue("display_name", DisplayName);
             writer.WriteStringValue("group_role", GroupRole);
+            writer.WriteLongValue("group_role_priority", GroupRolePriority);
             writer.WriteStringValue("name_color", NameColor);
             writer.WriteBoolValue("online", Online);
             writer.WriteStringValue("public_key", PublicKey);

@@ -87,6 +87,14 @@ namespace Wavvon.Sdk.Generated.Models
 #endif
         /// <summary>The invite_only property</summary>
         public bool? InviteOnly { get; set; }
+        /// <summary>The invite landing look, the same value as the invite preview&apos;s. `image` is present only when an image is set, so a client can skip requesting it. Absent on hubs that predate the field.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.Landing? Landing { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.Landing Landing { get; set; }
+#endif
         /// <summary>Omitted unless set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -152,6 +160,14 @@ namespace Wavvon.Sdk.Generated.Models
 #nullable restore
 #else
         public string SfuUrl { get; set; }
+#endif
+        /// <summary>The most a screen share or camera may declare in `screen_share_start` (hubs advertising `screenshare.limits`). Each field is omitted when uncapped. Read-only on `/info` and `GET /hub/settings`; in `PATCH /hub` the object replaces all four, and a field left out or 0 clears it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.StreamLimits? StreamLimits { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.StreamLimits StreamLimits { get; set; }
 #endif
         /// <summary>Omitted unless set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,6 +257,7 @@ namespace Wavvon.Sdk.Generated.Models
                 { "lan_fingerprint", n => { LanFingerprint = n.GetStringValue(); } },
                 { "lan_mode", n => { LanMode = n.GetBoolValue(); } },
                 { "lan_tls", n => { LanTls = n.GetStringValue(); } },
+                { "landing", n => { Landing = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.Landing>(global::Wavvon.Sdk.Generated.Models.Landing.CreateFromDiscriminatorValue); } },
                 { "max_attachment_bytes", n => { MaxAttachmentBytes = n.GetLongValue(); } },
                 { "min_pow_level", n => { MinPowLevel = n.GetIntValue(); } },
                 { "min_security_level", n => { MinSecurityLevel = n.GetIntValue(); } },
@@ -250,6 +267,7 @@ namespace Wavvon.Sdk.Generated.Models
                 { "rotation", n => { Rotation = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_rotation>(global::Wavvon.Sdk.Generated.Models.HubInfo_rotation.CreateFromDiscriminatorValue); } },
                 { "self_tags", n => { SelfTags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "sfu_url", n => { SfuUrl = n.GetStringValue(); } },
+                { "stream_limits", n => { StreamLimits = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.StreamLimits>(global::Wavvon.Sdk.Generated.Models.StreamLimits.CreateFromDiscriminatorValue); } },
                 { "timezone", n => { Timezone = n.GetStringValue(); } },
                 { "version", n => { Version = n.GetStringValue(); } },
                 { "voice_cert_hash", n => { VoiceCertHash = n.GetStringValue(); } },
@@ -277,6 +295,7 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteStringValue("farm_url", FarmUrl);
             writer.WriteStringValue("icon", Icon);
             writer.WriteBoolValue("invite_only", InviteOnly);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.Landing>("landing", Landing);
             writer.WriteStringValue("lan_fingerprint", LanFingerprint);
             writer.WriteBoolValue("lan_mode", LanMode);
             writer.WriteStringValue("lan_tls", LanTls);
@@ -289,6 +308,7 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_rotation>("rotation", Rotation);
             writer.WriteCollectionOfPrimitiveValues<string>("self_tags", SelfTags);
             writer.WriteStringValue("sfu_url", SfuUrl);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.StreamLimits>("stream_limits", StreamLimits);
             writer.WriteStringValue("timezone", Timezone);
             writer.WriteStringValue("version", Version);
             writer.WriteStringValue("voice_cert_hash", VoiceCertHash);

@@ -107,6 +107,8 @@ namespace Wavvon.Sdk.Generated.Me
 #else
         public string StatusMessage { get; set; }
 #endif
+        /// <summary>Leave me out of the public online widget. Hubs advertising `hub.widget`.</summary>
+        public bool? WidgetHidden { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Me.MePatchRequestBody"/> and sets the default values.
         /// </summary>
@@ -145,6 +147,7 @@ namespace Wavvon.Sdk.Generated.Me
                 { "pronouns", n => { Pronouns = n.GetStringValue(); } },
                 { "show_hubs", n => { ShowHubs = n.GetBoolValue(); } },
                 { "status_message", n => { StatusMessage = n.GetStringValue(); } },
+                { "widget_hidden", n => { WidgetHidden = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -167,6 +170,7 @@ namespace Wavvon.Sdk.Generated.Me
             writer.WriteStringValue("pronouns", Pronouns);
             writer.WriteBoolValue("show_hubs", ShowHubs);
             writer.WriteStringValue("status_message", StatusMessage);
+            writer.WriteBoolValue("widget_hidden", WidgetHidden);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

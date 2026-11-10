@@ -22,7 +22,7 @@ namespace Wavvon.Sdk.Generated.Invites
 #else
         public string BoundPubkey { get; set; }
 #endif
-        /// <summary>Lifetime in seconds from now. Omitted means no expiry, except as noted under `grant_role_id`.</summary>
+        /// <summary>Lifetime in seconds from now. Omitted means no expiry, except as noted under `grant_role_id`. Below 1, or large enough to overflow the expiry timestamp, is a 400.</summary>
         public long? ExpiresInSeconds { get; set; }
         /// <summary>Role granted to the joining member besides the everyone role. Must exist, and the creator must be able to grant every permission it carries. A role that amounts to a takeover caps the invite to one use and a short expiry.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -32,7 +32,7 @@ namespace Wavvon.Sdk.Generated.Invites
 #else
         public string GrantRoleId { get; set; }
 #endif
-        /// <summary>The max_uses property</summary>
+        /// <summary>Omitted means unlimited. Below 1 is a 400.</summary>
         public long? MaxUses { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Invites.InvitesPostRequestBody"/> and sets the default values.

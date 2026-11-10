@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using Wavvon.Sdk.Generated.Hub.Icons;
+using Wavvon.Sdk.Generated.Hub.LandingImage;
 using Wavvon.Sdk.Generated.Hub.Members;
 using Wavvon.Sdk.Generated.Hub.Pending;
 using Wavvon.Sdk.Generated.Hub.Settings;
@@ -24,6 +25,11 @@ namespace Wavvon.Sdk.Generated.Hub
         public global::Wavvon.Sdk.Generated.Hub.Icons.IconsRequestBuilder Icons
         {
             get => new global::Wavvon.Sdk.Generated.Hub.Icons.IconsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The landingImage property</summary>
+        public global::Wavvon.Sdk.Generated.Hub.LandingImage.LandingImageRequestBuilder LandingImage
+        {
+            get => new global::Wavvon.Sdk.Generated.Hub.LandingImage.LandingImageRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The members property</summary>
         public global::Wavvon.Sdk.Generated.Hub.Members.MembersRequestBuilder Members
