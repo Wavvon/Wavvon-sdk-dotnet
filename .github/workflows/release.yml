@@ -1,0 +1,90 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.ver.outputs.version }}
+      release: ${{ steps.tag.outputs.exists == 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: ver
+        run: echo "version=$(sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p' Directory.Build.props | head -1)" >> "$GITHUB_OUTPUT"
+      - run: test -n "${{ steps.ver.outputs.version }}"
+      - id: tag
+        run: |
+          if git ls-remote --exit-code --tags origin "refs/tags/v${{ steps.ver.outputs.version }}" >/dev/null; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.tag.outputs.exists == 'false'
+        uses: actions/checkout@v4
+        with:
+          repository: Wavvon/Wavvon-server
+          ref: 78ff4aab3ba905ef4480d02d47f24d63762cc697
+          path: wavvon-server
+          sparse-checkout: crates/identity/wire-vectors.json
+          sparse-checkout-cone-mode: false
+      - if: steps.tag.outputs.exists == 'false'
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+      - if: steps.tag.outputs.exists == 'false'
+        run: sh scripts/check
+        env:
+          CI: "true"
+          WAVVON_WIRE_VECTORS: wavvon-server/crates/identity/wire-vectors.json
+      - if: steps.tag.outputs.exists == 'false'
+        run: dotnet pack Wavvon.Sdk.slnx -c Release -o dist
+      - if: steps.tag.outputs.exists == 'false'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/*.nupkg
+
+  publish:
+    needs: build
+    if: needs.build.outputs.release == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: nuget
+      url: https://www.nuget.org/packages/Wavvon.Sdk/${{ needs.build.outputs.version }}
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - id: login
+        uses: NuGet/login@v1
+        with:
+          user: Anachim
+      - run: dotnet nuget push "dist/*.nupkg" --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+  tag:
+    needs: [build, publish]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git tag "v${{ needs.build.outputs.version }}"
+          git push origin "v${{ needs.build.outputs.version }}"
+          gh release create "v${{ needs.build.outputs.version }}" --generate-notes --title "v${{ needs.build.outputs.version }}"
