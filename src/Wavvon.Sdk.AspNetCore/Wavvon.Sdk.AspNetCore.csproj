@@ -6,12 +6,15 @@
     <PackageId>Wavvon.Sdk.AspNetCore</PackageId>
     <Description>Map a Wavvon app's webhook onto an ASP.NET Core minimal-API route.</Description>
     <PackageTags>wavvon;bot;sdk;aspnetcore</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <ProjectReference Include="../Wavvon.Sdk/Wavvon.Sdk.csproj" />
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+    <None Include="../../NOTICE" Pack="true" PackagePath="/" />
   </ItemGroup>
 
 </Project>
