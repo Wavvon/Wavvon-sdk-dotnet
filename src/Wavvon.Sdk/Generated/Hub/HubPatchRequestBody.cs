@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Hub
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -14,21 +15,149 @@ namespace Wavvon.Sdk.Generated.Hub
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The hub_icon property</summary>
+        /// <summary>The afk_channel_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HubIcon { get; set; }
+        public string? AfkChannelId { get; set; }
 #nullable restore
 #else
-        public string HubIcon { get; set; }
+        public string AfkChannelId { get; set; }
 #endif
-        /// <summary>The hub_name property</summary>
+        /// <summary>The afk_timeout_secs property</summary>
+        public int? AfkTimeoutSecs { get; set; }
+        /// <summary>64 MB to 10 TB, default 10 GB. Whole blobs, orphans first and then least recently linked (banners excepted), expire; the upload succeeds. Never per member.</summary>
+        public long? AttachmentsCapBytes { get; set; }
+        /// <summary>0 (never) to 3650, default 0. Older attachments expire.</summary>
+        public int? AttachmentsRetentionDays { get; set; }
+        /// <summary>50 to 99, default 90. Sets attachments_usage.warning.</summary>
+        public int? AttachmentsWarnPercent { get; set; }
+        /// <summary>The birthdays_enabled property</summary>
+        public bool? BirthdaysEnabled { get; set; }
+        /// <summary>The default_invite_role_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HubName { get; set; }
+        public string? DefaultInviteRoleId { get; set; }
 #nullable restore
 #else
-        public string HubName { get; set; }
+        public string DefaultInviteRoleId { get; set; }
+#endif
+        /// <summary>The description property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
+        /// <summary>The farewell_label property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? FarewellLabel { get; set; }
+#nullable restore
+#else
+        public string FarewellLabel { get; set; }
+#endif
+        /// <summary>The icon property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Icon { get; set; }
+#nullable restore
+#else
+        public string Icon { get; set; }
+#endif
+        /// <summary>Two colours for the invite landing; an empty array clears them.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? LandingColors { get; set; }
+#nullable restore
+#else
+        public List<string> LandingColors { get; set; }
+#endif
+        /// <summary>Invite landing image as a base64 data: URL, at most 1 MB decoded, re-encoded by the hub. Empty clears it. 413 when too large, 400 when not an image.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LandingImage { get; set; }
+#nullable restore
+#else
+        public string LandingImage { get; set; }
+#endif
+        /// <summary>The max_attachment_bytes property</summary>
+        public long? MaxAttachmentBytes { get; set; }
+        /// <summary>1 to 25, default 10. That message is refused.</summary>
+        public int? MaxAttachmentsPerMessage { get; set; }
+        /// <summary>The max_channel_depth property</summary>
+        public int? MaxChannelDepth { get; set; }
+        /// <summary>Largest link-preview image in bytes, 262144 to 16777216, default 4194304. Also returned by GET /hub/settings.</summary>
+        public long? MaxPreviewImageBytes { get; set; }
+        /// <summary>The max_upload_bytes property</summary>
+        public long? MaxUploadBytes { get; set; }
+        /// <summary>The min_security_level property</summary>
+        public int? MinSecurityLevel { get; set; }
+        /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>The name_color_mode property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NameColorMode { get; set; }
+#nullable restore
+#else
+        public string NameColorMode { get; set; }
+#endif
+        /// <summary>The require_approval property</summary>
+        public bool? RequireApproval { get; set; }
+        /// <summary>1 to 200, default 20</summary>
+        public int? StickerPacksPerHub { get; set; }
+        /// <summary>64 MB to 1 TB, default 1 GB. Orphans, then least recently used copies, are evicted; a send is never refused.</summary>
+        public long? StickersCopiesCapBytes { get; set; }
+        /// <summary>Default true. Off: GET /federation/stickers/{sha256} answers 403.</summary>
+        public bool? StickersExport { get; set; }
+        /// <summary>65536 to 4194304, default 524288. Also returned by GET /hub/settings, as are the other stickers_* settings.</summary>
+        public long? StickersMaxFileBytes { get; set; }
+        /// <summary>1 to 365, default 30</summary>
+        public int? StickersOrphanGcDays { get; set; }
+        /// <summary>16 MB to 100 GB, default 512 MB. Pack additions are refused at the cap.</summary>
+        public long? StickersPacksCapBytes { get; set; }
+        /// <summary>50 to 99, default 90</summary>
+        public int? StickersPacksWarnPercent { get; set; }
+        /// <summary>1 to 500, default 60</summary>
+        public int? StickersPerPack { get; set; }
+        /// <summary>The most a screen share or camera may declare in `screen_share_start` (hubs advertising `screenshare.limits`). Each field is omitted when uncapped. Read-only on `/info` and `GET /hub/settings`; in `PATCH /hub` the object replaces all four, and a field left out or 0 clears it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.StreamLimits? StreamLimits { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.StreamLimits StreamLimits { get; set; }
+#endif
+        /// <summary>The timezone property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Timezone { get; set; }
+#nullable restore
+#else
+        public string Timezone { get; set; }
+#endif
+        /// <summary>The welcome_invite_url property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WelcomeInviteUrl { get; set; }
+#nullable restore
+#else
+        public string WelcomeInviteUrl { get; set; }
+#endif
+        /// <summary>The welcome_label property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WelcomeLabel { get; set; }
+#nullable restore
+#else
+        public string WelcomeLabel { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Hub.HubPatchRequestBody"/> and sets the default values.
@@ -55,8 +184,39 @@ namespace Wavvon.Sdk.Generated.Hub
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "hub_icon", n => { HubIcon = n.GetStringValue(); } },
-                { "hub_name", n => { HubName = n.GetStringValue(); } },
+                { "afk_channel_id", n => { AfkChannelId = n.GetStringValue(); } },
+                { "afk_timeout_secs", n => { AfkTimeoutSecs = n.GetIntValue(); } },
+                { "attachments_cap_bytes", n => { AttachmentsCapBytes = n.GetLongValue(); } },
+                { "attachments_retention_days", n => { AttachmentsRetentionDays = n.GetIntValue(); } },
+                { "attachments_warn_percent", n => { AttachmentsWarnPercent = n.GetIntValue(); } },
+                { "birthdays_enabled", n => { BirthdaysEnabled = n.GetBoolValue(); } },
+                { "default_invite_role_id", n => { DefaultInviteRoleId = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "farewell_label", n => { FarewellLabel = n.GetStringValue(); } },
+                { "icon", n => { Icon = n.GetStringValue(); } },
+                { "landing_colors", n => { LandingColors = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "landing_image", n => { LandingImage = n.GetStringValue(); } },
+                { "max_attachment_bytes", n => { MaxAttachmentBytes = n.GetLongValue(); } },
+                { "max_attachments_per_message", n => { MaxAttachmentsPerMessage = n.GetIntValue(); } },
+                { "max_channel_depth", n => { MaxChannelDepth = n.GetIntValue(); } },
+                { "max_preview_image_bytes", n => { MaxPreviewImageBytes = n.GetLongValue(); } },
+                { "max_upload_bytes", n => { MaxUploadBytes = n.GetLongValue(); } },
+                { "min_security_level", n => { MinSecurityLevel = n.GetIntValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "name_color_mode", n => { NameColorMode = n.GetStringValue(); } },
+                { "require_approval", n => { RequireApproval = n.GetBoolValue(); } },
+                { "sticker_packs_per_hub", n => { StickerPacksPerHub = n.GetIntValue(); } },
+                { "stickers_copies_cap_bytes", n => { StickersCopiesCapBytes = n.GetLongValue(); } },
+                { "stickers_export", n => { StickersExport = n.GetBoolValue(); } },
+                { "stickers_max_file_bytes", n => { StickersMaxFileBytes = n.GetLongValue(); } },
+                { "stickers_orphan_gc_days", n => { StickersOrphanGcDays = n.GetIntValue(); } },
+                { "stickers_packs_cap_bytes", n => { StickersPacksCapBytes = n.GetLongValue(); } },
+                { "stickers_packs_warn_percent", n => { StickersPacksWarnPercent = n.GetIntValue(); } },
+                { "stickers_per_pack", n => { StickersPerPack = n.GetIntValue(); } },
+                { "stream_limits", n => { StreamLimits = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.StreamLimits>(global::Wavvon.Sdk.Generated.Models.StreamLimits.CreateFromDiscriminatorValue); } },
+                { "timezone", n => { Timezone = n.GetStringValue(); } },
+                { "welcome_invite_url", n => { WelcomeInviteUrl = n.GetStringValue(); } },
+                { "welcome_label", n => { WelcomeLabel = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -66,8 +226,39 @@ namespace Wavvon.Sdk.Generated.Hub
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("hub_icon", HubIcon);
-            writer.WriteStringValue("hub_name", HubName);
+            writer.WriteStringValue("afk_channel_id", AfkChannelId);
+            writer.WriteIntValue("afk_timeout_secs", AfkTimeoutSecs);
+            writer.WriteLongValue("attachments_cap_bytes", AttachmentsCapBytes);
+            writer.WriteIntValue("attachments_retention_days", AttachmentsRetentionDays);
+            writer.WriteIntValue("attachments_warn_percent", AttachmentsWarnPercent);
+            writer.WriteBoolValue("birthdays_enabled", BirthdaysEnabled);
+            writer.WriteStringValue("default_invite_role_id", DefaultInviteRoleId);
+            writer.WriteStringValue("description", Description);
+            writer.WriteStringValue("farewell_label", FarewellLabel);
+            writer.WriteStringValue("icon", Icon);
+            writer.WriteCollectionOfPrimitiveValues<string>("landing_colors", LandingColors);
+            writer.WriteStringValue("landing_image", LandingImage);
+            writer.WriteLongValue("max_attachment_bytes", MaxAttachmentBytes);
+            writer.WriteIntValue("max_attachments_per_message", MaxAttachmentsPerMessage);
+            writer.WriteIntValue("max_channel_depth", MaxChannelDepth);
+            writer.WriteLongValue("max_preview_image_bytes", MaxPreviewImageBytes);
+            writer.WriteLongValue("max_upload_bytes", MaxUploadBytes);
+            writer.WriteIntValue("min_security_level", MinSecurityLevel);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("name_color_mode", NameColorMode);
+            writer.WriteBoolValue("require_approval", RequireApproval);
+            writer.WriteIntValue("sticker_packs_per_hub", StickerPacksPerHub);
+            writer.WriteLongValue("stickers_copies_cap_bytes", StickersCopiesCapBytes);
+            writer.WriteBoolValue("stickers_export", StickersExport);
+            writer.WriteLongValue("stickers_max_file_bytes", StickersMaxFileBytes);
+            writer.WriteIntValue("stickers_orphan_gc_days", StickersOrphanGcDays);
+            writer.WriteLongValue("stickers_packs_cap_bytes", StickersPacksCapBytes);
+            writer.WriteIntValue("stickers_packs_warn_percent", StickersPacksWarnPercent);
+            writer.WriteIntValue("stickers_per_pack", StickersPerPack);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.StreamLimits>("stream_limits", StreamLimits);
+            writer.WriteStringValue("timezone", Timezone);
+            writer.WriteStringValue("welcome_invite_url", WelcomeInviteUrl);
+            writer.WriteStringValue("welcome_label", WelcomeLabel);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

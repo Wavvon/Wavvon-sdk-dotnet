@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Conversations.Item.SenderKeys
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -17,13 +18,13 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.SenderKeys
         /// <summary>The recipients property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_recipients>? Recipients { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.SenderKeyRecipientBlob>? Recipients { get; set; }
 #nullable restore
 #else
-        public List<global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_recipients> Recipients { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.SenderKeyRecipientBlob> Recipients { get; set; }
 #endif
         /// <summary>The sender_key_version property</summary>
-        public long? SenderKeyVersion { get; set; }
+        public int? SenderKeyVersion { get; set; }
         /// <summary>Ed25519 signature over canonical bytes</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -35,10 +36,10 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.SenderKeys
         /// <summary>Present when a paired device&apos;s subkey signed the distribution. The signature is then checked against signer_cert.subkey_pubkey, and the cert&apos;s master against the authenticated session. Absent means the canonical key signed for itself.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_signer_cert? SignerCert { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.SubkeyCert? SignerCert { get; set; }
 #nullable restore
 #else
-        public global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_signer_cert SignerCert { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.SubkeyCert SignerCert { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody"/> and sets the default values.
@@ -65,10 +66,10 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.SenderKeys
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "recipients", n => { Recipients = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_recipients>(global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_recipients.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "sender_key_version", n => { SenderKeyVersion = n.GetLongValue(); } },
+                { "recipients", n => { Recipients = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.SenderKeyRecipientBlob>(global::Wavvon.Sdk.Generated.Models.SenderKeyRecipientBlob.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "sender_key_version", n => { SenderKeyVersion = n.GetIntValue(); } },
                 { "signature_hex", n => { SignatureHex = n.GetStringValue(); } },
-                { "signer_cert", n => { SignerCert = n.GetObjectValue<global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_signer_cert>(global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_signer_cert.CreateFromDiscriminatorValue); } },
+                { "signer_cert", n => { SignerCert = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.SubkeyCert>(global::Wavvon.Sdk.Generated.Models.SubkeyCert.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -78,10 +79,10 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.SenderKeys
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_recipients>("recipients", Recipients);
-            writer.WriteLongValue("sender_key_version", SenderKeyVersion);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.SenderKeyRecipientBlob>("recipients", Recipients);
+            writer.WriteIntValue("sender_key_version", SenderKeyVersion);
             writer.WriteStringValue("signature_hex", SignatureHex);
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Conversations.Item.SenderKeys.SenderKeysPutRequestBody_signer_cert>("signer_cert", SignerCert);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.SubkeyCert>("signer_cert", SignerCert);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

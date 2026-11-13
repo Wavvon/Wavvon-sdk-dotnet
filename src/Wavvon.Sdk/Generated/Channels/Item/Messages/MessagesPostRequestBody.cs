@@ -15,13 +15,13 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The attachments property</summary>
+        /// <summary>Ids from `POST /channels/{channel_id}/upload`, shown in this order. Each must be the sender&apos;s own upload to this channel, not linked yet and not a tombstone, and the count within `max_attachments_per_message`: otherwise 400 (not found, too many, duplicate), 409 (already linked) or 410 (removed or expired). The retired inline `attachments` field answers 400.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Wavvon.Sdk.Generated.Models.Attachment>? Attachments { get; set; }
+        public List<string>? AttachmentIds { get; set; }
 #nullable restore
 #else
-        public List<global::Wavvon.Sdk.Generated.Models.Attachment> Attachments { get; set; }
+        public List<string> AttachmentIds { get; set; }
 #endif
         /// <summary>The content property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,6 +31,14 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
 #else
         public string Content { get; set; }
 #endif
+        /// <summary>The game property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.GameLaunchCard? Game { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.GameLaunchCard Game { get; set; }
+#endif
         /// <summary>Message ID being replied to</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -38,6 +46,14 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
 #nullable restore
 #else
         public string ReplyTo { get; set; }
+#endif
+        /// <summary>A sticker this hub holds (see POST /channels/{channel_id}/stickers). 404 unknown, 410 removed or evicted, 403 for a copy without stickers.external. Refused on alliance channels.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StickerId { get; set; }
+#nullable restore
+#else
+        public string StickerId { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Channels.Item.Messages.MessagesPostRequestBody"/> and sets the default values.
@@ -64,9 +80,11 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Attachment>(global::Wavvon.Sdk.Generated.Models.Attachment.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "attachment_ids", n => { AttachmentIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "content", n => { Content = n.GetStringValue(); } },
+                { "game", n => { Game = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>(global::Wavvon.Sdk.Generated.Models.GameLaunchCard.CreateFromDiscriminatorValue); } },
                 { "reply_to", n => { ReplyTo = n.GetStringValue(); } },
+                { "sticker_id", n => { StickerId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -76,9 +94,11 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Attachment>("attachments", Attachments);
+            writer.WriteCollectionOfPrimitiveValues<string>("attachment_ids", AttachmentIds);
             writer.WriteStringValue("content", Content);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.GameLaunchCard>("game", Game);
             writer.WriteStringValue("reply_to", ReplyTo);
+            writer.WriteStringValue("sticker_id", StickerId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

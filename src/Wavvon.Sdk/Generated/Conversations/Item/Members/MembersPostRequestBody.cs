@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Conversations.Item.Members
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -21,6 +22,14 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Members
 #nullable restore
 #else
         public string PublicKey { get; set; }
+#endif
+        /// <summary>The actor&apos;s signature over a group add or leave (wire-format.md, &quot;Group DM member change&quot;). Without it the change holds on this hub only; with it the hub carries the change to the other members&apos; hubs. Only on a hub advertising `dms.group.signedmembers`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.SignedMemberChange? Signed { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.SignedMemberChange Signed { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Conversations.Item.Members.MembersPostRequestBody"/> and sets the default values.
@@ -48,6 +57,7 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Members
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "public_key", n => { PublicKey = n.GetStringValue(); } },
+                { "signed", n => { Signed = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.SignedMemberChange>(global::Wavvon.Sdk.Generated.Models.SignedMemberChange.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -58,6 +68,7 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Members
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("public_key", PublicKey);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.SignedMemberChange>("signed", Signed);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

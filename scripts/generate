@@ -19,70 +19,14 @@ work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
 git -C "$docs" show "$commit:openapi.yaml" >"$work/openapi.yaml"
 
-# Schemas the spec references but does not define, written from the hub's own
-# serde types. Each one is a spec bug: once Wavvon-docs defines the name, the
-# patch stops applying and the commit loses its "+Name" suffix.
-patch_gap() {
-  name=$1
-  file=$2
-  if grep -q "#/components/schemas/$name" "$work/openapi.yaml" &&
-    ! grep -q "^    $name:" "$work/openapi.yaml"; then
-    echo "WARNING: openapi.yaml references $name but never defines it; patching it in. Fix the spec." >&2
-    awk -v gap="$file" '{ print } /^  schemas:/ && !done { while ((getline line < gap) > 0) print line; done = 1 }' \
-      "$work/openapi.yaml" >"$work/patched.yaml"
-    mv "$work/patched.yaml" "$work/openapi.yaml"
-    commit="$commit+$name"
-  fi
-}
-
-# crates/hub/src/routes/apps/models.rs, AppMeResponse
-cat >"$work/AppRegistration.yaml" <<'EOF'
-    AppRegistration:
-      type: object
-      required: [pubkey, name, commands]
-      properties:
-        pubkey: { type: string }
-        name: { type: string }
-        avatar_url: { type: string }
-        description: { type: string }
-        webhook_url: { type: string }
-        homepage_url: { type: string }
-        commands:
-          type: array
-          items:
-            type: object
-            required: [name, description]
-            properties:
-              name: { type: string }
-              description: { type: string }
-              args: { type: string }
-              scope: { type: string }
-              privileged: { type: boolean }
-              cooldown_seconds: { type: integer }
-EOF
-patch_gap AppRegistration "$work/AppRegistration.yaml"
-
-# The hub serialises integers as Rust i64 (message timestamps are milliseconds),
-# but most spec integers carry no format, which Kiota reads as int32: a message's
-# created_at would not fit. Widen every format-less integer to int64.
-awk '
-  /format:/ { print; next }
-  /^ *type: integer *$/ { print; match($0, /^ */); print substr($0, 1, RLENGTH) "format: int64"; widened++; next }
-  /type: integer *[,}]/ { sub(/type: integer */, "type: integer, format: int64"); sub(/int64 *, *}/, "int64 }"); widened++ }
-  { print }
-  END { if (widened) exit 3 }
-' "$work/openapi.yaml" >"$work/widened.yaml" || {
-  [ $? -eq 3 ] || exit 1
-  commit="$commit+int64"
-}
-mv "$work/widened.yaml" "$work/openapi.yaml"
-
 cd "$root"
 dotnet tool restore >/dev/null
 rm -rf "$out"
 dotnet kiota generate --language CSharp --openapi "$work/openapi.yaml" --output "$out" \
   --namespace-name Wavvon.Sdk.Generated --class-name WavvonRestClient \
   --exclude-backward-compatible --log-level Error >/dev/null
+# Kiota exits 0 on a spec it cannot parse and writes nothing.
+[ -f "$out/WavvonRestClient.cs" ] || { echo "Kiota generated nothing from $commit" >&2; exit 1; }
 # The lock file records the temp path of the spec; SPEC_COMMIT is the record.
 rm -f "$out/kiota-lock.json"
 printf '%s\n' "$commit" >"$out/SPEC_COMMIT"

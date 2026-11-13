@@ -22,13 +22,21 @@ namespace Wavvon.Sdk.Generated.Challenge.Verify
 #else
         public string Answer { get; set; }
 #endif
-        /// <summary>The challenge_id property</summary>
+        /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ChallengeId { get; set; }
+        public string? Id { get; set; }
 #nullable restore
 #else
-        public string ChallengeId { get; set; }
+        public string Id { get; set; }
+#endif
+        /// <summary>The pubkey property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Pubkey { get; set; }
+#nullable restore
+#else
+        public string Pubkey { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Challenge.Verify.VerifyPostRequestBody"/> and sets the default values.
@@ -56,7 +64,8 @@ namespace Wavvon.Sdk.Generated.Challenge.Verify
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "answer", n => { Answer = n.GetStringValue(); } },
-                { "challenge_id", n => { ChallengeId = n.GetStringValue(); } },
+                { "id", n => { Id = n.GetStringValue(); } },
+                { "pubkey", n => { Pubkey = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -67,7 +76,8 @@ namespace Wavvon.Sdk.Generated.Challenge.Verify
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("answer", Answer);
-            writer.WriteStringValue("challenge_id", ChallengeId);
+            writer.WriteStringValue("id", Id);
+            writer.WriteStringValue("pubkey", Pubkey);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

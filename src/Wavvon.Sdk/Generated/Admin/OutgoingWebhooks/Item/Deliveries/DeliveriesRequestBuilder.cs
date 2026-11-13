@@ -21,7 +21,7 @@ namespace Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Deliveries
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DeliveriesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/outgoing-webhooks/{id}/deliveries{?event_type*,limit*,offset*,success*}", pathParameters)
+        public DeliveriesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/outgoing-webhooks/{id}/deliveries{?cursor*,event_type*,limit*,success*}", pathParameters)
         {
         }
         /// <summary>
@@ -29,7 +29,7 @@ namespace Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Deliveries
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DeliveriesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/outgoing-webhooks/{id}/deliveries{?event_type*,limit*,offset*,success*}", rawUrl)
+        public DeliveriesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/outgoing-webhooks/{id}/deliveries{?cursor*,event_type*,limit*,success*}", rawUrl)
         {
         }
         /// <summary>
@@ -85,6 +85,16 @@ namespace Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Deliveries
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DeliveriesRequestBuilderGetQueryParameters 
         {
+            /// <summary>The id of the last delivery of the previous page</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("cursor")]
+            public string? Cursor { get; set; }
+#nullable restore
+#else
+            [QueryParameter("cursor")]
+            public string Cursor { get; set; }
+#endif
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             #pragma warning disable CS1591
@@ -101,10 +111,6 @@ namespace Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Deliveries
             #pragma warning disable CS1591
             [QueryParameter("limit")]
             public long? Limit { get; set; }
-            #pragma warning restore CS1591
-            #pragma warning disable CS1591
-            [QueryParameter("offset")]
-            public long? Offset { get; set; }
             #pragma warning restore CS1591
             #pragma warning disable CS1591
             [QueryParameter("success")]

@@ -8,8 +8,6 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-using Wavvon.Sdk.Generated.Hub.Settings.Challenge;
-using Wavvon.Sdk.Generated.Hub.Settings.Lobby;
 namespace Wavvon.Sdk.Generated.Hub.Settings
 {
     /// <summary>
@@ -18,16 +16,6 @@ namespace Wavvon.Sdk.Generated.Hub.Settings
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SettingsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The challenge property</summary>
-        public global::Wavvon.Sdk.Generated.Hub.Settings.Challenge.ChallengeRequestBuilder Challenge
-        {
-            get => new global::Wavvon.Sdk.Generated.Hub.Settings.Challenge.ChallengeRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The lobby property</summary>
-        public global::Wavvon.Sdk.Generated.Hub.Settings.Lobby.LobbyRequestBuilder Lobby
-        {
-            get => new global::Wavvon.Sdk.Generated.Hub.Settings.Lobby.LobbyRequestBuilder(PathParameters, RequestAdapter);
-        }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Hub.Settings.SettingsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -45,7 +33,7 @@ namespace Wavvon.Sdk.Generated.Hub.Settings
         {
         }
         /// <summary>
-        /// Get hub settings (admin)
+        /// Besides the settings, `attachments_usage` is `{used_bytes, cap_bytes, warning, evictions}`: disk used by attachment blobs against `attachments_cap_bytes`, whether it is at `attachments_warn_percent`, and the blobs evicted for space since the hub started. `stream_limits` is the same object as on `/info`, and `landing` the one on the invite preview.
         /// </summary>
         /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -63,7 +51,7 @@ namespace Wavvon.Sdk.Generated.Hub.Settings
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get hub settings (admin)
+        /// Besides the settings, `attachments_usage` is `{used_bytes, cap_bytes, warning, evictions}`: disk used by attachment blobs against `attachments_cap_bytes`, whether it is at `attachments_warn_percent`, and the blobs evicted for space since the hub started. `stream_limits` is the same object as on `/info`, and `landing` the one on the invite preview.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

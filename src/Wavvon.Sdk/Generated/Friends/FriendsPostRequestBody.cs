@@ -5,7 +5,6 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Friends
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -15,6 +14,14 @@ namespace Wavvon.Sdk.Generated.Friends
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The display_name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
+        public string DisplayName { get; set; }
+#endif
         /// <summary>Required for federated (cross-hub) friends</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -23,21 +30,13 @@ namespace Wavvon.Sdk.Generated.Friends
 #else
         public string HubUrl { get; set; }
 #endif
-        /// <summary>The public_key property</summary>
+        /// <summary>The target_public_key property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PublicKey { get; set; }
+        public string? TargetPublicKey { get; set; }
 #nullable restore
 #else
-        public string PublicKey { get; set; }
-#endif
-        /// <summary>The actor&apos;s signature over a group add or leave (wire-format.md, &quot;Group DM member change&quot;). Without it the change holds on this hub only; with it the hub carries the change to the other members&apos; hubs. Only on a hub advertising `dms.group.signedmembers`.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Wavvon.Sdk.Generated.Models.SignedMemberChange? Signed { get; set; }
-#nullable restore
-#else
-        public global::Wavvon.Sdk.Generated.Models.SignedMemberChange Signed { get; set; }
+        public string TargetPublicKey { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Friends.FriendsPostRequestBody"/> and sets the default values.
@@ -64,9 +63,9 @@ namespace Wavvon.Sdk.Generated.Friends
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "display_name", n => { DisplayName = n.GetStringValue(); } },
                 { "hub_url", n => { HubUrl = n.GetStringValue(); } },
-                { "public_key", n => { PublicKey = n.GetStringValue(); } },
-                { "signed", n => { Signed = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.SignedMemberChange>(global::Wavvon.Sdk.Generated.Models.SignedMemberChange.CreateFromDiscriminatorValue); } },
+                { "target_public_key", n => { TargetPublicKey = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -76,9 +75,9 @@ namespace Wavvon.Sdk.Generated.Friends
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("display_name", DisplayName);
             writer.WriteStringValue("hub_url", HubUrl);
-            writer.WriteStringValue("public_key", PublicKey);
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.SignedMemberChange>("signed", Signed);
+            writer.WriteStringValue("target_public_key", TargetPublicKey);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

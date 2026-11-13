@@ -10,7 +10,7 @@ using Wavvon.Sdk.Generated.Users.Item.Permissions.Why;
 namespace Wavvon.Sdk.Generated.Users.Item.Permissions
 {
     /// <summary>
-    /// Builds and executes requests for operations under \users\{pubkey-id}\permissions
+    /// Builds and executes requests for operations under \users\{pubkey}\permissions
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PermissionsRequestBuilder : BaseRequestBuilder
@@ -25,7 +25,7 @@ namespace Wavvon.Sdk.Generated.Users.Item.Permissions
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PermissionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey%2Did}/permissions", pathParameters)
+        public PermissionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey}/permissions", pathParameters)
         {
         }
         /// <summary>
@@ -33,7 +33,7 @@ namespace Wavvon.Sdk.Generated.Users.Item.Permissions
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PermissionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey%2Did}/permissions", rawUrl)
+        public PermissionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey}/permissions", rawUrl)
         {
         }
     }

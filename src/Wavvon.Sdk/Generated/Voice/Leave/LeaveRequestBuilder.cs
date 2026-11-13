@@ -33,7 +33,7 @@ namespace Wavvon.Sdk.Generated.Voice.Leave
         {
         }
         /// <summary>
-        /// Runs the same cleanup as a normal WebSocket voice disconnect. Idempotent — calling when not in the channel is a no-op.
+        /// Removes the calling identity from the channel through the same cleanup as a WebSocket voice disconnect, for a client (typically an app) that has no socket to drop. Idempotent — calling when not in the channel is a no-op and still answers 204.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Wavvon.Sdk.Generated.Voice.Leave
             await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Runs the same cleanup as a normal WebSocket voice disconnect. Idempotent — calling when not in the channel is a no-op.
+        /// Removes the calling identity from the channel through the same cleanup as a WebSocket voice disconnect, for a client (typically an app) that has no socket to drop. Idempotent — calling when not in the channel is a no-op and still answers 204.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

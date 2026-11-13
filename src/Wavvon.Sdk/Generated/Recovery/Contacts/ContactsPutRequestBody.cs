@@ -23,7 +23,7 @@ namespace Wavvon.Sdk.Generated.Recovery.Contacts
         public List<string> Contacts { get; set; }
 #endif
         /// <summary>The threshold property</summary>
-        public long? Threshold { get; set; }
+        public int? Threshold { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Recovery.Contacts.ContactsPutRequestBody"/> and sets the default values.
         /// </summary>
@@ -50,7 +50,7 @@ namespace Wavvon.Sdk.Generated.Recovery.Contacts
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "contacts", n => { Contacts = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "threshold", n => { Threshold = n.GetLongValue(); } },
+                { "threshold", n => { Threshold = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Wavvon.Sdk.Generated.Recovery.Contacts
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("contacts", Contacts);
-            writer.WriteLongValue("threshold", Threshold);
+            writer.WriteIntValue("threshold", Threshold);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

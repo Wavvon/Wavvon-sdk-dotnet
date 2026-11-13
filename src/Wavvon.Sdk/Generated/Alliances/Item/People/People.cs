@@ -30,7 +30,7 @@ namespace Wavvon.Sdk.Generated.Alliances.Item.People
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>Master key</summary>
+        /// <summary>Master key, for DM routing</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MasterPubkey { get; set; }

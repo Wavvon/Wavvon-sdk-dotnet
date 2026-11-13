@@ -51,24 +51,23 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse>(requestInfo, global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// All fields optional. Scalars are accepted as strings, booleans or numbers and stored as text; `cert_min_age_days` is an accepted alias for `cert_standing_days`, which is what GET calls the same setting.
+        /// All fields optional. Scalars are accepted as strings, booleans or numbers and stored as text. `cert_min_age_days` is the standing period, under the name GET returns.
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PatchAsync(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task PatchAsync(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PatchAsync(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task PatchAsync(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Get certification settings (admin)
@@ -90,7 +89,7 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             return requestInfo;
         }
         /// <summary>
-        /// All fields optional. Scalars are accepted as strings, booleans or numbers and stored as text; `cert_min_age_days` is an accepted alias for `cert_standing_days`, which is what GET calls the same setting.
+        /// All fields optional. Scalars are accepted as strings, booleans or numbers and stored as text. `cert_min_age_days` is the standing period, under the name GET returns.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

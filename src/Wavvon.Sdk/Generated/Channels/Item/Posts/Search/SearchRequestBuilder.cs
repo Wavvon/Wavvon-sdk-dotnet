@@ -21,7 +21,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts.Search
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SearchRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/channels/{channel_id}/posts/search?q={q}", pathParameters)
+        public SearchRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/channels/{channel_id}/posts/search?q={q}{&cursor*,limit*}", pathParameters)
         {
         }
         /// <summary>
@@ -29,26 +29,27 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts.Search
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SearchRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/channels/{channel_id}/posts/search?q={q}", rawUrl)
+        public SearchRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/channels/{channel_id}/posts/search?q={q}{&cursor*,limit*}", rawUrl)
         {
         }
         /// <summary>
         /// Full-text search within a forum channel
         /// </summary>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.SearchGetResponse"/></returns>
+        /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.Search&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.SearchGetResponse?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.SearchRequestBuilder.SearchRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.Search>?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.SearchRequestBuilder.SearchRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.SearchGetResponse> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.SearchRequestBuilder.SearchRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.Search>> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.SearchRequestBuilder.SearchRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.SearchGetResponse>(requestInfo, global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.SearchGetResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.Search>(requestInfo, global::Wavvon.Sdk.Generated.Channels.Item.Posts.Search.Search.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return collectionResult?.AsList();
         }
         /// <summary>
         /// Full-text search within a forum channel
@@ -84,6 +85,20 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts.Search
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class SearchRequestBuilderGetQueryParameters 
         {
+            /// <summary>The `post_id` of the last hit of the previous page</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("cursor")]
+            public string? Cursor { get; set; }
+#nullable restore
+#else
+            [QueryParameter("cursor")]
+            public string Cursor { get; set; }
+#endif
+            #pragma warning disable CS1591
+            [QueryParameter("limit")]
+            public long? Limit { get; set; }
+            #pragma warning restore CS1591
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             #pragma warning disable CS1591

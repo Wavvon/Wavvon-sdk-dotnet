@@ -22,7 +22,7 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Messages
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MessagesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/conversations/{conversation_id}/messages{?before*,limit*}", pathParameters)
+        public MessagesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/conversations/{conversation_id}/messages{?cursor*,limit*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Messages
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MessagesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/conversations/{conversation_id}/messages{?before*,limit*}", rawUrl)
+        public MessagesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/conversations/{conversation_id}/messages{?cursor*,limit*}", rawUrl)
         {
         }
         /// <summary>
@@ -55,22 +55,22 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Messages
         /// <summary>
         /// Send a DM
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.DmMessage"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PostAsync(global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Wavvon.Sdk.Generated.Models.DmMessage?> PostAsync(global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PostAsync(global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Wavvon.Sdk.Generated.Models.DmMessage> PostAsync(global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Models.DmMessage>(requestInfo, global::Wavvon.Sdk.Generated.Models.DmMessage.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Newest `limit` messages, returned oldest-first. Page backwards with `before` = the `id` of the oldest row you already have. Before 2026-08-08 this took no query params and returned the entire history on every call, though both clients were already sending these two.
@@ -109,6 +109,7 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Messages
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
@@ -130,12 +131,12 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Messages
             /// <summary>Keyset cursor — the `id` of the oldest message already held.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            [QueryParameter("before")]
-            public string? Before { get; set; }
+            [QueryParameter("cursor")]
+            public string? Cursor { get; set; }
 #nullable restore
 #else
-            [QueryParameter("before")]
-            public string Before { get; set; }
+            [QueryParameter("cursor")]
+            public string Cursor { get; set; }
 #endif
             /// <summary>Page size, clamped to 1..100.</summary>
             [QueryParameter("limit")]

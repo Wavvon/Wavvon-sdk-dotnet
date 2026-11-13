@@ -46,6 +46,25 @@ namespace Wavvon.Sdk.Generated.Admin.Webhooks
         {
         }
         /// <summary>
+        /// List incoming webhooks (webhooks.incoming.manage)
+        /// </summary>
+        /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Admin.Webhooks.Webhooks&gt;</returns>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<List<global::Wavvon.Sdk.Generated.Admin.Webhooks.Webhooks>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<List<global::Wavvon.Sdk.Generated.Admin.Webhooks.Webhooks>> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToGetRequestInformation(requestConfiguration);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Wavvon.Sdk.Generated.Admin.Webhooks.Webhooks>(requestInfo, global::Wavvon.Sdk.Generated.Admin.Webhooks.Webhooks.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return collectionResult?.AsList();
+        }
+        /// <summary>
         /// The returned `webhook_url` embeds the secret token and is shown **once** — only its hash is stored.
         /// </summary>
         /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.Webhooks.WebhooksPostResponse"/></returns>
@@ -64,6 +83,25 @@ namespace Wavvon.Sdk.Generated.Admin.Webhooks
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Admin.Webhooks.WebhooksPostResponse>(requestInfo, global::Wavvon.Sdk.Generated.Admin.Webhooks.WebhooksPostResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
+        /// List incoming webhooks (webhooks.incoming.manage)
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
         /// <summary>
         /// The returned `webhook_url` embeds the secret token and is shown **once** — only its hash is stored.

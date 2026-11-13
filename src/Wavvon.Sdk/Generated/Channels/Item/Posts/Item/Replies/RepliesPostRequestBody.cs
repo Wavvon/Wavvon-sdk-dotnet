@@ -14,6 +14,14 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts.Item.Replies
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Uploads to this channel; see POST /channels/{channel_id}/posts.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? AttachmentIds { get; set; }
+#nullable restore
+#else
+        public List<string> AttachmentIds { get; set; }
+#endif
         /// <summary>The body property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -55,6 +63,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts.Item.Replies
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "attachment_ids", n => { AttachmentIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "body", n => { Body = n.GetStringValue(); } },
                 { "reply_to_id", n => { ReplyToId = n.GetStringValue(); } },
             };
@@ -66,6 +75,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Posts.Item.Replies
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfPrimitiveValues<string>("attachment_ids", AttachmentIds);
             writer.WriteStringValue("body", Body);
             writer.WriteStringValue("reply_to_id", ReplyToId);
             writer.WriteAdditionalData(AdditionalData);

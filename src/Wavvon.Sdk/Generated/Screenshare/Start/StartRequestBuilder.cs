@@ -33,7 +33,7 @@ namespace Wavvon.Sdk.Generated.Screenshare.Start
         {
         }
         /// <summary>
-        /// Registers a new screen-share stream for the bot and broadcasts `screen_share_started` to all channel subscribers. After this call the bot pushes `screen_share_chunk` binary envelopes over its WS connection using the returned `stream_id`.
+        /// Registers a new screen-share stream for the calling identity and broadcasts `screen_share_started` to all channel subscribers, for a client (typically an app) that pushes frames without the WS start handshake. After this call the caller pushes `screen_share_chunk` binary envelopes over its WS connection using the returned `stream_id`. Requires `voice.join` in the channel; streams started this way count against a hub-wide budget.
         /// </summary>
         /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Screenshare.Start.StartPostResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -53,7 +53,7 @@ namespace Wavvon.Sdk.Generated.Screenshare.Start
             return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Screenshare.Start.StartPostResponse>(requestInfo, global::Wavvon.Sdk.Generated.Screenshare.Start.StartPostResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Registers a new screen-share stream for the bot and broadcasts `screen_share_started` to all channel subscribers. After this call the bot pushes `screen_share_chunk` binary envelopes over its WS connection using the returned `stream_id`.
+        /// Registers a new screen-share stream for the calling identity and broadcasts `screen_share_started` to all channel subscribers, for a client (typically an app) that pushes frames without the WS start handshake. After this call the caller pushes `screen_share_chunk` binary envelopes over its WS connection using the returned `stream_id`. Requires `voice.join` in the channel; streams started this way count against a hub-wide budget.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

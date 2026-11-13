@@ -31,9 +31,27 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Messages
 #else
         public string Content { get; set; }
 #endif
-        /// <summary>The is_encrypted property</summary>
-        public bool? IsEncrypted { get; set; }
-        /// <summary>Hex Ed25519 signature over the federated plaintext DM bytes (wire-format.md). A recipient on another hub refuses an unsigned plaintext DM.</summary>
+        /// <summary>With a v2 plaintext_signature: the unix time the client signed, within five minutes of the hub&apos;s clock. The hub adopts it.</summary>
+        public long? CreatedAt { get; set; }
+        /// <summary>The encrypted_envelope property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.EncryptedDmEnvelope? EncryptedEnvelope { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.EncryptedDmEnvelope EncryptedEnvelope { get; set; }
+#endif
+        /// <summary>The group_encrypted_envelope property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.GroupEncryptedEnvelope? GroupEncryptedEnvelope { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.GroupEncryptedEnvelope GroupEncryptedEnvelope { get; set; }
+#endif
+        /// <summary>With a v2 plaintext_signature: the id the client chose and signed. The hub adopts it. Required alongside a signature on a dms.plaintext.v2 hub.</summary>
+        public Guid? MessageId { get; set; }
+        /// <summary>Hex Ed25519 signature over the federated plaintext DM bytes (wire-format.md, v2 on a hub advertising dms.plaintext.v2). A recipient on another hub refuses an unsigned plaintext DM.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PlaintextSignature { get; set; }
@@ -44,10 +62,10 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Messages
         /// <summary>When the signing key is not the sender&apos;s canonical key: the master-signed cert tying the two. Only on a hub advertising `dms.plaintext.signercert`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody_plaintext_signer_cert? PlaintextSignerCert { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.SubkeyCert? PlaintextSignerCert { get; set; }
 #nullable restore
 #else
-        public global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody_plaintext_signer_cert PlaintextSignerCert { get; set; }
+        public global::Wavvon.Sdk.Generated.Models.SubkeyCert PlaintextSignerCert { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody"/> and sets the default values.
@@ -76,9 +94,12 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Messages
             {
                 { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Attachment>(global::Wavvon.Sdk.Generated.Models.Attachment.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "content", n => { Content = n.GetStringValue(); } },
-                { "is_encrypted", n => { IsEncrypted = n.GetBoolValue(); } },
+                { "created_at", n => { CreatedAt = n.GetLongValue(); } },
+                { "encrypted_envelope", n => { EncryptedEnvelope = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.EncryptedDmEnvelope>(global::Wavvon.Sdk.Generated.Models.EncryptedDmEnvelope.CreateFromDiscriminatorValue); } },
+                { "group_encrypted_envelope", n => { GroupEncryptedEnvelope = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.GroupEncryptedEnvelope>(global::Wavvon.Sdk.Generated.Models.GroupEncryptedEnvelope.CreateFromDiscriminatorValue); } },
+                { "message_id", n => { MessageId = n.GetGuidValue(); } },
                 { "plaintext_signature", n => { PlaintextSignature = n.GetStringValue(); } },
-                { "plaintext_signer_cert", n => { PlaintextSignerCert = n.GetObjectValue<global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody_plaintext_signer_cert>(global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody_plaintext_signer_cert.CreateFromDiscriminatorValue); } },
+                { "plaintext_signer_cert", n => { PlaintextSignerCert = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.SubkeyCert>(global::Wavvon.Sdk.Generated.Models.SubkeyCert.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -90,9 +111,12 @@ namespace Wavvon.Sdk.Generated.Conversations.Item.Messages
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.Attachment>("attachments", Attachments);
             writer.WriteStringValue("content", Content);
-            writer.WriteBoolValue("is_encrypted", IsEncrypted);
+            writer.WriteLongValue("created_at", CreatedAt);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.EncryptedDmEnvelope>("encrypted_envelope", EncryptedEnvelope);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.GroupEncryptedEnvelope>("group_encrypted_envelope", GroupEncryptedEnvelope);
+            writer.WriteGuidValue("message_id", MessageId);
             writer.WriteStringValue("plaintext_signature", PlaintextSignature);
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Conversations.Item.Messages.MessagesPostRequestBody_plaintext_signer_cert>("plaintext_signer_cert", PlaintextSignerCert);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.SubkeyCert>("plaintext_signer_cert", PlaintextSignerCert);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

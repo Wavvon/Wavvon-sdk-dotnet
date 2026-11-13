@@ -14,6 +14,22 @@ namespace Wavvon.Sdk.Generated.Conversations
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The member_hubs property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Conversations.ConversationsPostRequestBody_member_hubs? MemberHubs { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Conversations.ConversationsPostRequestBody_member_hubs MemberHubs { get; set; }
+#endif
+        /// <summary>The member_masters property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Conversations.ConversationsPostRequestBody_member_masters? MemberMasters { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Conversations.ConversationsPostRequestBody_member_masters MemberMasters { get; set; }
+#endif
         /// <summary>The members property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,6 +63,8 @@ namespace Wavvon.Sdk.Generated.Conversations
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "member_hubs", n => { MemberHubs = n.GetObjectValue<global::Wavvon.Sdk.Generated.Conversations.ConversationsPostRequestBody_member_hubs>(global::Wavvon.Sdk.Generated.Conversations.ConversationsPostRequestBody_member_hubs.CreateFromDiscriminatorValue); } },
+                { "member_masters", n => { MemberMasters = n.GetObjectValue<global::Wavvon.Sdk.Generated.Conversations.ConversationsPostRequestBody_member_masters>(global::Wavvon.Sdk.Generated.Conversations.ConversationsPostRequestBody_member_masters.CreateFromDiscriminatorValue); } },
                 { "members", n => { Members = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -57,6 +75,8 @@ namespace Wavvon.Sdk.Generated.Conversations
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Conversations.ConversationsPostRequestBody_member_hubs>("member_hubs", MemberHubs);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Conversations.ConversationsPostRequestBody_member_masters>("member_masters", MemberMasters);
             writer.WriteCollectionOfPrimitiveValues<string>("members", Members);
             writer.WriteAdditionalData(AdditionalData);
         }

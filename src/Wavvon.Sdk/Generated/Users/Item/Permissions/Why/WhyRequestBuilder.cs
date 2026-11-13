@@ -11,7 +11,7 @@ using System;
 namespace Wavvon.Sdk.Generated.Users.Item.Permissions.Why
 {
     /// <summary>
-    /// Builds and executes requests for operations under \users\{pubkey-id}\permissions\why
+    /// Builds and executes requests for operations under \users\{pubkey}\permissions\why
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WhyRequestBuilder : BaseRequestBuilder
@@ -21,7 +21,7 @@ namespace Wavvon.Sdk.Generated.Users.Item.Permissions.Why
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WhyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey%2Did}/permissions/why?permission={permission}{&channel_id*}", pathParameters)
+        public WhyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey}/permissions/why?permission={permission}{&channel_id*}", pathParameters)
         {
         }
         /// <summary>
@@ -29,7 +29,7 @@ namespace Wavvon.Sdk.Generated.Users.Item.Permissions.Why
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WhyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey%2Did}/permissions/why?permission={permission}{&channel_id*}", rawUrl)
+        public WhyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/{pubkey}/permissions/why?permission={permission}{&channel_id*}", rawUrl)
         {
         }
         /// <summary>

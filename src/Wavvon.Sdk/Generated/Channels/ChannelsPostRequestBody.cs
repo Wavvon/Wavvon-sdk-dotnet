@@ -14,6 +14,30 @@ namespace Wavvon.Sdk.Generated.Channels
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The banner_file_id property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BannerFileId { get; set; }
+#nullable restore
+#else
+        public string BannerFileId { get; set; }
+#endif
+        /// <summary>The banner_url property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BannerUrl { get; set; }
+#nullable restore
+#else
+        public string BannerUrl { get; set; }
+#endif
+        /// <summary>The channel_type property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ChannelType { get; set; }
+#nullable restore
+#else
+        public string ChannelType { get; set; }
+#endif
         /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -32,6 +56,8 @@ namespace Wavvon.Sdk.Generated.Channels
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>The nsfw property</summary>
+        public bool? Nsfw { get; set; }
         /// <summary>The parent_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,6 +65,14 @@ namespace Wavvon.Sdk.Generated.Channels
 #nullable restore
 #else
         public string ParentId { get; set; }
+#endif
+        /// <summary>The spawner_name_template property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SpawnerNameTemplate { get; set; }
+#nullable restore
+#else
+        public string SpawnerNameTemplate { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Channels.ChannelsPostRequestBody"/> and sets the default values.
@@ -65,10 +99,15 @@ namespace Wavvon.Sdk.Generated.Channels
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "banner_file_id", n => { BannerFileId = n.GetStringValue(); } },
+                { "banner_url", n => { BannerUrl = n.GetStringValue(); } },
+                { "channel_type", n => { ChannelType = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "is_category", n => { IsCategory = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nsfw", n => { Nsfw = n.GetBoolValue(); } },
                 { "parent_id", n => { ParentId = n.GetStringValue(); } },
+                { "spawner_name_template", n => { SpawnerNameTemplate = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -78,10 +117,15 @@ namespace Wavvon.Sdk.Generated.Channels
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("banner_file_id", BannerFileId);
+            writer.WriteStringValue("banner_url", BannerUrl);
+            writer.WriteStringValue("channel_type", ChannelType);
             writer.WriteStringValue("description", Description);
             writer.WriteBoolValue("is_category", IsCategory);
             writer.WriteStringValue("name", Name);
+            writer.WriteBoolValue("nsfw", Nsfw);
             writer.WriteStringValue("parent_id", ParentId);
+            writer.WriteStringValue("spawner_name_template", SpawnerNameTemplate);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

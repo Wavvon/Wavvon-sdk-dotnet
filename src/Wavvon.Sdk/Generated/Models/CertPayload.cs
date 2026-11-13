@@ -23,8 +23,24 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public List<string> Capabilities { get; set; }
 #endif
+        /// <summary>Omitted unless set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
         /// <summary>The expires_at property</summary>
         public long? ExpiresAt { get; set; }
+        /// <summary>Emoji or short icon for the badge. Omitted unless set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Icon { get; set; }
+#nullable restore
+#else
+        public string Icon { get; set; }
+#endif
         /// <summary>The issued_at property</summary>
         public long? IssuedAt { get; set; }
         /// <summary>The issuer_pubkey property</summary>
@@ -43,10 +59,18 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public string IssuerUrl { get; set; }
 #endif
+        /// <summary>Badge display name; present means this cert is an achievement badge. Omitted unless set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Label { get; set; }
+#nullable restore
+#else
+        public string Label { get; set; }
+#endif
         /// <summary>The member_since property</summary>
         public long? MemberSince { get; set; }
         /// <summary>The pow_level property</summary>
-        public long? PowLevel { get; set; }
+        public int? PowLevel { get; set; }
         /// <summary>The standing property</summary>
         public global::Wavvon.Sdk.Generated.Models.CertPayload_standing? Standing { get; set; }
         /// <summary>Always &apos;user&apos;</summary>
@@ -91,12 +115,15 @@ namespace Wavvon.Sdk.Generated.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "capabilities", n => { Capabilities = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "expires_at", n => { ExpiresAt = n.GetLongValue(); } },
+                { "icon", n => { Icon = n.GetStringValue(); } },
                 { "issued_at", n => { IssuedAt = n.GetLongValue(); } },
                 { "issuer_pubkey", n => { IssuerPubkey = n.GetStringValue(); } },
                 { "issuer_url", n => { IssuerUrl = n.GetStringValue(); } },
+                { "label", n => { Label = n.GetStringValue(); } },
                 { "member_since", n => { MemberSince = n.GetLongValue(); } },
-                { "pow_level", n => { PowLevel = n.GetLongValue(); } },
+                { "pow_level", n => { PowLevel = n.GetIntValue(); } },
                 { "standing", n => { Standing = n.GetEnumValue<global::Wavvon.Sdk.Generated.Models.CertPayload_standing>(); } },
                 { "subject_kind", n => { SubjectKind = n.GetStringValue(); } },
                 { "subject_pubkey", n => { SubjectPubkey = n.GetStringValue(); } },
@@ -110,12 +137,15 @@ namespace Wavvon.Sdk.Generated.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("capabilities", Capabilities);
+            writer.WriteStringValue("description", Description);
             writer.WriteLongValue("expires_at", ExpiresAt);
+            writer.WriteStringValue("icon", Icon);
             writer.WriteLongValue("issued_at", IssuedAt);
             writer.WriteStringValue("issuer_pubkey", IssuerPubkey);
             writer.WriteStringValue("issuer_url", IssuerUrl);
+            writer.WriteStringValue("label", Label);
             writer.WriteLongValue("member_since", MemberSince);
-            writer.WriteLongValue("pow_level", PowLevel);
+            writer.WriteIntValue("pow_level", PowLevel);
             writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Models.CertPayload_standing>("standing", Standing);
             writer.WriteStringValue("subject_kind", SubjectKind);
             writer.WriteStringValue("subject_pubkey", SubjectPubkey);

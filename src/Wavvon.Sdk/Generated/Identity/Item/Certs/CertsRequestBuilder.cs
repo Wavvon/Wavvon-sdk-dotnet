@@ -12,7 +12,7 @@ using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Identity.Item.Certs
 {
     /// <summary>
-    /// Builds and executes requests for operations under \identity\{master-id}\certs
+    /// Builds and executes requests for operations under \identity\{pubkey}\certs
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CertsRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Wavvon.Sdk.Generated.Identity.Item.Certs
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CertsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{master%2Did}/certs", pathParameters)
+        public CertsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{pubkey}/certs", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Wavvon.Sdk.Generated.Identity.Item.Certs
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CertsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{master%2Did}/certs", rawUrl)
+        public CertsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/identity/{pubkey}/certs", rawUrl)
         {
         }
         /// <summary>

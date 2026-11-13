@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Join.Item
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -22,6 +23,14 @@ namespace Wavvon.Sdk.Generated.Join.Item
 #else
         public string Code { get; set; }
 #endif
+        /// <summary>The description property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
         /// <summary>The hub_name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -30,8 +39,18 @@ namespace Wavvon.Sdk.Generated.Join.Item
 #else
         public string HubName { get; set; }
 #endif
+        /// <summary>How the invite landing looks (hubs advertising `hub.landing`). Each field is omitted when unset.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.Landing? Landing { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.Landing Landing { get; set; }
+#endif
         /// <summary>The member_count property</summary>
         public long? MemberCount { get; set; }
+        /// <summary>Connected members, not counting invisible ones.</summary>
+        public long? OnlineCount { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Join.Item.WithCodeGetResponse"/> and sets the default values.
         /// </summary>
@@ -58,8 +77,11 @@ namespace Wavvon.Sdk.Generated.Join.Item
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "code", n => { Code = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "hub_name", n => { HubName = n.GetStringValue(); } },
+                { "landing", n => { Landing = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.Landing>(global::Wavvon.Sdk.Generated.Models.Landing.CreateFromDiscriminatorValue); } },
                 { "member_count", n => { MemberCount = n.GetLongValue(); } },
+                { "online_count", n => { OnlineCount = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -70,8 +92,11 @@ namespace Wavvon.Sdk.Generated.Join.Item
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
+            writer.WriteStringValue("description", Description);
             writer.WriteStringValue("hub_name", HubName);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.Landing>("landing", Landing);
             writer.WriteLongValue("member_count", MemberCount);
+            writer.WriteLongValue("online_count", OnlineCount);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -14,6 +14,14 @@ namespace Wavvon.Sdk.Generated.Permissions
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The section a roles screen shows it under: messages, voice, moderation, members, channels, events, hub, integrations, federation. Hubs advertising `permissions.categories`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Category { get; set; }
+#nullable restore
+#else
+        public string Category { get; set; }
+#endif
         /// <summary>Dotted prefix, for grouping without re-splitting the id.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -57,6 +65,7 @@ namespace Wavvon.Sdk.Generated.Permissions
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "category", n => { Category = n.GetStringValue(); } },
                 { "group", n => { Group = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "scope", n => { Scope = n.GetEnumValue<global::Wavvon.Sdk.Generated.Permissions.PermissionsGetResponse_permissions_scope>(); } },
@@ -69,6 +78,7 @@ namespace Wavvon.Sdk.Generated.Permissions
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("category", Category);
             writer.WriteStringValue("group", Group);
             writer.WriteStringValue("id", Id);
             writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Permissions.PermissionsGetResponse_permissions_scope>("scope", Scope);

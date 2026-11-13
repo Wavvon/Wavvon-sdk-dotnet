@@ -35,7 +35,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MessagesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/channels/{channel_id}/messages{?before*,limit*}", pathParameters)
+        public MessagesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/channels/{channel_id}/messages{?cursor*,limit*,q*,thread_root*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MessagesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/channels/{channel_id}/messages{?before*,limit*}", rawUrl)
+        public MessagesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/channels/{channel_id}/messages{?cursor*,limit*,q*,thread_root*}", rawUrl)
         {
         }
         /// <summary>
@@ -68,22 +68,22 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
         /// <summary>
         /// Send a message
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Models.Message"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PostAsync(global::Wavvon.Sdk.Generated.Channels.Item.Messages.MessagesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Wavvon.Sdk.Generated.Models.Message?> PostAsync(global::Wavvon.Sdk.Generated.Channels.Item.Messages.MessagesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PostAsync(global::Wavvon.Sdk.Generated.Channels.Item.Messages.MessagesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Wavvon.Sdk.Generated.Models.Message> PostAsync(global::Wavvon.Sdk.Generated.Channels.Item.Messages.MessagesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Models.Message>(requestInfo, global::Wavvon.Sdk.Generated.Models.Message.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Fetch message history
@@ -122,6 +122,7 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
@@ -140,20 +141,40 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Messages
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class MessagesRequestBuilderGetQueryParameters 
         {
-            /// <summary>Message ID cursor for pagination</summary>
+            /// <summary>The `id` of the last message of the previous page. Newest first; with `thread_root`, oldest first and the cursor pages forward.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            [QueryParameter("before")]
-            public string? Before { get; set; }
+            [QueryParameter("cursor")]
+            public string? Cursor { get; set; }
 #nullable restore
 #else
-            [QueryParameter("before")]
-            public string Before { get; set; }
+            [QueryParameter("cursor")]
+            public string Cursor { get; set; }
 #endif
             #pragma warning disable CS1591
             [QueryParameter("limit")]
             public long? Limit { get; set; }
             #pragma warning restore CS1591
+            /// <summary>Full-text search within the channel; one page of hits, `cursor` ignored.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("q")]
+            public string? Q { get; set; }
+#nullable restore
+#else
+            [QueryParameter("q")]
+            public string Q { get; set; }
+#endif
+            /// <summary>Return only replies to this message, oldest first.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("thread_root")]
+            public string? ThreadRoot { get; set; }
+#nullable restore
+#else
+            [QueryParameter("thread_root")]
+            public string ThreadRoot { get; set; }
+#endif
         }
     }
 }

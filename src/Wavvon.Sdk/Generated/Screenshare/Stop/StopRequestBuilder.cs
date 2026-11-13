@@ -33,7 +33,7 @@ namespace Wavvon.Sdk.Generated.Screenshare.Stop
         {
         }
         /// <summary>
-        /// Deregisters the stream and broadcasts `screen_share_stopped` to all channel subscribers. Notifies any cross-channel subscribers that their subscription ended. Idempotent — safe to call if the stream is already gone.
+        /// Deregisters the caller&apos;s stream and broadcasts `screen_share_stopped` to all channel subscribers. Notifies any cross-channel subscribers that their subscription ended. Idempotent — safe to call if the stream is already gone.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Wavvon.Sdk.Generated.Screenshare.Stop
             await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deregisters the stream and broadcasts `screen_share_stopped` to all channel subscribers. Notifies any cross-channel subscribers that their subscription ended. Idempotent — safe to call if the stream is already gone.
+        /// Deregisters the caller&apos;s stream and broadcasts `screen_share_stopped` to all channel subscribers. Notifies any cross-channel subscribers that their subscription ended. Idempotent — safe to call if the stream is already gone.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

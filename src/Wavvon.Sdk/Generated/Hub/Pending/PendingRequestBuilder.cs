@@ -19,14 +19,14 @@ namespace Wavvon.Sdk.Generated.Hub.Pending
     {
         /// <summary>Gets an item from the Wavvon.Sdk.Generated.hub.pending.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Hub.Pending.Item.WithTarget_keyItemRequestBuilder"/></returns>
-        public global::Wavvon.Sdk.Generated.Hub.Pending.Item.WithTarget_keyItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Hub.Pending.Item.WithPubkeyItemRequestBuilder"/></returns>
+        public global::Wavvon.Sdk.Generated.Hub.Pending.Item.WithPubkeyItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("target_key", position);
-                return new global::Wavvon.Sdk.Generated.Hub.Pending.Item.WithTarget_keyItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("pubkey", position);
+                return new global::Wavvon.Sdk.Generated.Hub.Pending.Item.WithPubkeyItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>
@@ -48,20 +48,21 @@ namespace Wavvon.Sdk.Generated.Hub.Pending
         /// <summary>
         /// Oldest first — the queue is worked from the front, so the cursor movesforward through the list rather than back like the newest-first ones.Paged only on hubs advertising `list.cursor.lists`.
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Hub.Pending.Pending&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Hub.Pending.PendingRequestBuilder.PendingRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Hub.Pending.Pending>?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Hub.Pending.PendingRequestBuilder.PendingRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Hub.Pending.PendingRequestBuilder.PendingRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Hub.Pending.Pending>> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Hub.Pending.PendingRequestBuilder.PendingRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Wavvon.Sdk.Generated.Hub.Pending.Pending>(requestInfo, global::Wavvon.Sdk.Generated.Hub.Pending.Pending.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return collectionResult?.AsList();
         }
         /// <summary>
         /// Oldest first — the queue is worked from the front, so the cursor movesforward through the list rather than back like the newest-first ones.Paged only on hubs advertising `list.cursor.lists`.
@@ -79,6 +80,7 @@ namespace Wavvon.Sdk.Generated.Hub.Pending
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>

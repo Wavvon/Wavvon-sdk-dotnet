@@ -15,7 +15,7 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Pow
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The min_pow_level property</summary>
-        public long? MinPowLevel { get; set; }
+        public int? MinPowLevel { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Admin.Settings.Pow.PowPatchRequestBody"/> and sets the default values.
         /// </summary>
@@ -41,7 +41,7 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Pow
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "min_pow_level", n => { MinPowLevel = n.GetLongValue(); } },
+                { "min_pow_level", n => { MinPowLevel = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Pow
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteLongValue("min_pow_level", MinPowLevel);
+            writer.WriteIntValue("min_pow_level", MinPowLevel);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

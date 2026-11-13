@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System;
 using Wavvon.Sdk.Generated.Admin;
 using Wavvon.Sdk.Generated.Alliances;
+using Wavvon.Sdk.Generated.Application;
 using Wavvon.Sdk.Generated.Apps;
 using Wavvon.Sdk.Generated.Auth;
 using Wavvon.Sdk.Generated.Badges;
@@ -29,7 +30,6 @@ using Wavvon.Sdk.Generated.Identity;
 using Wavvon.Sdk.Generated.Info;
 using Wavvon.Sdk.Generated.Invites;
 using Wavvon.Sdk.Generated.Join;
-using Wavvon.Sdk.Generated.KeyRotation;
 using Wavvon.Sdk.Generated.Lobby;
 using Wavvon.Sdk.Generated.Me;
 using Wavvon.Sdk.Generated.Messages;
@@ -39,18 +39,21 @@ using Wavvon.Sdk.Generated.Permissions;
 using Wavvon.Sdk.Generated.Polls;
 using Wavvon.Sdk.Generated.Preview;
 using Wavvon.Sdk.Generated.Profile;
+using Wavvon.Sdk.Generated.Public;
 using Wavvon.Sdk.Generated.Recovery;
 using Wavvon.Sdk.Generated.RoleCategories;
 using Wavvon.Sdk.Generated.Roles;
 using Wavvon.Sdk.Generated.Screenshare;
 using Wavvon.Sdk.Generated.Search;
 using Wavvon.Sdk.Generated.Soundboard;
+using Wavvon.Sdk.Generated.Stickers;
 using Wavvon.Sdk.Generated.Survey;
 using Wavvon.Sdk.Generated.Tags;
 using Wavvon.Sdk.Generated.Uploads;
 using Wavvon.Sdk.Generated.Users;
 using Wavvon.Sdk.Generated.Voice;
 using Wavvon.Sdk.Generated.Webhooks;
+using Wavvon.Sdk.Generated.Widget;
 using Wavvon.Sdk.Generated.Ws;
 namespace Wavvon.Sdk.Generated
 {
@@ -69,6 +72,11 @@ namespace Wavvon.Sdk.Generated
         public global::Wavvon.Sdk.Generated.Alliances.AlliancesRequestBuilder Alliances
         {
             get => new global::Wavvon.Sdk.Generated.Alliances.AlliancesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The application property</summary>
+        public global::Wavvon.Sdk.Generated.Application.ApplicationRequestBuilder Application
+        {
+            get => new global::Wavvon.Sdk.Generated.Application.ApplicationRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The apps property</summary>
         public global::Wavvon.Sdk.Generated.Apps.AppsRequestBuilder Apps
@@ -155,11 +163,6 @@ namespace Wavvon.Sdk.Generated
         {
             get => new global::Wavvon.Sdk.Generated.Join.JoinRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The keyRotation property</summary>
-        public global::Wavvon.Sdk.Generated.KeyRotation.KeyRotationRequestBuilder KeyRotation
-        {
-            get => new global::Wavvon.Sdk.Generated.KeyRotation.KeyRotationRequestBuilder(PathParameters, RequestAdapter);
-        }
         /// <summary>The lobby property</summary>
         public global::Wavvon.Sdk.Generated.Lobby.LobbyRequestBuilder Lobby
         {
@@ -205,6 +208,11 @@ namespace Wavvon.Sdk.Generated
         {
             get => new global::Wavvon.Sdk.Generated.Profile.ProfileRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The public property</summary>
+        public global::Wavvon.Sdk.Generated.Public.PublicRequestBuilder Public
+        {
+            get => new global::Wavvon.Sdk.Generated.Public.PublicRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The recovery property</summary>
         public global::Wavvon.Sdk.Generated.Recovery.RecoveryRequestBuilder Recovery
         {
@@ -235,6 +243,11 @@ namespace Wavvon.Sdk.Generated
         {
             get => new global::Wavvon.Sdk.Generated.Soundboard.SoundboardRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The stickers property</summary>
+        public global::Wavvon.Sdk.Generated.Stickers.StickersRequestBuilder Stickers
+        {
+            get => new global::Wavvon.Sdk.Generated.Stickers.StickersRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The survey property</summary>
         public global::Wavvon.Sdk.Generated.Survey.SurveyRequestBuilder Survey
         {
@@ -264,6 +277,11 @@ namespace Wavvon.Sdk.Generated
         public global::Wavvon.Sdk.Generated.Webhooks.WebhooksRequestBuilder Webhooks
         {
             get => new global::Wavvon.Sdk.Generated.Webhooks.WebhooksRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The widget property</summary>
+        public global::Wavvon.Sdk.Generated.Widget.WidgetRequestBuilder Widget
+        {
+            get => new global::Wavvon.Sdk.Generated.Widget.WidgetRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The ws property</summary>
         public global::Wavvon.Sdk.Generated.Ws.WsRequestBuilder Ws

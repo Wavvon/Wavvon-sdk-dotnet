@@ -3,10 +3,14 @@ using System.Runtime.Serialization;
 using System;
 namespace Wavvon.Sdk.Generated.Auth.Challenge
 {
-    /// <summary>Present when the answer may be signed over &quot;wavvon/auth-challenge/v1\0&quot; || hex-decoded challenge (wire-format.md). Omitted by older hubs, which take a signature over the raw decoded bytes only. A hub that sends it still accepts the raw form.</summary>
+    /// <summary>tagged-v2 from a current hub or farm: the answer must be bound to the server&apos;s public key (wire-format.md), and no other answer is accepted. tagged-v1 from an older one.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ChallengePostResponse_scheme
     {
+        [EnumMember(Value = "tagged-v2")]
+        #pragma warning disable CS1591
+        TaggedV2,
+        #pragma warning restore CS1591
         [EnumMember(Value = "tagged-v1")]
         #pragma warning disable CS1591
         TaggedV1,

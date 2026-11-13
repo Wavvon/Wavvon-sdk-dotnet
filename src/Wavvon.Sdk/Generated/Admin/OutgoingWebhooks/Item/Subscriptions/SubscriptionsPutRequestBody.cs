@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -17,10 +18,10 @@ namespace Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions
         /// <summary>The subscriptions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsPutRequestBody_subscriptions>? Subscriptions { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.WebhookSubscriptionDto>? Subscriptions { get; set; }
 #nullable restore
 #else
-        public List<global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsPutRequestBody_subscriptions> Subscriptions { get; set; }
+        public List<global::Wavvon.Sdk.Generated.Models.WebhookSubscriptionDto> Subscriptions { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsPutRequestBody"/> and sets the default values.
@@ -47,7 +48,7 @@ namespace Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "subscriptions", n => { Subscriptions = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsPutRequestBody_subscriptions>(global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsPutRequestBody_subscriptions.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "subscriptions", n => { Subscriptions = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.WebhookSubscriptionDto>(global::Wavvon.Sdk.Generated.Models.WebhookSubscriptionDto.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -57,7 +58,7 @@ namespace Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Admin.OutgoingWebhooks.Item.Subscriptions.SubscriptionsPutRequestBody_subscriptions>("subscriptions", Subscriptions);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.WebhookSubscriptionDto>("subscriptions", Subscriptions);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
