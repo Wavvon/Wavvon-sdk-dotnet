@@ -1,5 +1,10 @@
 # Wavvon.Sdk
 
+[![NuGet](https://img.shields.io/nuget/v/Wavvon.Sdk)](https://www.nuget.org/packages/Wavvon.Sdk)
+[![CI](https://github.com/Wavvon/Wavvon-sdk-dotnet/actions/workflows/ci.yml/badge.svg)](https://github.com/Wavvon/Wavvon-sdk-dotnet/actions/workflows/ci.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+[![.NET](https://img.shields.io/badge/.NET-8%20%7C%2010-512BD4?logo=dotnet)](src/Wavvon.Sdk/Wavvon.Sdk.csproj)
+
 Write programs that talk to a [Wavvon](https://github.com/Wavvon) hub in C#:
 bots, apps with slash commands and buttons, event consumers, mini-app hosts,
 and receivers for outgoing webhooks.
