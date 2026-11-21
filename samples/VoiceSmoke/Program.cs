@@ -79,16 +79,20 @@ Say($"after B left, A rotated to key_id {seenB2.Frames().Max(f => f.KeyId)} and 
 // Proximity: ten positions in 100 ms end at the last one.
 await va.CreateZoneAsync("smoke-zone", "smoke", "2d");
 await Until("both to see the zone", () => seenB2.HasZone("smoke-zone") && va.Zones().Any(z => z.ZoneId == "smoke-zone"));
+var t0 = System.Diagnostics.Stopwatch.StartNew();
 for (var i = 0; i < 10; i++)
 {
     va.SetPosition("smoke-zone", [10 + i, 50]);
     await Task.Delay(10);
 }
+// One update per 50 ms window the loop spanned, plus the first and the final
+// flush; timer slop stretches the loop, and nine keeps it a coalescing test.
+var limit = Math.Min(9, (int)Math.Ceiling(t0.Elapsed.TotalMilliseconds / 50) + 2);
 await Until("B to see the last position", () => seenB2.Positions() is [.., [19, 50]]);
 var n = seenB2.Positions().Count;
-if (n > 4)
+if (n > limit)
 {
-    throw new InvalidOperationException($"coalescing let {n} of 10 positions through");
+    throw new InvalidOperationException($"coalescing let {n} of 10 positions through (limit {limit})");
 }
 Say($"ten positions in 100 ms coalesced to {n}, ending at the last");
 
