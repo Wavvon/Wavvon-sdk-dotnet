@@ -44,7 +44,10 @@ Actions workflow files: explain choices in the commit message.
      registration, polling; `Pager.cs`; `Events.cs` frame types and
      `WsEvent.Parse`; `EventConnection.cs` the reconnecting socket;
      `Webhooks.cs` reply types and `WebhookVerifier`; `DispatchHandler.cs`
-     the framework-agnostic webhook handler.
+     the framework-agnostic webhook handler; `Dh.cs` the DH key record,
+     publish and the pin store; `Voice.cs` the voice room (sdk-voice.md:
+     crypto, keys, pacing, events); `VoiceTransport.cs` its only WebRTC code
+     (SIPSorcery).
    - `src/Wavvon.Sdk.AspNetCore` - `MapWavvonDispatch`, nothing else.
 3. **Tests** - `test/Wavvon.Sdk.Tests` (xUnit v3). HTTP is faked with an
    `HttpMessageHandler`; the event connection runs over real WebSockets on
@@ -118,6 +121,16 @@ boots it on a fresh database in a PostgreSQL docker container
 owner, runs the smoke and kills only that hub. In-process tests have missed
 every cross-process bug this project has had: run it when touching auth, the
 socket or webhooks.
+
+`samples/VoiceSmoke` needs a running hub (`WAVVON_SMOKE_HUB`) whose owner is
+`WAVVON_SMOKE_SEED` (default `5a` x 32). Two identities share a room and must
+open each other's frames byte for byte, then a refused 40 ms packet, key
+rotation after a leave, position coalescing and a refused position. Keep every
+event that arrives while waiting for `voice_rtc_answer` (a dropped
+`voice_key_received` leaves that speaker unreadable), and send the offer only
+after ICE gathering is complete (the hub takes no trickle). SIPSorcery sends
+every data-channel message reliable and ordered whatever the channel asks and
+has no FORWARD-TSN: harmless on a clean path, extra latency on a lossy one.
 
 ## Git
 

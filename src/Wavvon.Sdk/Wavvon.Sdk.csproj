@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Kiota.Bundle" Version="2.1.2" />
     <PackageReference Include="NSec.Cryptography" Version="25.4.0" />
+    <PackageReference Include="SIPSorcery" Version="10.0.17" />
   </ItemGroup>
 
   <ItemGroup>

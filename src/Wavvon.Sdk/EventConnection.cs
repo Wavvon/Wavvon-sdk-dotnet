@@ -104,6 +104,8 @@ public sealed class EventConnection : IAsyncDisposable
     public IAsyncEnumerable<WsEvent> ReadAllAsync(CancellationToken cancellationToken = default) =>
         _events.Reader.ReadAllAsync(cancellationToken);
 
+    internal ChannelReader<WsEvent> Reader => _events.Reader;
+
     /// <summary>Sends one frame.</summary>
     /// <exception cref="InvalidOperationException">The socket is not open.</exception>
     public async Task SendAsync(ClientMessage message, CancellationToken cancellationToken = default)

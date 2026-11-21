@@ -47,6 +47,9 @@ public sealed record WavvonClientOptions
     /// passed here. When <see langword="null"/>, the client owns a <see cref="SocketsHttpHandler"/>.
     /// </summary>
     public HttpMessageHandler? Handler { get; init; }
+
+    /// <summary>Where pinned peer DH keys live (voice). <see langword="null"/>: in memory, for the life of the client.</summary>
+    public IDhPinStore? DhPins { get; init; }
 }
 
 /// <summary>
@@ -70,12 +73,14 @@ public sealed class WavvonClient : IDisposable
     private Task<Session>? _loggingIn;
     private SessionState _state = SessionState.SignedOut;
     private HubInfo? _info;
+    private readonly IDhPinStore _dhPins;
 
     /// <summary>Creates a client. Nothing is sent until the first call.</summary>
     public WavvonClient(WavvonClientOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
         _options = options;
+        _dhPins = options.DhPins ?? new MemoryDhPinStore();
         var url = options.HubUrl.AbsoluteUri;
         _hubUrl = new Uri(url.EndsWith('/') ? url : url + "/");
         _transport = options.Handler is null
@@ -230,6 +235,55 @@ public sealed class WavvonClient : IDisposable
         {
             throw new WavvonException("GET /me/events answered without an array of hub events", e);
         }
+    }
+
+    /// <summary>
+    /// Publishes this program's DH key on this hub, unless the hub already holds it. Without it nobody
+    /// can wrap a voice key to the program. Returns whether it was written.
+    /// </summary>
+    public Task<bool> PublishDhKeyAsync(CancellationToken cancellationToken = default) =>
+        DhKeys.PublishAsync(this, cancellationToken);
+
+    /// <summary>
+    /// A peer's verified, pinned X25519 key. The first key seen is pinned; a different validly signed
+    /// one throws <see cref="DhKeyChangedException"/> and is not used.
+    /// </summary>
+    /// <exception cref="RecipientHasNoKeyException">The peer published none.</exception>
+    /// <exception cref="DhKeyUnsignedException">The hub served a record the peer did not sign.</exception>
+    public Task<byte[]> PeerDhKeyAsync(string publicKey, CancellationToken cancellationToken = default) =>
+        DhKeys.PeerAsync(this, _dhPins, publicKey, cancellationToken);
+
+    /// <summary>Pins the DH key the hub now serves for <paramref name="publicKey"/>, after a <see cref="DhKeyChangedException"/> the program chose to accept.</summary>
+    public Task AcceptDhKeyAsync(string publicKey, CancellationToken cancellationToken = default) =>
+        DhKeys.AcceptAsync(this, _dhPins, publicKey, cancellationToken);
+
+    /// <summary>
+    /// Publishes the DH key, joins the channel's voice room on a socket of its own and opens the audio
+    /// session. One room per client: the hub allows one per identity. Needs the hub capabilities
+    /// <c>channels.voice</c> and <c>voice.webrtc</c>.
+    /// </summary>
+    /// <exception cref="UnsupportedByHubException">The hub lacks one of them.</exception>
+    /// <exception cref="VoiceException">The hub refused the join, or the audio session did not open.</exception>
+    public async Task<Voice> JoinVoiceAsync(string channelId, CancellationToken cancellationToken = default)
+    {
+        await RequireCapabilityAsync("channels.voice", cancellationToken).ConfigureAwait(false);
+        // Voice transport v3: a hub without it speaks only WebTransport.
+        await RequireCapabilityAsync("voice.webrtc", cancellationToken).ConfigureAwait(false);
+        // Without a published key nobody wraps a voice key to this program and it cannot unwrap
+        // theirs: it would be deaf and mute.
+        await PublishDhKeyAsync(cancellationToken).ConfigureAwait(false);
+        // A socket of its own: the hub ties the room to the connection.
+        var voice = new Voice(this, Connect(), channelId, _dhPins);
+        try
+        {
+            await voice.StartAsync(cancellationToken).ConfigureAwait(false);
+        }
+        catch
+        {
+            await voice.ShutdownAsync().ConfigureAwait(false);
+            throw;
+        }
+        return voice;
     }
 
     /// <inheritdoc/>

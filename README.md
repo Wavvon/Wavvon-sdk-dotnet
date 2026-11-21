@@ -88,6 +88,8 @@ A fuller one is [samples/EchoBot](samples/EchoBot/Program.cs).
 | Slash command and button webhooks | `DispatchHandler`, `WebhookVerifier.VerifyDispatch`, `MapWavvonDispatch` |
 | Outgoing webhook receiver | `WebhookVerifier.VerifyOutgoingWebhook` |
 | Mini-app host | `EventConnection.AnnounceAppAsync`, `DismissAppAsync`, `SendMiniAppMessageAsync` |
+| Voice: join a room, send and receive end-to-end encrypted Opus, proximity zones | `client.JoinVoiceAsync(channelId)` -> `Voice.SendOpusAsync`, `ReadAllAsync`, `SetPosition` |
+| DH key for voice: publish, fetch, verify, pin on first use | `PublishDhKeyAsync`, `PeerDhKeyAsync`, `AcceptDhKeyAsync`, `IDhPinStore` |
 
 Request and response bodies of `client.Rest` are Kiota's generated classes,
 named after the spec (`ProfilePutRequestBody`, `AppCommandDef`).
@@ -111,6 +113,7 @@ advertise throws `UnsupportedByHubException`.
 | Paging `GET /users`, `/conversations/{id}/messages`, `/admin/reports` | `list.cursor` |
 | Paging bans, mutes, invites, pending, conversations, pins, polls | `list.cursor.lists` |
 | `PingMessage` / `PongEvent` over the socket | `ws.ping` |
+| `JoinVoiceAsync` | `channels.voice` and `voice.webrtc` |
 
 Login, REST, the socket and polling need no capability.
 
@@ -139,8 +142,9 @@ Login, REST, the socket and polling need no capability.
 
 Every signed byte sequence is checked against the shared wire vectors in
 Wavvon-server (`crates/identity/wire-vectors.json`, format 1): the auth
-challenge, the Ed25519 dispatch signature, and the outgoing-webhook HKDF +
-HMAC. CI reads them from Wavvon-server at commit
+challenge, the Ed25519 dispatch signature, the outgoing-webhook HKDF +
+HMAC, the DH key derivation and record, and the voice key wrap and packet
+seal. CI reads them from Wavvon-server at commit
 `78ff4aab3ba905ef4480d02d47f24d63762cc697`.
 
 The REST client was generated from Wavvon-docs at the commit in
