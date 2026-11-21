@@ -2,6 +2,7 @@
   <Folder Name="/samples/">
     <Project Path="samples/EchoBot/EchoBot.csproj" />
     <Project Path="samples/Smoke/Smoke.csproj" />
+    <Project Path="samples/VoiceSmoke/VoiceSmoke.csproj" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/Wavvon.Sdk.AspNetCore/Wavvon.Sdk.AspNetCore.csproj" />
