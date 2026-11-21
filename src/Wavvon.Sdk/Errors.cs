@@ -62,3 +62,72 @@ public sealed class AuthSchemeException(string message) : WavvonException(messag
 
 /// <summary>A webhook request failed verification; answer it with 401 and do nothing else.</summary>
 public sealed class WebhookVerificationException(string message) : WavvonException(message);
+
+/// <summary>The peer has published no DH key on this hub: nothing can be wrapped to it.</summary>
+public sealed class RecipientHasNoKeyException(string publicKey)
+    : WavvonException($"{publicKey} has published no DH key on this hub")
+{
+    /// <summary>The peer.</summary>
+    public string PublicKey { get; } = publicKey;
+}
+
+/// <summary>
+/// The hub holds a DH key for a peer that differs from the one pinned on first use. It is not used;
+/// <see cref="WavvonClient.AcceptDhKeyAsync"/> re-pins once the program decides to.
+/// </summary>
+public sealed class DhKeyChangedException(string publicKey, string pinned, string fetched)
+    : WavvonException($"the DH key of {publicKey} changed since it was pinned")
+{
+    /// <summary>The peer.</summary>
+    public string PublicKey { get; } = publicKey;
+
+    /// <summary>The DH key pinned earlier, hex.</summary>
+    public string Pinned { get; } = pinned;
+
+    /// <summary>The DH key the hub serves now, hex.</summary>
+    public string Fetched { get; } = fetched;
+}
+
+/// <summary>The hub served a DH key record the peer did not sign. Never read as "no key".</summary>
+public sealed class DhKeyUnsignedException(string publicKey)
+    : WavvonException($"the DH key record of {publicKey} is not signed by it")
+{
+    /// <summary>The peer.</summary>
+    public string PublicKey { get; } = publicKey;
+}
+
+/// <summary>What went wrong in a voice room.</summary>
+public enum VoiceErrorKind
+{
+    /// <summary>The socket or the WebRTC data channel failed, or the hub did not answer in time.</summary>
+    Transport,
+
+    /// <summary>The hub refused a voice request.</summary>
+    Refused,
+
+    /// <summary>The packet is not one 20 ms Opus packet.</summary>
+    BadFrame,
+
+    /// <summary>The room was left, or is being joined again.</summary>
+    NotInRoom,
+
+    /// <summary>The room gives this program no talk power; the relay would drop what it sends.</summary>
+    MayNotSpeak,
+
+    /// <summary>The sealed packet would not fit one SCTP chunk.</summary>
+    PacketTooLarge,
+
+    /// <summary>The room has no zone with that id.</summary>
+    UnknownZone,
+
+    /// <summary>The position has the wrong number of coordinates for its zone.</summary>
+    BadPosition,
+}
+
+/// <summary>A voice call failed; <see cref="Kind"/> says how.</summary>
+public sealed class VoiceException(VoiceErrorKind kind, string message, Exception? innerException = null)
+    : WavvonException(message, innerException)
+{
+    /// <summary>What went wrong.</summary>
+    public VoiceErrorKind Kind { get; } = kind;
+}

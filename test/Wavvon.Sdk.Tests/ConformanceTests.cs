@@ -155,4 +155,68 @@ public sealed class ConformanceTests
         var options = new VerifyOptions { Now = DateTimeOffset.FromUnixTimeSeconds(timestamp) };
         Assert.NotNull(WebhookVerifier.VerifyOutgoingWebhook(headers, body, S(v, "inputs.secret_as_shown"), options));
     }
+
+    [Fact]
+    public void MasterDhPubkeySeedToX25519()
+    {
+        var v = Vector("master_dh_pubkey");
+        using var identity = Identity.FromSeed(S(v, "inputs.seed"));
+        Assert.Equal(S(v, "dh_pubkey"), identity.DhPublicKey);
+    }
+
+    [Fact]
+    public void DhKeyRecordSigningBytesSignatureAndVerification()
+    {
+        var v = Vector("dh_key_record");
+        var bytes = DhKeys.SigningBytes(S(v, "inputs.pubkey"), S(v, "inputs.dh_pubkey"));
+        Assert.Equal(S(v, "signing_bytes"), Hex(bytes));
+        using var signer = Identity.FromSeed(S(v, "inputs.signer_seed"));
+        Assert.Equal(S(v, "signature"), Hex(signer.Sign(bytes)));
+        Assert.True(DhKeys.VerifyRecord(S(v, "inputs.pubkey"), S(v, "inputs.dh_pubkey"), S(v, "signature")));
+        Assert.False(DhKeys.VerifyRecord(S(v, "inputs.pubkey"), S(v, "inputs.pubkey"), S(v, "signature")));
+    }
+
+    [Fact]
+    public void VoiceKeyWrapAndUnwrapOnTheRecipientSide()
+    {
+        var v = Vector("voice_key_wrap");
+        using var sender = Identity.FromSeed(S(v, "inputs.sender_seed"));
+        using var recipient = Identity.FromSeed(S(v, "inputs.recipient_seed"));
+        var keyId = v["inputs"]!["key_id"]!.GetValue<uint>();
+        var nonce = Convert.FromHexString(S(v, "inputs.wrap_nonce"));
+        var ct = VoiceCrypto.KeyWrap(
+            sender,
+            Convert.FromHexString(recipient.DhPublicKey),
+            S(v, "inputs.channel_id"),
+            Convert.FromHexString(S(v, "inputs.sender_key")),
+            Convert.FromHexString(S(v, "inputs.nonce_salt")),
+            keyId,
+            nonce);
+        Assert.Equal(S(v, "ciphertext"), Hex(ct));
+        var k = VoiceCrypto.KeyUnwrap(recipient, Convert.FromHexString(sender.DhPublicKey), S(v, "inputs.channel_id"), ct, nonce);
+        Assert.Equal(S(v, "inputs.sender_key"), Hex(k.SenderKey));
+        Assert.Equal(S(v, "inputs.nonce_salt"), Hex(k.NonceSalt));
+        Assert.Equal(keyId, k.KeyId);
+    }
+
+    [Theory]
+    [InlineData("voice_packet_ctr0")]
+    [InlineData("voice_packet_ctr7")]
+    public void VoicePacketSealAndOpen(string name)
+    {
+        var v = Vector(name);
+        var key = Convert.FromHexString(S(v, "inputs.sender_key"));
+        var salt = Convert.FromHexString(S(v, "inputs.nonce_salt"));
+        var keyId = v["inputs"]!["key_id"]!.GetValue<uint>();
+        var ctr = v["inputs"]!["counter"]!.GetValue<ulong>();
+        var ts = v["inputs"]!["timestamp"]!.GetValue<uint>();
+        var opus = Convert.FromHexString(S(v, "inputs.opus"));
+        var sealedPacket = VoiceCrypto.PacketSeal(key, salt, keyId, ctr, ts, opus);
+        Assert.Equal(S(v, "packet"), Hex(sealedPacket));
+        var opened = VoiceCrypto.PacketOpen(key, salt, sealedPacket);
+        Assert.Equal((keyId, ctr, ts), (opened.KeyId, opened.Ctr, opened.Ts));
+        Assert.Equal(opus, opened.Opus);
+        sealedPacket[^1] ^= 1;
+        Assert.ThrowsAny<CryptographicException>(() => VoiceCrypto.PacketOpen(key, salt, sealedPacket));
+    }
 }
