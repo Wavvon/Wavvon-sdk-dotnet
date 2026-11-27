@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -38,23 +39,15 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
 #else
         public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_age_days CertMinAgeDays { get; set; }
 #endif
-        /// <summary>The cert_min_pow_level property</summary>
+        /// <summary>The cert_others property</summary>
+        public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_others? CertOthers { get; set; }
+        /// <summary>The cert_replaces_invite property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level? CertMinPowLevel { get; set; }
+        public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_replaces_invite? CertReplacesInvite { get; set; }
 #nullable restore
 #else
-        public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level CertMinPowLevel { get; set; }
-#endif
-        /// <summary>The cert_mode property</summary>
-        public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_mode? CertMode { get; set; }
-        /// <summary>The cert_require property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_require? CertRequire { get; set; }
-#nullable restore
-#else
-        public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_require CertRequire { get; set; }
+        public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_replaces_invite CertReplacesInvite { get; set; }
 #endif
         /// <summary>The cert_trusted_issuers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -63,6 +56,14 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
 #nullable restore
 #else
         public List<string> CertTrustedIssuers { get; set; }
+#endif
+        /// <summary>The cert_trusted_types property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.TrustedCertType>? CertTrustedTypes { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.TrustedCertType> CertTrustedTypes { get; set; }
 #endif
         /// <summary>The cert_validity_days property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -100,10 +101,10 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
                 { "cert_auto_issue", n => { CertAutoIssue = n.GetObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_auto_issue>(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_auto_issue.CreateFromDiscriminatorValue); } },
                 { "cert_issuer_urls", n => { CertIssuerUrls = n.GetObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_issuer_urls>(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_issuer_urls.CreateFromDiscriminatorValue); } },
                 { "cert_min_age_days", n => { CertMinAgeDays = n.GetObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_age_days>(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_age_days.CreateFromDiscriminatorValue); } },
-                { "cert_min_pow_level", n => { CertMinPowLevel = n.GetObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level>(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level.CreateFromDiscriminatorValue); } },
-                { "cert_mode", n => { CertMode = n.GetEnumValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_mode>(); } },
-                { "cert_require", n => { CertRequire = n.GetObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_require>(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_require.CreateFromDiscriminatorValue); } },
+                { "cert_others", n => { CertOthers = n.GetEnumValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_others>(); } },
+                { "cert_replaces_invite", n => { CertReplacesInvite = n.GetObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_replaces_invite>(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_replaces_invite.CreateFromDiscriminatorValue); } },
                 { "cert_trusted_issuers", n => { CertTrustedIssuers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "cert_trusted_types", n => { CertTrustedTypes = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.TrustedCertType>(global::Wavvon.Sdk.Generated.Models.TrustedCertType.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "cert_validity_days", n => { CertValidityDays = n.GetObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_validity_days>(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_validity_days.CreateFromDiscriminatorValue); } },
             };
         }
@@ -117,10 +118,10 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_auto_issue>("cert_auto_issue", CertAutoIssue);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_issuer_urls>("cert_issuer_urls", CertIssuerUrls);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_age_days>("cert_min_age_days", CertMinAgeDays);
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level>("cert_min_pow_level", CertMinPowLevel);
-            writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_mode>("cert_mode", CertMode);
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_require>("cert_require", CertRequire);
+            writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody_cert_others>("cert_others", CertOthers);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_replaces_invite>("cert_replaces_invite", CertReplacesInvite);
             writer.WriteCollectionOfPrimitiveValues<string>("cert_trusted_issuers", CertTrustedIssuers);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.TrustedCertType>("cert_trusted_types", CertTrustedTypes);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_validity_days>("cert_validity_days", CertValidityDays);
             writer.WriteAdditionalData(AdditionalData);
         }
@@ -247,13 +248,13 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             }
         }
         /// <summary>
-        /// Composed type wrapper for classes <see cref="int"/>, <see cref="string"/>
+        /// Composed type wrapper for classes <see cref="bool"/>, <see cref="string"/>
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class CertsPatchRequestBody_cert_min_pow_level : IComposedTypeWrapper, IParsable
+        public partial class CertsPatchRequestBody_cert_replaces_invite : IComposedTypeWrapper, IParsable
         {
-            /// <summary>Composed type representation for type <see cref="int"/></summary>
-            public int? Integer { get; set; }
+            /// <summary>Composed type representation for type <see cref="bool"/></summary>
+            public bool? Boolean { get; set; }
             /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -265,16 +266,16 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
             /// </summary>
-            /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level"/></returns>
+            /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_replaces_invite"/></returns>
             /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level CreateFromDiscriminatorValue(IParseNode parseNode)
+            public static global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_replaces_invite CreateFromDiscriminatorValue(IParseNode parseNode)
             {
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
-                var result = new global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_min_pow_level();
-                if(parseNode.GetIntValue() is int integerValue)
+                var result = new global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsPatchRequestBody.CertsPatchRequestBody_cert_replaces_invite();
+                if(parseNode.GetBoolValue() is bool booleanValue)
                 {
-                    result.Integer = integerValue;
+                    result.Boolean = booleanValue;
                 }
                 else if(parseNode.GetStringValue() is string stringValue)
                 {
@@ -297,9 +298,9 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             public virtual void Serialize(ISerializationWriter writer)
             {
                 if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(Integer != null)
+                if(Boolean != null)
                 {
-                    writer.WriteIntValue(null, Integer);
+                    writer.WriteBoolValue(null, Boolean);
                 }
                 else if(String != null)
                 {

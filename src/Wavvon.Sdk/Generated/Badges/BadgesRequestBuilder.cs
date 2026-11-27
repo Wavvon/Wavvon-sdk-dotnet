@@ -8,8 +8,10 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using Wavvon.Sdk.Generated.Badges.Defs;
 using Wavvon.Sdk.Generated.Badges.Item;
 using Wavvon.Sdk.Generated.Badges.Pending;
+using Wavvon.Sdk.Generated.Badges.Programs;
 namespace Wavvon.Sdk.Generated.Badges
 {
     /// <summary>
@@ -18,10 +20,20 @@ namespace Wavvon.Sdk.Generated.Badges
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class BadgesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The defs property</summary>
+        public global::Wavvon.Sdk.Generated.Badges.Defs.DefsRequestBuilder Defs
+        {
+            get => new global::Wavvon.Sdk.Generated.Badges.Defs.DefsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The pending property</summary>
         public global::Wavvon.Sdk.Generated.Badges.Pending.PendingRequestBuilder Pending
         {
             get => new global::Wavvon.Sdk.Generated.Badges.Pending.PendingRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The programs property</summary>
+        public global::Wavvon.Sdk.Generated.Badges.Programs.ProgramsRequestBuilder Programs
+        {
+            get => new global::Wavvon.Sdk.Generated.Badges.Programs.ProgramsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Wavvon.Sdk.Generated.badges.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>

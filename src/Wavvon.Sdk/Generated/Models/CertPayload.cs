@@ -23,6 +23,14 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public List<string> Capabilities { get; set; }
 #endif
+        /// <summary>A type from the issuer&apos;s catalogue. Absent on a plain standing cert and on every badge.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CertType { get; set; }
+#nullable restore
+#else
+        public string CertType { get; set; }
+#endif
         /// <summary>Omitted unless set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -115,6 +123,7 @@ namespace Wavvon.Sdk.Generated.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "capabilities", n => { Capabilities = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "cert_type", n => { CertType = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "expires_at", n => { ExpiresAt = n.GetLongValue(); } },
                 { "icon", n => { Icon = n.GetStringValue(); } },
@@ -137,6 +146,7 @@ namespace Wavvon.Sdk.Generated.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("capabilities", Capabilities);
+            writer.WriteStringValue("cert_type", CertType);
             writer.WriteStringValue("description", Description);
             writer.WriteLongValue("expires_at", ExpiresAt);
             writer.WriteStringValue("icon", Icon);

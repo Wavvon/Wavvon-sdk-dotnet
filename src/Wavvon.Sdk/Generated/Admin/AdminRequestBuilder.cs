@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 using System;
 using Wavvon.Sdk.Generated.Admin.Application;
 using Wavvon.Sdk.Generated.Admin.AuditLog;
+using Wavvon.Sdk.Generated.Admin.BadgeDefs;
 using Wavvon.Sdk.Generated.Admin.Badges;
 using Wavvon.Sdk.Generated.Admin.Banlist;
+using Wavvon.Sdk.Generated.Admin.CertTypes;
 using Wavvon.Sdk.Generated.Admin.Certs;
 using Wavvon.Sdk.Generated.Admin.DirectorySign;
 using Wavvon.Sdk.Generated.Admin.Emojis;
@@ -39,6 +41,11 @@ namespace Wavvon.Sdk.Generated.Admin
         {
             get => new global::Wavvon.Sdk.Generated.Admin.AuditLog.AuditLogRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The badgeDefs property</summary>
+        public global::Wavvon.Sdk.Generated.Admin.BadgeDefs.BadgeDefsRequestBuilder BadgeDefs
+        {
+            get => new global::Wavvon.Sdk.Generated.Admin.BadgeDefs.BadgeDefsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The badges property</summary>
         public global::Wavvon.Sdk.Generated.Admin.Badges.BadgesRequestBuilder Badges
         {
@@ -53,6 +60,11 @@ namespace Wavvon.Sdk.Generated.Admin
         public global::Wavvon.Sdk.Generated.Admin.Certs.CertsRequestBuilder Certs
         {
             get => new global::Wavvon.Sdk.Generated.Admin.Certs.CertsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The certTypes property</summary>
+        public global::Wavvon.Sdk.Generated.Admin.CertTypes.CertTypesRequestBuilder CertTypes
+        {
+            get => new global::Wavvon.Sdk.Generated.Admin.CertTypes.CertTypesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The directorySign property</summary>
         public global::Wavvon.Sdk.Generated.Admin.DirectorySign.DirectorySignRequestBuilder DirectorySign

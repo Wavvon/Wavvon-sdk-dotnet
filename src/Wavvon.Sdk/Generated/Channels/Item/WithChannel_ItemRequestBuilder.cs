@@ -24,6 +24,7 @@ using Wavvon.Sdk.Generated.Channels.Item.TalkGrants;
 using Wavvon.Sdk.Generated.Channels.Item.TalkPower;
 using Wavvon.Sdk.Generated.Channels.Item.Upload;
 using Wavvon.Sdk.Generated.Channels.Item.VoiceMutes;
+using Wavvon.Sdk.Generated.Channels.Item.VoicePins;
 namespace Wavvon.Sdk.Generated.Channels.Item
 {
     /// <summary>
@@ -111,6 +112,11 @@ namespace Wavvon.Sdk.Generated.Channels.Item
         public global::Wavvon.Sdk.Generated.Channels.Item.VoiceMutes.VoiceMutesRequestBuilder VoiceMutes
         {
             get => new global::Wavvon.Sdk.Generated.Channels.Item.VoiceMutes.VoiceMutesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The voicePins property</summary>
+        public global::Wavvon.Sdk.Generated.Channels.Item.VoicePins.VoicePinsRequestBuilder VoicePins
+        {
+            get => new global::Wavvon.Sdk.Generated.Channels.Item.VoicePins.VoicePinsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Channels.Item.WithChannel_ItemRequestBuilder"/> and sets the default values.

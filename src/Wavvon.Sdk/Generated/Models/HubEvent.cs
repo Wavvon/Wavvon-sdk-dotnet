@@ -13,7 +13,7 @@ namespace Wavvon.Sdk.Generated.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class HubEvent : IAdditionalDataHolder, IParsable
     {
-        /// <summary>The actor_pubkey property</summary>
+        /// <summary>Absent when empty. Live</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ActorPubkey { get; set; }
@@ -25,7 +25,7 @@ namespace Wavvon.Sdk.Generated.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Unix seconds</summary>
         public long? At { get; set; }
-        /// <summary>The channel_id property</summary>
+        /// <summary>Absent when empty. Live</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ChannelId { get; set; }
@@ -61,7 +61,7 @@ namespace Wavvon.Sdk.Generated.Models
         public bool? Replayed { get; set; }
         /// <summary>The seq property</summary>
         public long? Seq { get; set; }
-        /// <summary>The target_pubkey property</summary>
+        /// <summary>Absent when empty. Live</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TargetPubkey { get; set; }

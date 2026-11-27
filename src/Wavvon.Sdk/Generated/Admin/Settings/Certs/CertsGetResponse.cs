@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Wavvon.Sdk.Generated.Models;
 namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
@@ -26,8 +27,10 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
 #endif
         /// <summary>The cert_min_age_days property</summary>
         public long? CertMinAgeDays { get; set; }
-        /// <summary>The cert_mode property</summary>
-        public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse_cert_mode? CertMode { get; set; }
+        /// <summary>The cert_others property</summary>
+        public global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse_cert_others? CertOthers { get; set; }
+        /// <summary>The cert_replaces_invite property</summary>
+        public bool? CertReplacesInvite { get; set; }
         /// <summary>The cert_trusted_issuers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -35,6 +38,14 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
 #nullable restore
 #else
         public List<string> CertTrustedIssuers { get; set; }
+#endif
+        /// <summary>The cert_trusted_types property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.TrustedCertType>? CertTrustedTypes { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.TrustedCertType> CertTrustedTypes { get; set; }
 #endif
         /// <summary>The cert_validity_days property</summary>
         public long? CertValidityDays { get; set; }
@@ -66,8 +77,10 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
                 { "cert_auto_issue", n => { CertAutoIssue = n.GetBoolValue(); } },
                 { "cert_issuer_urls", n => { CertIssuerUrls = n.GetObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse_cert_issuer_urls>(global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse_cert_issuer_urls.CreateFromDiscriminatorValue); } },
                 { "cert_min_age_days", n => { CertMinAgeDays = n.GetLongValue(); } },
-                { "cert_mode", n => { CertMode = n.GetEnumValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse_cert_mode>(); } },
+                { "cert_others", n => { CertOthers = n.GetEnumValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse_cert_others>(); } },
+                { "cert_replaces_invite", n => { CertReplacesInvite = n.GetBoolValue(); } },
                 { "cert_trusted_issuers", n => { CertTrustedIssuers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "cert_trusted_types", n => { CertTrustedTypes = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.TrustedCertType>(global::Wavvon.Sdk.Generated.Models.TrustedCertType.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "cert_validity_days", n => { CertValidityDays = n.GetLongValue(); } },
             };
         }
@@ -81,8 +94,10 @@ namespace Wavvon.Sdk.Generated.Admin.Settings.Certs
             writer.WriteBoolValue("cert_auto_issue", CertAutoIssue);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse_cert_issuer_urls>("cert_issuer_urls", CertIssuerUrls);
             writer.WriteLongValue("cert_min_age_days", CertMinAgeDays);
-            writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse_cert_mode>("cert_mode", CertMode);
+            writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Admin.Settings.Certs.CertsGetResponse_cert_others>("cert_others", CertOthers);
+            writer.WriteBoolValue("cert_replaces_invite", CertReplacesInvite);
             writer.WriteCollectionOfPrimitiveValues<string>("cert_trusted_issuers", CertTrustedIssuers);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.TrustedCertType>("cert_trusted_types", CertTrustedTypes);
             writer.WriteLongValue("cert_validity_days", CertValidityDays);
             writer.WriteAdditionalData(AdditionalData);
         }

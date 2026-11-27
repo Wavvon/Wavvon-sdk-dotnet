@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System;
 using Wavvon.Sdk.Generated.Auth.Challenge;
 using Wavvon.Sdk.Generated.Auth.Verify;
-using Wavvon.Sdk.Generated.Auth.Webauthn;
 namespace Wavvon.Sdk.Generated.Auth
 {
     /// <summary>
@@ -26,11 +25,6 @@ namespace Wavvon.Sdk.Generated.Auth
         public global::Wavvon.Sdk.Generated.Auth.Verify.VerifyRequestBuilder Verify
         {
             get => new global::Wavvon.Sdk.Generated.Auth.Verify.VerifyRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The webauthn property</summary>
-        public global::Wavvon.Sdk.Generated.Auth.Webauthn.WebauthnRequestBuilder Webauthn
-        {
-            get => new global::Wavvon.Sdk.Generated.Auth.Webauthn.WebauthnRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Auth.AuthRequestBuilder"/> and sets the default values.
