@@ -8,36 +8,32 @@ using System;
 namespace Wavvon.Sdk.Generated.Models
 {
     /// <summary>
-    /// What a certificate must show to admit a member. Omitted unless set.
+    /// Which certificates take a newcomer through the fast lane (no lobby, approval or challenge). Omitted while both trust lists are empty.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class HubInfo_cert_requirement : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The mode property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Mode { get; set; }
-#nullable restore
-#else
-        public string Mode { get; set; }
-#endif
-        /// <summary>The require property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_require? Require { get; set; }
-#nullable restore
-#else
-        public global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_require Require { get; set; }
-#endif
-        /// <summary>The trusted_issuers property</summary>
+        /// <summary>What happens without a trusted certificate.</summary>
+        public global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_others? Others { get; set; }
+        /// <summary>A trusted certificate stands in for an invite.</summary>
+        public bool? ReplacesInvite { get; set; }
+        /// <summary>Hubs whose every certificate counts.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? TrustedIssuers { get; set; }
 #nullable restore
 #else
         public List<string> TrustedIssuers { get; set; }
+#endif
+        /// <summary>The trusted_types property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Wavvon.Sdk.Generated.Models.TrustedCertType>? TrustedTypes { get; set; }
+#nullable restore
+#else
+        public List<global::Wavvon.Sdk.Generated.Models.TrustedCertType> TrustedTypes { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement"/> and sets the default values.
@@ -64,9 +60,10 @@ namespace Wavvon.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "mode", n => { Mode = n.GetStringValue(); } },
-                { "require", n => { Require = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_require>(global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_require.CreateFromDiscriminatorValue); } },
+                { "others", n => { Others = n.GetEnumValue<global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_others>(); } },
+                { "replaces_invite", n => { ReplacesInvite = n.GetBoolValue(); } },
                 { "trusted_issuers", n => { TrustedIssuers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "trusted_types", n => { TrustedTypes = n.GetCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.TrustedCertType>(global::Wavvon.Sdk.Generated.Models.TrustedCertType.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -76,9 +73,10 @@ namespace Wavvon.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("mode", Mode);
-            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_require>("require", Require);
+            writer.WriteEnumValue<global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement_others>("others", Others);
+            writer.WriteBoolValue("replaces_invite", ReplacesInvite);
             writer.WriteCollectionOfPrimitiveValues<string>("trusted_issuers", TrustedIssuers);
+            writer.WriteCollectionOfObjectValues<global::Wavvon.Sdk.Generated.Models.TrustedCertType>("trusted_types", TrustedTypes);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

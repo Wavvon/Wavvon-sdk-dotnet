@@ -41,7 +41,7 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public List<string> Capabilities { get; set; }
 #endif
-        /// <summary>What a certificate must show to admit a member. Omitted unless set.</summary>
+        /// <summary>Which certificates take a newcomer through the fast lane (no lobby, approval or challenge). Omitted while both trust lists are empty.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Wavvon.Sdk.Generated.Models.HubInfo_cert_requirement? CertRequirement { get; set; }
@@ -102,6 +102,14 @@ namespace Wavvon.Sdk.Generated.Models
 #nullable restore
 #else
         public string LanFingerprint { get; set; }
+#endif
+        /// <summary>The hub&apos;s language packs and default language (`hub.languages`), the same value as `GET /hub/languages`. Absent while the hub has neither.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.HubLanguages? Languages { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.HubLanguages Languages { get; set; }
 #endif
         /// <summary>The lan_mode property</summary>
         public bool? LanMode { get; set; }
@@ -169,6 +177,14 @@ namespace Wavvon.Sdk.Generated.Models
 #else
         public global::Wavvon.Sdk.Generated.Models.StreamLimits StreamLimits { get; set; }
 #endif
+        /// <summary>The hub default theme (`hub.theme`), present while one is set. The package is at `/hub/theme/{sha256}` and, when `has_preview`, its preview image at `/hub/theme/{sha256}/preview`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Wavvon.Sdk.Generated.Models.HubInfo_theme? Theme { get; set; }
+#nullable restore
+#else
+        public global::Wavvon.Sdk.Generated.Models.HubInfo_theme Theme { get; set; }
+#endif
         /// <summary>Omitted unless set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -184,22 +200,6 @@ namespace Wavvon.Sdk.Generated.Models
 #nullable restore
 #else
         public string Version { get; set; }
-#endif
-        /// <summary>Omitted unless set.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? VoiceCertHash { get; set; }
-#nullable restore
-#else
-        public string VoiceCertHash { get; set; }
-#endif
-        /// <summary>WebTransport voice endpoint. Omitted unless set.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? VoiceWtUrl { get; set; }
-#nullable restore
-#else
-        public string VoiceWtUrl { get; set; }
 #endif
         /// <summary>Omitted unless set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -258,6 +258,7 @@ namespace Wavvon.Sdk.Generated.Models
                 { "lan_mode", n => { LanMode = n.GetBoolValue(); } },
                 { "lan_tls", n => { LanTls = n.GetStringValue(); } },
                 { "landing", n => { Landing = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.Landing>(global::Wavvon.Sdk.Generated.Models.Landing.CreateFromDiscriminatorValue); } },
+                { "languages", n => { Languages = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.HubLanguages>(global::Wavvon.Sdk.Generated.Models.HubLanguages.CreateFromDiscriminatorValue); } },
                 { "max_attachment_bytes", n => { MaxAttachmentBytes = n.GetLongValue(); } },
                 { "min_pow_level", n => { MinPowLevel = n.GetIntValue(); } },
                 { "min_security_level", n => { MinSecurityLevel = n.GetIntValue(); } },
@@ -268,10 +269,9 @@ namespace Wavvon.Sdk.Generated.Models
                 { "self_tags", n => { SelfTags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "sfu_url", n => { SfuUrl = n.GetStringValue(); } },
                 { "stream_limits", n => { StreamLimits = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.StreamLimits>(global::Wavvon.Sdk.Generated.Models.StreamLimits.CreateFromDiscriminatorValue); } },
+                { "theme", n => { Theme = n.GetObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_theme>(global::Wavvon.Sdk.Generated.Models.HubInfo_theme.CreateFromDiscriminatorValue); } },
                 { "timezone", n => { Timezone = n.GetStringValue(); } },
                 { "version", n => { Version = n.GetStringValue(); } },
-                { "voice_cert_hash", n => { VoiceCertHash = n.GetStringValue(); } },
-                { "voice_wt_url", n => { VoiceWtUrl = n.GetStringValue(); } },
                 { "welcome_invite_url", n => { WelcomeInviteUrl = n.GetStringValue(); } },
                 { "welcome_label", n => { WelcomeLabel = n.GetStringValue(); } },
             };
@@ -297,6 +297,7 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteBoolValue("invite_only", InviteOnly);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.Landing>("landing", Landing);
             writer.WriteStringValue("lan_fingerprint", LanFingerprint);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.HubLanguages>("languages", Languages);
             writer.WriteBoolValue("lan_mode", LanMode);
             writer.WriteStringValue("lan_tls", LanTls);
             writer.WriteLongValue("max_attachment_bytes", MaxAttachmentBytes);
@@ -309,10 +310,9 @@ namespace Wavvon.Sdk.Generated.Models
             writer.WriteCollectionOfPrimitiveValues<string>("self_tags", SelfTags);
             writer.WriteStringValue("sfu_url", SfuUrl);
             writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.StreamLimits>("stream_limits", StreamLimits);
+            writer.WriteObjectValue<global::Wavvon.Sdk.Generated.Models.HubInfo_theme>("theme", Theme);
             writer.WriteStringValue("timezone", Timezone);
             writer.WriteStringValue("version", Version);
-            writer.WriteStringValue("voice_cert_hash", VoiceCertHash);
-            writer.WriteStringValue("voice_wt_url", VoiceWtUrl);
             writer.WriteStringValue("welcome_invite_url", WelcomeInviteUrl);
             writer.WriteStringValue("welcome_label", WelcomeLabel);
             writer.WriteAdditionalData(AdditionalData);

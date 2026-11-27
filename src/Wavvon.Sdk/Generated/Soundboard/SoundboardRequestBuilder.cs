@@ -34,7 +34,7 @@ namespace Wavvon.Sdk.Generated.Soundboard
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SoundboardRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/soundboard", pathParameters)
+        public SoundboardRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/soundboard{?cursor*,limit*}", pathParameters)
         {
         }
         /// <summary>
@@ -42,22 +42,22 @@ namespace Wavvon.Sdk.Generated.Soundboard
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SoundboardRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/soundboard", rawUrl)
+        public SoundboardRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/soundboard{?cursor*,limit*}", rawUrl)
         {
         }
         /// <summary>
-        /// Any authenticated member may list; playing one is gated separately by use_soundboard.
+        /// Any authenticated member may list; playing one is gated separately by use_soundboard. There is no cap on the number of clips, so clients page to exhaustion.
         /// </summary>
         /// <returns>A List&lt;global::Wavvon.Sdk.Generated.Soundboard.Soundboard&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<List<global::Wavvon.Sdk.Generated.Soundboard.Soundboard>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Soundboard.Soundboard>?> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Soundboard.SoundboardRequestBuilder.SoundboardRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<List<global::Wavvon.Sdk.Generated.Soundboard.Soundboard>> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Wavvon.Sdk.Generated.Soundboard.Soundboard>> GetAsync(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Soundboard.SoundboardRequestBuilder.SoundboardRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -85,17 +85,17 @@ namespace Wavvon.Sdk.Generated.Soundboard
             return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Soundboard.SoundboardPostResponse>(requestInfo, global::Wavvon.Sdk.Generated.Soundboard.SoundboardPostResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Any authenticated member may list; playing one is gated separately by use_soundboard.
+        /// Any authenticated member may list; playing one is gated separately by use_soundboard. There is no cap on the number of clips, so clients page to exhaustion.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Soundboard.SoundboardRequestBuilder.SoundboardRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Wavvon.Sdk.Generated.Soundboard.SoundboardRequestBuilder.SoundboardRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -133,6 +133,26 @@ namespace Wavvon.Sdk.Generated.Soundboard
         public global::Wavvon.Sdk.Generated.Soundboard.SoundboardRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Wavvon.Sdk.Generated.Soundboard.SoundboardRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Any authenticated member may list; playing one is gated separately by use_soundboard. There is no cap on the number of clips, so clients page to exhaustion.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class SoundboardRequestBuilderGetQueryParameters 
+        {
+            /// <summary>Keyset cursor — the `id` of the previous page&apos;s last clip.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("cursor")]
+            public string? Cursor { get; set; }
+#nullable restore
+#else
+            [QueryParameter("cursor")]
+            public string Cursor { get; set; }
+#endif
+            /// <summary>Page size, clamped to 1..500.</summary>
+            [QueryParameter("limit")]
+            public long? Limit { get; set; }
         }
     }
 }

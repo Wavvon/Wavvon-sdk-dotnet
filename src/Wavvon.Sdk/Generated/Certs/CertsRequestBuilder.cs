@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 using Wavvon.Sdk.Generated.Certs.Revocations;
+using Wavvon.Sdk.Generated.Certs.Types;
 namespace Wavvon.Sdk.Generated.Certs
 {
     /// <summary>
@@ -19,6 +20,11 @@ namespace Wavvon.Sdk.Generated.Certs
         public global::Wavvon.Sdk.Generated.Certs.Revocations.RevocationsRequestBuilder Revocations
         {
             get => new global::Wavvon.Sdk.Generated.Certs.Revocations.RevocationsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The types property</summary>
+        public global::Wavvon.Sdk.Generated.Certs.Types.TypesRequestBuilder Types
+        {
+            get => new global::Wavvon.Sdk.Generated.Certs.Types.TypesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Certs.CertsRequestBuilder"/> and sets the default values.

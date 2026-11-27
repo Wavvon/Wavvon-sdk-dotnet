@@ -10,9 +10,11 @@ using System.Threading;
 using System;
 using Wavvon.Sdk.Generated.Hub.Icons;
 using Wavvon.Sdk.Generated.Hub.LandingImage;
+using Wavvon.Sdk.Generated.Hub.Languages;
 using Wavvon.Sdk.Generated.Hub.Members;
 using Wavvon.Sdk.Generated.Hub.Pending;
 using Wavvon.Sdk.Generated.Hub.Settings;
+using Wavvon.Sdk.Generated.Hub.Theme;
 namespace Wavvon.Sdk.Generated.Hub
 {
     /// <summary>
@@ -31,6 +33,11 @@ namespace Wavvon.Sdk.Generated.Hub
         {
             get => new global::Wavvon.Sdk.Generated.Hub.LandingImage.LandingImageRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The languages property</summary>
+        public global::Wavvon.Sdk.Generated.Hub.Languages.LanguagesRequestBuilder Languages
+        {
+            get => new global::Wavvon.Sdk.Generated.Hub.Languages.LanguagesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The members property</summary>
         public global::Wavvon.Sdk.Generated.Hub.Members.MembersRequestBuilder Members
         {
@@ -45,6 +52,11 @@ namespace Wavvon.Sdk.Generated.Hub
         public global::Wavvon.Sdk.Generated.Hub.Settings.SettingsRequestBuilder Settings
         {
             get => new global::Wavvon.Sdk.Generated.Hub.Settings.SettingsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The theme property</summary>
+        public global::Wavvon.Sdk.Generated.Hub.Theme.ThemeRequestBuilder Theme
+        {
+            get => new global::Wavvon.Sdk.Generated.Hub.Theme.ThemeRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Wavvon.Sdk.Generated.Hub.HubRequestBuilder"/> and sets the default values.

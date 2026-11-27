@@ -44,7 +44,7 @@ namespace Wavvon.Sdk.Generated.Soundboard
 #endif
         /// <summary>The size_bytes property</summary>
         public long? SizeBytes { get; set; }
-        /// <summary>The uploader property</summary>
+        /// <summary>Pubkey of the member who uploaded it; empty for a clip the hub ships with</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Uploader { get; set; }

@@ -40,6 +40,7 @@ using Wavvon.Sdk.Generated.Polls;
 using Wavvon.Sdk.Generated.Preview;
 using Wavvon.Sdk.Generated.Profile;
 using Wavvon.Sdk.Generated.Public;
+using Wavvon.Sdk.Generated.Push;
 using Wavvon.Sdk.Generated.Recovery;
 using Wavvon.Sdk.Generated.RoleCategories;
 using Wavvon.Sdk.Generated.Roles;
@@ -212,6 +213,11 @@ namespace Wavvon.Sdk.Generated
         public global::Wavvon.Sdk.Generated.Public.PublicRequestBuilder Public
         {
             get => new global::Wavvon.Sdk.Generated.Public.PublicRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The push property</summary>
+        public global::Wavvon.Sdk.Generated.Push.PushRequestBuilder Push
+        {
+            get => new global::Wavvon.Sdk.Generated.Push.PushRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The recovery property</summary>
         public global::Wavvon.Sdk.Generated.Recovery.RecoveryRequestBuilder Recovery

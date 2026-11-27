@@ -33,38 +33,45 @@ namespace Wavvon.Sdk.Generated.Channels.Item.Read
         {
         }
         /// <summary>
-        /// Mark a channel as read up to now
+        /// Without a body the caller&apos;s read marker moves to now. With`message_id` (&quot;mark unread&quot;, capability `channels.markunread`) itmoves to that message&apos;s `created_at` minus one, so the message andeverything after it count as unread. Only the caller&apos;s marker changes.
         /// </summary>
+        /// <returns>A <see cref="global::Wavvon.Sdk.Generated.Channels.Item.Read.ReadPostResponse"/></returns>
+        /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Wavvon.Sdk.Generated.Channels.Item.Read.ReadPostResponse?> PostAsync(global::Wavvon.Sdk.Generated.Channels.Item.Read.ReadPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Wavvon.Sdk.Generated.Channels.Item.Read.ReadPostResponse> PostAsync(global::Wavvon.Sdk.Generated.Channels.Item.Read.ReadPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            var requestInfo = ToPostRequestInformation(requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPostRequestInformation(body, requestConfiguration);
+            return await RequestAdapter.SendAsync<global::Wavvon.Sdk.Generated.Channels.Item.Read.ReadPostResponse>(requestInfo, global::Wavvon.Sdk.Generated.Channels.Item.Read.ReadPostResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Mark a channel as read up to now
+        /// Without a body the caller&apos;s read marker moves to now. With`message_id` (&quot;mark unread&quot;, capability `channels.markunread`) itmoves to that message&apos;s `created_at` minus one, so the message andeverything after it count as unread. Only the caller&apos;s marker changes.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Wavvon.Sdk.Generated.Channels.Item.Read.ReadPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Wavvon.Sdk.Generated.Channels.Item.Read.ReadPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
         /// <summary>

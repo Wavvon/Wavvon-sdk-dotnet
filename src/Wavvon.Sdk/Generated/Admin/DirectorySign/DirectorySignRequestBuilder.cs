@@ -33,7 +33,7 @@ namespace Wavvon.Sdk.Generated.Admin.DirectorySign
         {
         }
         /// <summary>
-        /// Sign a directory entry for the hub discovery service
+        /// Returns `canonical_payload` (sorted keys: bio, hub_url, invite_code when given, language, nonce, tags, and `theme_preview_url` when the hub has a default theme with a preview), the hub key and its signature.
         /// </summary>
         /// <returns>A <see cref="Stream"/></returns>
         /// <param name="body">The request body</param>
@@ -53,7 +53,7 @@ namespace Wavvon.Sdk.Generated.Admin.DirectorySign
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Sign a directory entry for the hub discovery service
+        /// Returns `canonical_payload` (sorted keys: bio, hub_url, invite_code when given, language, nonce, tags, and `theme_preview_url` when the hub has a default theme with a preview), the hub key and its signature.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
